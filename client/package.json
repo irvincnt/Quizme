@@ -26,11 +26,15 @@
     "mini-css-extract-plugin": "^2.2.0",
     "sass": "^1.38.0",
     "sass-loader": "^12.1.0",
+    "standard": "^16.0.3",
     "style-loader": "^3.2.1",
     "webpack": "^5.50.0",
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.0.0",
     "webpack-merge": "^5.8.0"
   },
-  "browserslist": "> 0.25%, not dead, not ie 11"
+  "browserslist": "> 0.25%, not dead, not ie 11",
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslinrc.json"
+  }
 }
