@@ -35,6 +35,6 @@
   },
   "browserslist": "> 0.25%, not dead, not ie 11",
   "eslintConfig": {
-    "extends": "./node_modules/standard/eslinrc.json"
+    "extends": "./node_modules/standard/eslintrc.json"
   }
 }
