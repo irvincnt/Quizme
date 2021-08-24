@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs')
 const User = require('../../models/User')
 const generateJWT = require('../../helpers/jwt')
 
-const createUser = async (req, res = response) => {
+const registerUser = async (req, res = response) => {
   const { name, email, password } = req.body
 
   try {
@@ -39,4 +39,4 @@ const createUser = async (req, res = response) => {
   }
 }
 
-module.exports = createUser
+module.exports = registerUser
