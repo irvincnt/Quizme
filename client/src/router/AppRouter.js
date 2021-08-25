@@ -6,16 +6,14 @@ import { PublicRoute } from './PublicRoute'
 export const AppRouter = () => {
   return (
     <Router>
-      <div>
-        <Switch>
-          <PublicRoute
-            exact
-            path='/login'
-            component={Login}
-            isAuthenticated={false}
-          />
-        </Switch>
-      </div>
+      <Switch>
+        <PublicRoute
+          exact
+          path='/login'
+          component={Login}
+          isAuthenticated={false}
+        />
+      </Switch>
     </Router>
   )
 }
