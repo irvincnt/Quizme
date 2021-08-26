@@ -19,7 +19,7 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        use: 'asset',
+        type: 'asset/resource',
         test: /\.(png|svg|jpg)$/
       },
       {

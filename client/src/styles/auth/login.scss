@@ -1,0 +1,126 @@
+@import '../variables.scss';
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  .content {
+    max-width: 367px;
+    border-radius: .25rem;
+    margin: 0px 12px;
+    .header {
+      display: flex;
+      border-radius: .25rem .25rem 0 0;
+      background-color: $c-purple-ligth;
+      .labels {
+        padding: 1.5rem;
+        flex: 1;
+        color: $c-primary;
+        h5 {
+          font-weight: 500;
+          line-height: 1.2;
+          margin: 0 0 .5rem 0;
+        }
+        p {
+          font-size: .8125rem;
+          margin: 0 0 1rem 0;
+        }
+      }
+      .image {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-direction: column;
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+      } 
+    }
+    .section {
+      width: 100%;
+      padding: 1.25rem;
+      background-color: $c-white;
+      border-radius: 0 0 .25rem .25rem;
+      .input-group {
+        &:not(:last-child) {
+          margin-bottom: 16px;;
+        }
+        .label {
+          display: block;
+          margin-bottom: .5rem;
+          font-size: 13px;
+          font-weight: 500;
+        }
+        .input {
+          display: block;
+          width: 100%;
+          padding: .47rem .75rem;
+          font-size: .8125rem;
+          font-weight: 400;
+          line-height: 1.5;
+          color: #495057;
+          background-color: $c-white;
+          background-clip: padding-box;
+          border: 1px solid #ced4da;
+          appearance: none;
+          border-radius: .25rem;
+        }
+        .input:focus{
+          outline: none;
+        }
+        .is-invalid {
+          border-color: $c-danger;
+          padding-right: calc(1.5em + .94rem);
+          background-image: url('../../asset/icons/info.svg');
+          background-repeat: no-repeat;
+          background-position: right calc(.375em + .235rem) center;
+          background-size: calc(.75em + .47rem) calc(.75em + .47rem);
+        }
+        .is-invalid:focus {
+          border-color: $c-danger;
+          box-shadow: 0 0 0 0.15rem rgb(244 106 106 / 25%);
+        }
+        .msg {
+          display: block;
+          margin-top: .25rem;
+          font-size: 10.4px;
+          color: $c-danger;
+        }
+      }
+    }
+    .btn {
+      width: 100%;
+      color: #fff;
+      background-color: $c-primary;
+      border: none;
+      font-weight: 400;
+      padding: .47rem .75rem;
+      font-size: .8125rem;
+      border-radius: .25rem;
+      line-height: 1.5;
+    }
+    .sigin-with {
+      margin-top: 1.5rem;
+      text-align: center;
+      h5 {
+        margin: 0 0 1rem 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.2;
+      }
+      .icons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+      }
+      p {
+        font-size: 14px;
+        color: $c-gray
+      }
+
+    }
+  }
+}
