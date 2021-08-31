@@ -8,7 +8,7 @@ const validateJWT = require('../middlewares/validateJWT')
 
 const router = Router()
 
-router.post('/', loginUser)
+router.post('/login', loginUser)
 router.post('/register', signupValidator, resultValidator, registerUser)
 router.post('/renew', validateJWT, renewTokenUser)
 

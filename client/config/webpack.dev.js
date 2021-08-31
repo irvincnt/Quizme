@@ -1,5 +1,7 @@
+const path = require('path')
 const { merge } = require('webpack-merge')
 const common = require('./webpack.common')
+const Dotenv = require('dotenv-webpack')
 
 /** @type {import('webpack').Configuration} */
 const devConfig = {
@@ -18,6 +20,12 @@ const devConfig = {
       }
     ]
   },
+  plugins: [
+    new Dotenv({
+      path: path.resolve(__dirname, '../.env.development'),
+      safe: true
+    })
+  ],
   devtool: 'eval-source-map'
 }
 

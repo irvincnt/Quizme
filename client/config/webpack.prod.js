@@ -1,5 +1,7 @@
+const path = require('path')
 const { merge } = require('webpack-merge')
 const common = require('./webpack.common')
+const Dotenv = require('dotenv-webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 /** @type {import('webpack').Configuration} */
@@ -19,7 +21,13 @@ const prodConfig = {
       chunks: 'all'
     }
   },
-  plugins: [new MiniCssExtractPlugin()]
+  plugins: [
+    new MiniCssExtractPlugin(),
+    new Dotenv({
+      path: path.resolve(__dirname, '../.env.production'),
+      safe: true
+    })
+  ]
 }
 
 module.exports = merge(common, prodConfig)

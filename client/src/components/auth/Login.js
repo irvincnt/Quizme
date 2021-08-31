@@ -5,8 +5,11 @@ import '../../styles/auth/login_register.scss'
 import login from '../../asset/images/login.svg'
 import google from '../../asset/icons/google.svg'
 import facebook from '../../asset/icons/facebook.svg'
+import { useDispatch } from 'react-redux'
+import { startLogin } from '../../actions/auth'
 
 export default function Login () {
+  const dispatch = useDispatch()
   const [values, handleInputChange] = useForm({
     email: '',
     password: ''
@@ -14,7 +17,7 @@ export default function Login () {
 
   const handlerSubmit = (e) => {
     e.preventDefault()
-    console.log(values)
+    dispatch(startLogin(values.email, values.password))
   }
   return (
     <div className='login'>
