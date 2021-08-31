@@ -1,11 +1,21 @@
 import React from 'react'
-import '../../styles/auth/login_register.scss'
+import { useForm } from '../../hooks/useForm'
 
+import '../../styles/auth/login_register.scss'
 import login from '../../asset/images/login.svg'
 import google from '../../asset/icons/google.svg'
 import facebook from '../../asset/icons/facebook.svg'
 
 export default function Login () {
+  const [values, handleInputChange] = useForm({
+    email: '',
+    password: ''
+  })
+
+  const handlerSubmit = (e) => {
+    e.preventDefault()
+    console.log(values)
+  }
   return (
     <div className='login'>
       <div className='content'>
@@ -19,16 +29,15 @@ export default function Login () {
           </div>
         </div>
         <div className='section'>
-          <form>
+          <form onSubmit={handlerSubmit}>
             <div className='input-group'>
               <label className='label'>Email</label>
-              <input type='text' name='email' className='input is-invalid' />
-              <span className='msg error'>Please enter valid email</span>
+              <input type='text' name='email' value={values.email} className='input' onChange={handleInputChange} autoComplete='off' />
+              {/* <span className='msg error'>Please enter valid email</span> */}
             </div>
             <div className='input-group'>
               <label className='label'>Password</label>
-              <input type='password' name='password' className='input is-invalid' />
-              <span className='msg'>Please enter valid password</span>
+              <input type='password' name='password' value={values.password} className='input' onChange={handleInputChange} autoComplete='off' />
             </div>
             <button type='submit' className='btn'>Log in</button>
           </form>
