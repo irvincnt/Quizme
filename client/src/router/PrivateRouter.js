@@ -7,9 +7,6 @@ export const PrivateRoute = ({
   component: Component,
   ...rest
 }) => {
-  console.log('🚀 --------------------------------------------------------------------------')
-  console.log('🚀 -> file: PrivateRouter.js -> line 10 -> isAuthenticated', isAuthenticated)
-  console.log('🚀 --------------------------------------------------------------------------')
   return (
     <Route
       {...rest}

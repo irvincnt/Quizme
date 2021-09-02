@@ -7,9 +7,6 @@ export const PublicRoute = ({
   component: Component,
   ...rest
 }) => {
-  console.log('🚀 ------------------------------------------------------------------------')
-  console.log('🚀 -> file: PublicRoute.js -> line 10 -> isAuthenticated', isAuthenticated)
-  console.log('🚀 ------------------------------------------------------------------------')
   return (
     <Route
       {...rest}
