@@ -7,10 +7,13 @@ export const PublicRoute = ({
   component: Component,
   ...rest
 }) => {
+  console.log('🚀 ------------------------------------------------------------------------')
+  console.log('🚀 -> file: PublicRoute.js -> line 10 -> isAuthenticated', isAuthenticated)
+  console.log('🚀 ------------------------------------------------------------------------')
   return (
     <Route
       {...rest}
-      component={(props) => isAuthenticated ? <Redirect to='/' /> : <Component {...props} />}
+      component={(props) => isAuthenticated ? <Redirect to='/dasboard' /> : <Component {...props} />}
     />
   )
 }

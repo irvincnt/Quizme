@@ -10,6 +10,6 @@ const router = Router()
 
 router.post('/login', loginUser)
 router.post('/register', signupValidator, resultValidator, registerUser)
-router.post('/renew', validateJWT, renewTokenUser)
+router.get('/renew', validateJWT, renewTokenUser)
 
 module.exports = router
