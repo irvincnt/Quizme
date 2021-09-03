@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
+import { Link } from 'react-router-dom'
 
 import { useForm } from '../../hooks/useForm'
 import { useDispatch } from 'react-redux'
@@ -128,7 +129,7 @@ export default function Register () {
               <img src={google} alt='google icon' width='26px' />
               <img src={facebook} alt='facebook icon' width='26px' />
             </div>
-            <p>Already have an account ? Login</p>
+            <p>Already have an account ? <Link to='/login'> Login</Link> </p>
           </div>
         </div>
       </div>

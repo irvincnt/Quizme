@@ -1,5 +1,6 @@
 import React from 'react'
 import { useForm } from '../../hooks/useForm'
+import { Link } from 'react-router-dom'
 
 import '../../styles/auth/login_register.scss'
 import login from '../../asset/images/login.svg'
@@ -51,6 +52,7 @@ export default function Login () {
               <img src={facebook} alt='facebook icon' width='26px' />
             </div>
             <p>¿Forgot your password?</p>
+            <p>Don't have an account ? <Link to='/register'> Signup now </Link> </p>
           </div>
         </div>
       </div>

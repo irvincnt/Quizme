@@ -7,6 +7,7 @@ import Login from '../components/auth/Login'
 import Register from '../components/auth/Register'
 import Home from '../components/pages/Home'
 import { startChecking } from '../actions/auth'
+import Navbar from '../components/ui/Navbar'
 
 export const AppRouter = () => {
   const dispatch = useDispatch()
@@ -18,29 +19,12 @@ export const AppRouter = () => {
 
   return (
     <Router>
+      {id && <Navbar />}
       <Switch>
-        <PublicRoute
-          exact
-          path='/login'
-          component={Login}
-          isAuthenticated={!!id} // sin id (false)
-        />
-        <PublicRoute
-          exact
-          path='/register'
-          component={Register}
-          isAuthenticated={!!id} // sin id (false)
-        />
+        <PublicRoute exact path='/login' component={Login} isAuthenticated={!!id} />
+        <PublicRoute exact path='/register' component={Register} isAuthenticated={!!id} />
 
-        <PrivateRoute
-          exact
-          path='/dasboard'
-          component={Home}
-          isAuthenticated={!!id} // con id (true)
-        />
-
-        {/* <Redirect to='/home' /> */}
-
+        <PrivateRoute exact path='/dasboard' component={Home} isAuthenticated={!!id} />
       </Switch>
     </Router>
   )
