@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
-import { useForm } from '../../hooks/useForm'
 import classNames from 'classnames'
+
+import { useForm } from '../../hooks/useForm'
+import { useDispatch } from 'react-redux'
+import { validateEmail } from '../../helpers/validator'
+import { startRegister } from '../../actions/auth'
 
 import '../../styles/auth/login_register.scss'
 import login from '../../asset/images/login.svg'
 import google from '../../asset/icons/google.svg'
 import facebook from '../../asset/icons/facebook.svg'
-import { validateEmail } from '../../helpers/validator'
 
 export default function Register () {
+  const dispatch = useDispatch()
   const [errors, setErrors] = useState({})
   const [values, handleInputChange] = useForm({
     email: '',
@@ -45,6 +49,11 @@ export default function Register () {
       return setErrors(errorsForm)
     } else {
       setErrors({})
+      dispatch(startRegister(
+        values.username,
+        values.email,
+        values.password
+      ))
     }
   }
 
