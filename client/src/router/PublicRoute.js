@@ -10,7 +10,7 @@ export const PublicRoute = ({
   return (
     <Route
       {...rest}
-      component={(props) => isAuthenticated ? <Redirect to='/dasboard' /> : <Component {...props} />}
+      component={(props) => isAuthenticated ? <Redirect to='/home' /> : <Component {...props} />}
     />
   )
 }
