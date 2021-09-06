@@ -71,4 +71,13 @@ const login = (user) => ({
   payload: user
 })
 
+export const startLogout = () => {
+  return (dispatch) => {
+    // eslint-disable-next-line no-undef
+    localStorage.clear()
+    dispatch(logout())
+  }
+}
+
+const logout = () => ({ type: types.authLogout })
 const checkingFinish = () => ({ type: types.authCheckingFinish })
