@@ -11,10 +11,14 @@ import Navbar from '../components/ui/Navbar'
 
 export const AppRouter = () => {
   const dispatch = useDispatch()
-  const { checking, id } = useSelector(state => state.auth)
+  const { id } = useSelector(state => state.auth)
 
   useEffect(() => {
-    dispatch(startChecking())
+    // eslint-disable-next-line no-undef
+    const token = localStorage.getItem('token')
+    if (token) {
+      dispatch(startChecking())
+    }
   }, [dispatch])
 
   return (
