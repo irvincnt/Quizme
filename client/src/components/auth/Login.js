@@ -5,10 +5,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { startLogin } from '../../actions/auth'
 import Alerts from '../ui/Alerts'
 
+import GoogleLogin from 'react-google-login'
+
 import '../../styles/auth/login_register.scss'
 import login from '../../asset/images/login.svg'
 import google from '../../asset/icons/google.svg'
 import facebook from '../../asset/icons/facebook.svg'
+
+const googleClient = process.env.GOOLE_CLIENT_ID
 
 export default function Login () {
   const dispatch = useDispatch()
@@ -22,6 +26,15 @@ export default function Login () {
     e.preventDefault()
     dispatch(startLogin(values.email, values.password))
   }
+
+  const googleSucces = async (res) => {
+    console.log('🚀 Succes Google', res?.profileObj)
+  }
+
+  const googleError = (err) => {
+    console.log('🚀 Error Google', err)
+  }
+
   return (
     <div className='login'>
       <div className='content'>
@@ -40,7 +53,6 @@ export default function Login () {
             <div className='input-group'>
               <label className='label'>Email</label>
               <input type='text' name='email' value={values.email} className='input' onChange={handleInputChange} autoComplete='off' />
-              {/* <span className='msg error'>Please enter valid email</span> */}
             </div>
             <div className='input-group'>
               <label className='label'>Password</label>
@@ -51,7 +63,16 @@ export default function Login () {
           <div className='sigin-with'>
             <h5>Sign in with</h5>
             <div className='icons'>
-              <img src={google} alt='google icon' width='26px' />
+              <GoogleLogin
+                clientId={googleClient}
+                render={renderProps => (
+                  // eslint-disable-next-line react/jsx-handler-names
+                  <img onClick={renderProps.onClick} disabled={renderProps.disabled} src={google} alt='google icon' width='26px' />
+                )}
+                onSuccess={googleSucces}
+                onFailure={googleError}
+                cookiePolicy='single_host_origin'
+              />
               <img src={facebook} alt='facebook icon' width='26px' />
             </div>
             <p>¿Forgot your password?</p>
