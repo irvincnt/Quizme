@@ -1,0 +1,27 @@
+.alert {
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  font-size: 13px;
+  &.danger {
+    color: #924040;
+    background-color: #fde1e1;
+    border-color: #fcd2d2;
+  }
+  &.success {
+    color: #1f7556;
+    background-color: #d6f3e9;
+    border-color: #c2eddd;
+  }
+  &.warning {
+    color: #916c2e;
+    background-color: #fcf0db;
+    border-color: #fbe9c9;
+  }
+  &.info {
+    color: #306391;
+    background-color: #dcedfc;
+    border-color: #cbe4fb;
+  }
+}

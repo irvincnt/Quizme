@@ -4,5 +4,7 @@ export const types = {
   authCheckingFinish: '[auth] Checking finish login state',
   authStartRegister: '[auth] Start register',
   authStartTokenRenew: '[auth] Start token renew',
-  authLogout: '[auth] Logout'
+  authLogout: '[auth] Logout',
+  messageError: '[Message] Error message',
+  hideMessage: '[Message] Hide message'
 }

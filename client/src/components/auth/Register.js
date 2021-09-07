@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 
 import { useForm } from '../../hooks/useForm'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { validateEmail } from '../../helpers/validator'
 import { startRegister } from '../../actions/auth'
 
@@ -11,9 +11,12 @@ import '../../styles/auth/login_register.scss'
 import login from '../../asset/images/login.svg'
 import google from '../../asset/icons/google.svg'
 import facebook from '../../asset/icons/facebook.svg'
+import Alerts from '../ui/Alerts'
 
 export default function Register () {
   const dispatch = useDispatch()
+  const { ok: okError, msg } = useSelector(state => state.msg)
+
   const [errors, setErrors] = useState({})
   const [values, handleInputChange] = useForm({
     email: '',
@@ -71,6 +74,7 @@ export default function Register () {
           </div>
         </div>
         <div className='section'>
+          {okError && <Alerts label={msg} danger />}
           <form onSubmit={handlerRegister}>
             <div className='input-group'>
               <label className='label'>Email</label>

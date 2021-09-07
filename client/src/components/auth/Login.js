@@ -1,16 +1,18 @@
 import React from 'react'
-import { useForm } from '../../hooks/useForm'
 import { Link } from 'react-router-dom'
+import { useForm } from '../../hooks/useForm'
+import { useDispatch, useSelector } from 'react-redux'
+import { startLogin } from '../../actions/auth'
+import Alerts from '../ui/Alerts'
 
 import '../../styles/auth/login_register.scss'
 import login from '../../asset/images/login.svg'
 import google from '../../asset/icons/google.svg'
 import facebook from '../../asset/icons/facebook.svg'
-import { useDispatch } from 'react-redux'
-import { startLogin } from '../../actions/auth'
 
 export default function Login () {
   const dispatch = useDispatch()
+  const { ok: okError, msg } = useSelector(state => state.msg)
   const [values, handleInputChange] = useForm({
     email: '',
     password: ''
@@ -33,6 +35,7 @@ export default function Login () {
           </div>
         </div>
         <div className='section'>
+          {okError && <Alerts label={msg} danger />}
           <form onSubmit={handlerSubmit}>
             <div className='input-group'>
               <label className='label'>Email</label>

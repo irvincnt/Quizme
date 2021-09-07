@@ -15,8 +15,9 @@ export const startLogin = (email, password) => {
         id: body?.user?.id,
         name: body?.user?.name
       }))
+      dispatch(hideMessageError())
     } else {
-      console.error(`🛑 Error startLogin ${body.msg}`)
+      dispatch(addMessageError(body.msg, 'Login'))
     }
   }
 }
@@ -60,8 +61,9 @@ export const startRegister = (name, email, password) => {
           name: body?.user?.name
         })
       )
+      dispatch(hideMessageError())
     } else {
-      console.error(`Error ${body.msg}`)
+      dispatch(addMessageError(body.msg, 'Register'))
     }
   }
 }
@@ -81,3 +83,10 @@ export const startLogout = () => {
 
 const logout = () => ({ type: types.authLogout })
 const checkingFinish = () => ({ type: types.authCheckingFinish })
+
+const addMessageError = (msg, type) => ({
+  type: types.messageError,
+  payload: { msg, type }
+})
+
+const hideMessageError = () => ({ type: types.hideMessage })
