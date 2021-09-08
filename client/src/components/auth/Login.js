@@ -24,15 +24,25 @@ export default function Login () {
 
   const handlerSubmit = (e) => {
     e.preventDefault()
-    dispatch(startLogin(values.email, values.password))
+
+    dispatch(startLogin(
+      'auth/login',
+      {
+        email: values.email,
+        password: values.password
+      }
+    ))
   }
 
   const googleSucces = async (res) => {
-    console.log('🚀 Succes Google', res)
-    const fecha = await res.reloadAuthResponse()
-    console.log('🚀 --------------------------------------------------------------')
-    console.log('🚀 -> file: Login.js -> line 33 -> googleSucces -> fecha', fecha)
-    console.log('🚀 --------------------------------------------------------------')
+    const { tokenId: tokenGoogle } = res
+
+    dispatch(startLogin(
+      'auth/google-login',
+      {
+        token: tokenGoogle
+      }
+    ))
   }
 
   const googleError = (err) => {

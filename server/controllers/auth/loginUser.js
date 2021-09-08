@@ -9,6 +9,7 @@ const loginUser = async (req, res = response) => {
   try {
     // search user
     const user = await User.findOne({ email })
+
     if (!user) { return res.status(400).json({ ok: false, msg: 'User not found' }) }
 
     // validate password

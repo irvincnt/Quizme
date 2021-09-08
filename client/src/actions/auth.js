@@ -1,9 +1,9 @@
 import { fetchWithoutToken, fetchWithToken } from '../helpers/fetch'
 import { types } from '../types/types'
 
-export const startLogin = (email, password) => {
+export const startLogin = (path, data) => {
   return async (dispatch) => {
-    const resp = await fetchWithoutToken('auth/login', { email, password }, 'POST')
+    const resp = await fetchWithoutToken(path, data, 'POST')
     const body = await resp.json()
     if (body.ok) {
       // eslint-disable-next-line no-undef
@@ -13,7 +13,8 @@ export const startLogin = (email, password) => {
 
       dispatch(login({
         id: body?.user?.id,
-        name: body?.user?.name
+        name: body?.user?.name,
+        picture: body?.user?.picture
       }))
       dispatch(hideMessageError())
     } else {
