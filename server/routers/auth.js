@@ -5,10 +5,12 @@ const renewTokenUser = require('../controllers/auth/renewUser')
 const { signupValidator } = require('../validator/auth')
 const resultValidator = require('../validator/result')
 const validateJWT = require('../middlewares/validateJWT')
+const loginWithGoogle = require('../controllers/auth/loginGoogle')
 
 const router = Router()
 
 router.post('/login', loginUser)
+router.post('/google-login', loginWithGoogle)
 router.post('/register', signupValidator, resultValidator, registerUser)
 router.get('/renew', validateJWT, renewTokenUser)
 

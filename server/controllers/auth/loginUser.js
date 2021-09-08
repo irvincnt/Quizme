@@ -24,7 +24,8 @@ const loginUser = async (req, res = response) => {
       token,
       user: {
         id: user.id,
-        name: user.name
+        name: user.name,
+        picture: user.picture
       }
     })
   } catch (error) {

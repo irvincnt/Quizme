@@ -4,3 +4,4 @@ dist/
 
 client/.env.development
 client/.env.production
+server/.env

@@ -28,7 +28,11 @@ export default function Login () {
   }
 
   const googleSucces = async (res) => {
-    console.log('🚀 Succes Google', res?.profileObj)
+    console.log('🚀 Succes Google', res)
+    const fecha = await res.reloadAuthResponse()
+    console.log('🚀 --------------------------------------------------------------')
+    console.log('🚀 -> file: Login.js -> line 33 -> googleSucces -> fecha', fecha)
+    console.log('🚀 --------------------------------------------------------------')
   }
 
   const googleError = (err) => {

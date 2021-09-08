@@ -20,6 +20,9 @@ const UserSchema = Schema({
   gender: {
     type: String
   },
+  picture: {
+    type: String
+  },
   dateCreated: {
     type: Date,
     default: Date.now
