@@ -6,6 +6,7 @@ import { startLogin } from '../../actions/auth'
 import Alerts from '../ui/Alerts'
 
 import GoogleLogin from 'react-google-login'
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
 import '../../styles/auth/login_register.scss'
 import login from '../../asset/images/login.svg'
@@ -49,6 +50,19 @@ export default function Login () {
     console.log('🚀 Error Google', err)
   }
 
+  const responseFacebook = async (res) => {
+    const { userID, accessToken } = res
+
+    dispatch(startLogin(
+      'auth/facebook-login',
+      {
+        userId: userID,
+        accessToken
+
+      }
+    ))
+  }
+
   return (
     <div className='login'>
       <div className='content'>
@@ -87,7 +101,16 @@ export default function Login () {
                 onFailure={googleError}
                 cookiePolicy='single_host_origin'
               />
-              <img src={facebook} alt='facebook icon' width='26px' />
+              <FacebookLogin
+                appId='1987755674723148'
+                autoLoad={false}
+                fields='name,email,picture'
+                callback={responseFacebook}
+                render={renderProps => (
+                  // eslint-disable-next-line react/jsx-handler-names
+                  <img onClick={renderProps.onClick} src={facebook} alt='facebook icon' width='26px' />
+                )}
+              />
             </div>
             <p>¿Forgot your password?</p>
             <p>Don't have an account ? <Link to='/register'> Signup now </Link> </p>
