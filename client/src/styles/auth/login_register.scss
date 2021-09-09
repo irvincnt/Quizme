@@ -115,8 +115,12 @@
         display: flex;
         justify-content: center;
         gap: 1rem;
-        img { 
-          cursor: pointer;
+        button {
+          border: none;
+          background-color: transparent;
+          img { 
+            cursor: pointer;
+          }
         }
       }
       p {

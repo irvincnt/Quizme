@@ -14,6 +14,7 @@ import google from '../../asset/icons/google.svg'
 import facebook from '../../asset/icons/facebook.svg'
 
 const googleClient = process.env.GOOLE_CLIENT_ID
+const facebookClient = process.env.FACEBOOK_CLIENT_ID
 
 export default function Login () {
   const dispatch = useDispatch()
@@ -95,20 +96,24 @@ export default function Login () {
                 clientId={googleClient}
                 render={renderProps => (
                   // eslint-disable-next-line react/jsx-handler-names
-                  <img onClick={renderProps.onClick} disabled={renderProps.disabled} src={google} alt='google icon' width='26px' />
+                  <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                    <img src={google} alt='facebook icon' width='26px' />
+                  </button>
                 )}
                 onSuccess={googleSucces}
                 onFailure={googleError}
                 cookiePolicy='single_host_origin'
               />
               <FacebookLogin
-                appId='1987755674723148'
+                appId={facebookClient}
                 autoLoad={false}
-                fields='name,email,picture'
                 callback={responseFacebook}
                 render={renderProps => (
                   // eslint-disable-next-line react/jsx-handler-names
-                  <img onClick={renderProps.onClick} src={facebook} alt='facebook icon' width='26px' />
+                  <button onClick={renderProps.onClick} disabled={renderProps.isDisabled}>
+                    <img src={facebook} alt='facebook icon' width='26px' />
+                    <p>{renderProps.isDisabled}</p>
+                  </button>
                 )}
               />
             </div>
