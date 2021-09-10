@@ -112,7 +112,6 @@ export default function Login () {
                   // eslint-disable-next-line react/jsx-handler-names
                   <button onClick={renderProps.onClick} disabled={renderProps.isDisabled}>
                     <img src={facebook} alt='facebook icon' width='26px' />
-                    <p>{renderProps.isDisabled}</p>
                   </button>
                 )}
               />

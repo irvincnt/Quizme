@@ -9,7 +9,7 @@ export const startLogin = (path, data) => {
       // eslint-disable-next-line no-undef
       localStorage.setItem('token', body.token)
       // eslint-disable-next-line no-undef
-      localStorage.setItem('token-init.date', new Date().getTime())
+      localStorage.setItem('user', JSON.stringify(body.user))
 
       dispatch(login({
         id: body?.user?.id,
@@ -37,6 +37,8 @@ export const startChecking = () => {
       )
     } else {
       console.log('🛑 startChecking error', body.msg)
+      // eslint-disable-next-line no-undef
+      localStorage.clear()
       dispatch(checkingFinish())
     }
   }
