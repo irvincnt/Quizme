@@ -1,0 +1,50 @@
+@import '../variables.scss';
+
+.perfil-card {
+  max-width: 377px;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0 solid #f6f6f6;
+  border-radius: .25rem;
+  box-shadow: 0 0.75rem 1.5rem rgb(18 38 63 / 3%);
+  .header {
+    height: 94px;
+    display: flex;
+    justify-content: space-between;
+    background-color: $c-blue-light;
+    border-radius: .25rem .25rem 0px 0px;
+    span {
+      padding: 1rem;
+      font-weight: 500;
+      color: $c-blue;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  .content {
+    display: flex;
+    padding: 1rem;
+    .info {
+      flex: 1 1 0%;
+      position: relative;
+      p {
+        margin: 0px;
+      }
+      .avatar {
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        border: 1px solid #f6f6f6;
+        background-color: hsla(0,0%,100%,.25);
+        padding: 3px;
+        position: absolute;
+        top: -55px;
+      }
+    }
+    .section {
+      flex: 2 2 0%;
+    }
+  }
+}

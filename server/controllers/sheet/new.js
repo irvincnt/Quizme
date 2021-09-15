@@ -16,8 +16,8 @@ const newSheet = async (req, res = response) => {
     res.status(200).json({
       ok: true,
       data: {
-        sheet,
-        author: name
+        author: name,
+        sheet
       }
     })
   } catch (error) {
