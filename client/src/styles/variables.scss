@@ -26,6 +26,15 @@ $c-purple-ligth: rgba(85,110,230,.25);
 $c-blue-dark:#2a3042;
 $c-blue-light:rgba(85,110,230,.25);
 
+$bs-gradient: linear-gradient(180deg,hsla(0,0%,100%,0.15),hsla(0,0%,100%,0));
+
 //Fonts
 $bs-font-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-$bs-gradient: linear-gradient(180deg,hsla(0,0%,100%,0.15),hsla(0,0%,100%,0));
+$fontPoppins: "Poppins";
+$--D-Headline1: 500 32.5px / 1.2px $fontPoppins;
+$--D-Headline2: 500 26px / 1.2px $fontPoppins;
+$--D-Headline3: 500 22.75px / 1.2px $fontPoppins;
+$--D-Headline4: 500 19.5px / 1.2px $fontPoppins;
+$--D-Headline5: 500 16.25px / 1.2px $fontPoppins;
+$--D-Headline6: 500 13px / 1.2px $fontPoppins;
+

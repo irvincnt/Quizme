@@ -8,15 +8,15 @@ function PerfilCard () {
   return (
     <div className='perfil-card'>
       <div className='header'>
-        <span>Bienvenido de nuevo</span>
+        <h5>Bienvenido!</h5>
         <img src={login} alt='image login' />
       </div>
       <div className='content'>
         <div className='info'>
           <img src={picture} className='avatar' alt='avatar' />
-          <h5 className='name'>
+          <h4 className='name'>
             {name}
-          </h5>
+          </h4>
           <p className='speciality'>
             Frontend Developer
           </p>
