@@ -27,15 +27,21 @@
   .content {
     display: flex;
     padding: 1rem;
+    gap: 20px;
     .info {
       flex: 1 1 15%;
       position: relative;
       .name {
-        font: $--D-Headline4;
-        margin: 45px 0px 0px 0px;
+        font-weight: 500;
+        font-size: 19.5px;
+        margin: 28px 0px 0px 0px;
+        width: 143px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
       .speciality {
-        margin: 20px 0px 0px 0px;
+        margin: 8px 0px 0px 0px;
       }
       .avatar {
         height: 80px;
@@ -50,6 +56,42 @@
     }
     .section {
       flex: 2 2 0%;
+      position: relative;
+      .numbers {
+        display: flex;
+        justify-content: space-between;
+        .item h5{
+          font-weight: 500;
+          font-size: 16.25px;
+          margin: 0px 0px 5px 0px;
+        }
+        .item p{
+          margin: 0px;
+        }
+      }
+      a {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+      .btn {
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: center;
+        cursor: pointer;
+        border: 1px solid transparent;
+        text-decoration: none;
+      }
+      .btn-primary {
+        color: #fff;
+        background-color: $c-primary;
+        border-color: $c-primary;
+      }
+      .btn-sm {
+        padding: .25rem .5rem;
+        font-size: .7109375rem;
+        border-radius: .2rem;
+      }
     }
   }
 }

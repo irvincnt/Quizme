@@ -22,7 +22,17 @@ function PerfilCard () {
           </p>
         </div>
         <div className='section'>
-          sección
+          <div className='numbers'>
+            <div className='item'>
+              <h5>342</h5>
+              <p>My sheets</p>
+            </div>
+            <div className='item'>
+              <h5>3</h5>
+              <p>Favorite</p>
+            </div>
+          </div>
+          <a href='/' className='btn btn-primary btn-sm'>Create sheet</a>
         </div>
       </div>
     </div>
