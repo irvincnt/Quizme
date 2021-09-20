@@ -8,10 +8,11 @@ import Register from '../components/auth/Register'
 import Home from '../components/pages/Home'
 import { startChecking } from '../actions/auth'
 import Navbar from '../components/ui/Navbar'
+import NewSheet from '../components/pages/newSheet'
 
 export const AppRouter = () => {
   const dispatch = useDispatch()
-  const { id } = useSelector(state => state.auth)
+  const { id, checking } = useSelector(state => state.auth)
 
   useEffect(() => {
     // eslint-disable-next-line no-undef
@@ -21,6 +22,10 @@ export const AppRouter = () => {
     }
   }, [dispatch])
 
+  if (checking) {
+    return <h5>Espere...</h5>
+  }
+
   return (
     <Router>
       {id && <Navbar />}
@@ -29,6 +34,7 @@ export const AppRouter = () => {
         <PublicRoute exact path='/register' component={Register} isAuthenticated={!!id} />
 
         <PrivateRoute exact path='/home' component={Home} isAuthenticated={!!id} />
+        <PrivateRoute exact path='/new-sheet' component={NewSheet} isAuthenticated={!!id} />
 
         <Redirect to='/home' />
       </Switch>

@@ -2,6 +2,8 @@ import React from 'react'
 import '../../styles/ui/perfil.scss'
 import login from '../../asset/images/login.svg'
 
+import { Link } from 'react-router-dom'
+
 function PerfilCard () {
   // eslint-disable-next-line no-undef
   const { name, picture } = JSON.parse(localStorage.getItem('user') || '')
@@ -32,7 +34,7 @@ function PerfilCard () {
               <p>Favorite</p>
             </div>
           </div>
-          <a href='/' className='btn btn-primary btn-sm'>Create sheet</a>
+          <Link to='/new-sheet' className='btn btn-primary btn-sm'>Create sheet</Link>
         </div>
       </div>
     </div>
