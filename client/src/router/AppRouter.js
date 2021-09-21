@@ -17,7 +17,7 @@ export const AppRouter = () => {
   useEffect(() => {
     // eslint-disable-next-line no-undef
     const token = localStorage.getItem('token')
-    if (token) {
+    if (token || checking) {
       dispatch(startChecking())
     }
   }, [dispatch])

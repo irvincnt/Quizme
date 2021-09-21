@@ -4,7 +4,7 @@ import PerfilCard from '../ui/Perfil-card'
 function Home () {
   return (
     <div className='container-fluid'>
-      <h1>Dashboard</h1>
+      <h1>Home</h1>
       <PerfilCard />
     </div>
   )
