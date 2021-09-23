@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
+import classNames from 'classnames'
 import EditableElement from '../helpers/EditableElement'
 
 import '../../styles/pages/sheet.scss'
+import '../../styles/ui/elements.scss'
 import editpencil from '../../asset/icons/paintbrush.svg'
+import viewColumns from '../../asset/icons/view-columns.svg'
 
 function NewSheet () {
   const [isEditable, setEdition] = useState(false)
+  const [showSheetItems, setShowSheetItems] = useState(true)
 
   const handlerChange = (value) => {
     console.log('onChange keyUp', value)
@@ -19,6 +23,10 @@ function NewSheet () {
     setEdition(!isEditable)
   }
 
+  const handlerShowSheetItems = () => {
+    setShowSheetItems(!showSheetItems)
+  }
+
   return (
     <div className='container-fluid sheet'>
       <div className='flex align-items-center justify-content-between'>
@@ -26,7 +34,7 @@ function NewSheet () {
         breadcrumb
       </div>
       <div className='card sheet-head'>
-        <div className='card-title'>
+        <div className='card-title flex justify-content-between'>
           <div className='flex align-items-center gap-5'>
             <EditableElement
               onChange={handlerChange}
@@ -37,9 +45,15 @@ function NewSheet () {
             </EditableElement>
             {!isEditable && <img src={editpencil} onClick={handlerEdition} alt='icon editable' />}
           </div>
+          <div>
+            <button className='btn' onClick={handlerShowSheetItems}>
+              <img src={viewColumns} alt='items sheet' />
+            </button>
+
+          </div>
         </div>
       </div>
-      <div className='card sheet-items'>
+      <div className={classNames('card sheet-items', { 'is-disabled': showSheetItems })}>
         Items chartsheets
       </div>
       <div className='flex gap-12 sheet-content'>

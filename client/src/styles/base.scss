@@ -61,6 +61,10 @@ body {
   padding: 0px 20px;
 }
 
+.is-disabled {
+  display: none;
+}
+
 @media (min-width: 1200px) {
   .container-fluid {
     max-width: 1200px;
