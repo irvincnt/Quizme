@@ -15,6 +15,7 @@ const EditableElement = (props) => {
       onChange(value)
     }
   }
+
   useEffect(() => {
     const value = element.current?.value || element.current?.innerText
     if (onChange) {

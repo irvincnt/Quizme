@@ -6,6 +6,7 @@ import editpencil from '../../asset/icons/paintbrush.svg'
 
 function NewSheet () {
   const [isEditable, setEdition] = useState(false)
+
   const handlerChange = (value) => {
     console.log('onChange keyUp', value)
   }
@@ -19,12 +20,12 @@ function NewSheet () {
   }
 
   return (
-    <div className='container-fluid'>
+    <div className='container-fluid sheet'>
       <div className='flex align-items-center justify-content-between'>
         <h1>New sheert</h1>
         breadcrumb
       </div>
-      <div className='card sheet'>
+      <div className='card sheet-head'>
         <div className='card-title'>
           <div className='flex align-items-center gap-5'>
             <EditableElement
@@ -37,6 +38,18 @@ function NewSheet () {
             {!isEditable && <img src={editpencil} onClick={handlerEdition} alt='icon editable' />}
           </div>
         </div>
+      </div>
+      <div className='card sheet-items'>
+        Items chartsheets
+      </div>
+      <div className='flex gap-12 sheet-content'>
+        <div className='card edition'>
+          Create
+        </div>
+        <div className='card preview'>
+          Preview
+        </div>
+
       </div>
     </div>
   )

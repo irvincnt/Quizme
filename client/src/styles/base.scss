@@ -50,6 +50,9 @@ body {
 .gap-5 {
  gap: 5px;
 }
+.gap-12 {
+ gap: 12px;
+}
 
 
 .container-fluid {
@@ -71,6 +74,7 @@ body {
   border-radius: .25rem;
   background-color: $c-white;
   padding: 1rem 1rem;
+  margin-bottom: 12px;
   &-title {
     .title {
       margin: 0px;

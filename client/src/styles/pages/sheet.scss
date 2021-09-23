@@ -1,10 +1,20 @@
 .sheet {
 
-  #title-card[contenteditable="true"]:focus-visible {
-    outline: none;
+  &-head {
+    #title-card[contenteditable="true"]:focus-visible {
+      outline: none;
+    }
+    .card-title img {
+      width: 13px;
+    }
   }
-  .card-title img {
-    width: 13px;
+  &-content {
+    .edition {
+      flex: 2 2 auto;
+    }
+    .preview {
+      flex: 1 1 auto;
+    }
   }
 }
 
