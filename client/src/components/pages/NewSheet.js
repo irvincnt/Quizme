@@ -6,6 +6,7 @@ import '../../styles/pages/sheet.scss'
 import '../../styles/ui/elements.scss'
 import editpencil from '../../asset/icons/paintbrush.svg'
 import viewColumns from '../../asset/icons/view-columns.svg'
+import Editor from '../sheet/Editor'
 
 function NewSheet () {
   const [isEditable, setEdition] = useState(false)
@@ -57,11 +58,10 @@ function NewSheet () {
         Items chartsheets
       </div>
       <div className='flex gap-12 sheet-content'>
-        <div className='card edition'>
-          Create
-        </div>
+        <Editor />
         <div className='card preview'>
-          Preview
+          <h4 className='title'>Preview</h4>
+          <p className='label'>Ve los cambios en tiempo real</p>
         </div>
 
       </div>

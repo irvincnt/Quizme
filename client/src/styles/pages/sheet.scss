@@ -1,3 +1,5 @@
+@import '../variables.scss';
+
 .sheet {
 
   &-head {
@@ -10,10 +12,24 @@
   }
   &-content {
     .edition {
-      flex: 2 2 auto;
+      flex: 2;
+      .title {
+        margin: 0px;
+      }
+      .label {
+        margin: 3px 0px 20px 0px;
+        color: $c-gray;
+      }
     }
     .preview {
-      flex: 1 1 auto;
+      flex: 1;
+      .title {
+        margin: 0px;
+      }
+      .label {
+        margin: 3px 0px 20px 0px;
+        color: $c-gray;
+      }
     }
   }
 }
