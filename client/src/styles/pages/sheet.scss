@@ -22,19 +22,70 @@
       }
       .config {
         .items {
-          div {
+          .columns,
+          .styles,
+          .types{
             display: flex;
             justify-content: space-between;
-            img {
-              width: 61px;
-              height: 51px;
+          }
+          .columns img,
+          .styles img,
+          .types img {
+            width: 61px;
+            height: 51px;
+            cursor: pointer;
+          }
+          .parent .children {
+            border: 2px solid $c-white;
+            padding: 3px;
+            height: 61px;
+            &.show {
+              position: relative;
+              border: 2px solid $c-blue;
+              border-radius: 3px;
+              box-shadow: -2px -2px 12px -1px rgb(85 110 230 / 20%);
             }
           }
-          .active {
-            border: 2px solid $c-blue;
-            border-radius: 3px;
-            box-shadow: -2px -2px 12px -1px rgb(85 110 230 / 10%)
-
+          .colors {
+            display: flex;
+            gap: 10px;
+            .circle {
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
+              cursor: pointer;
+            }
+            .red { background-color: #40BFFF;}
+            .blue { background-color: #FB7181;}
+            .yellow { background-color: #FFC833;}
+            .green { background-color: #53D1B6;}
+            .purple { background-color: #5C61F4;}
+            .dark { background-color: #40BFFF;}
+          }
+          .parent-color .children-color {
+            &.show {
+              position: relative;
+              .check {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+              }
+            }
+            &.hide .check {
+              display: none;
+            }
+          }
+          .sizes {
+            display: flex;
+            gap: 10px;
+            .size {
+              cursor: pointer;
+              text-align: center;
+              p {
+                margin:0px
+              }
+            }
           }
         }
       }
