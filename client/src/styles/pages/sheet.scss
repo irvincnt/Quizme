@@ -89,6 +89,12 @@
           }
         }
       }
+      .actions {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: flex-end;
+        gap: 5px;
+      }
     }
     .preview {
       flex: 65%;

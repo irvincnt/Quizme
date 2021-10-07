@@ -4,6 +4,7 @@ import EditableElement from '../helpers/EditableElement'
 
 import editpencil from '../../asset/icons/paintbrush.svg'
 import '../../styles/pages/sheet.scss'
+import '../../styles/ui/elements.scss'
 
 import Configuration from './Configuration'
 
@@ -34,11 +35,10 @@ function Editor () {
       </div>
       <p className='label'>Sheet editor</p>
       <Configuration />
-      {/* <ContentEditable
-        tagName='pre'
-        className='clasico'
-        html='<p>Hello <b>World</b> !</p><p>Paragraph 2</p>'
-      /> */}
+      <div className='actions'>
+        <a className='btn btn-outline-danger'>Cancelar</a>
+        <a className='btn btn-primary'>Create sheet</a>
+      </div>
     </div>
   )
 }

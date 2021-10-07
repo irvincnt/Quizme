@@ -28,7 +28,7 @@
   }
 }
 
-.btn {
+.btnn {
   font-weight: 400;
   border: 1px solid transparent;
   padding: .40rem .40rem;
@@ -43,6 +43,36 @@
   img {
     width: 20px;
   }
-
-
 }
+
+.btn {
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  text-decoration: none;
+  padding: .47rem .75rem;
+  font-size: .8125rem;
+  border-radius: .25rem;
+}
+.btn-primary {
+  color: #fff;
+  background-color: $c-primary;
+  border-color: $c-primary;
+}
+.btn-outline-danger {
+  color: #f46a6a;
+  border-color: #f46a6a;
+}
+.btn-outline-danger:hover {
+  color: #fff;
+  background-color: #f46a6a;
+  border-color: #f46a6a;
+}
+.btn-sm {
+  padding: .25rem .5rem;
+  font-size: .7109375rem;
+  border-radius: .2rem;
+}
+

@@ -47,7 +47,7 @@ function NewSheet () {
             {!isEditable && <img src={editpencil} onClick={handlerEdition} alt='icon editable' />}
           </div>
           <div>
-            <button className='btn' onClick={handlerShowSheetItems}>
+            <button className='btnn' onClick={handlerShowSheetItems}>
               <img src={viewColumns} alt='items sheet' />
             </button>
 
