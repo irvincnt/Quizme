@@ -1,28 +1,26 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
-import EditableElement from '../helpers/EditableElement'
+import ContentEditable from '../helpers/ContentEditable'
 
 import '../../styles/pages/sheet.scss'
 import '../../styles/ui/elements.scss'
-import editpencil from '../../asset/icons/paintbrush.svg'
 import viewColumns from '../../asset/icons/view-columns.svg'
 import Configuration from '../sheet/Configuration'
 import Editor from '../sheet/Editor'
 
 function NewSheet () {
-  const [isEditable, setEdition] = useState(false)
+  const [title, setTitle] = useState('Titulo de la sección')
   const [showSheetItems, setShowSheetItems] = useState(true)
 
-  const handlerChange = (value) => {
-    console.log('onChange keyUp', value)
+  const handlerChange = (evt) => {
+    console.log(evt.target.value)
+    setTitle(evt.target.value)
   }
 
-  const handlerEdition = () => {
-    setEdition(!isEditable)
-  }
-
-  const handlerOnBlur = (value) => {
-    setEdition(!isEditable)
+  const highlightAll = () => {
+    setTimeout(() => {
+      document.execCommand('selectAll', false, null)
+    }, 0)
   }
 
   const handlerShowSheetItems = () => {
@@ -38,14 +36,13 @@ function NewSheet () {
       <div className='card sheet-head'>
         <div className='card-title flex justify-content-between'>
           <div className='flex align-items-center gap-5'>
-            <EditableElement
+            <ContentEditable
+              className='title'
+              tagName='h4'
+              html={title}
               onChange={handlerChange}
-              onBlur={handlerOnBlur}
-              disabled={isEditable}
-            >
-              <h4 className='title' id='title-card'>Name section sheet </h4>
-            </EditableElement>
-            {!isEditable && <img src={editpencil} onClick={handlerEdition} alt='icon editable' />}
+              onFocus={highlightAll}
+            />
           </div>
           <div>
             <button className='btnn' onClick={handlerShowSheetItems}>

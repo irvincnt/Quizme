@@ -3,7 +3,7 @@
 .sheet {
 
   &-head {
-    #title-card[contenteditable="true"]:focus-visible {
+    .title[contenteditable="true"]:focus-visible {
       outline: none;
     }
     .card-title img {
@@ -15,6 +15,9 @@
       flex: 35%;
       .title {
         margin: 0px;
+      }
+      .title[contenteditable="true"]:focus-visible {
+        outline: none;
       }
       .label {
         margin: 3px 0px 20px 0px;
