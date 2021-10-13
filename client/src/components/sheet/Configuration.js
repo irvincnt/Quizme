@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import EditableElement from '../helpers/EditableElement'
-// import ContentEditable from 'react-contenteditable'
 
 import editpencil from '../../asset/icons/paintbrush.svg'
 import '../../styles/pages/sheet.scss'

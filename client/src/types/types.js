@@ -6,5 +6,8 @@ export const types = {
   authStartTokenRenew: '[auth] Start token renew',
   authLogout: '[auth] Logout',
   messageError: '[Message] Error message',
-  hideMessage: '[Message] Hide message'
+  hideMessage: '[Message] Hide message',
+
+  // chartsheets
+  newChartSheet: '[ChartSheet] New chartsheet'
 }

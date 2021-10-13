@@ -43,7 +43,7 @@ function NewSheet () {
               onBlur={handlerOnBlur}
               disabled={isEditable}
             >
-              <h4 className='title' id='title-card'>Untitled </h4>
+              <h4 className='title' id='title-card'>Name section sheet </h4>
             </EditableElement>
             {!isEditable && <img src={editpencil} onClick={handlerEdition} alt='icon editable' />}
           </div>
