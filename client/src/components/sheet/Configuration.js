@@ -11,7 +11,6 @@ function Configuration () {
 
   const handlerChange = (evt) => {
     setTitle(evt.target.value)
-    console.log(evt.target.value)
   }
 
   const highlightAll = () => {

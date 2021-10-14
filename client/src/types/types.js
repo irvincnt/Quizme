@@ -9,5 +9,7 @@ export const types = {
   hideMessage: '[Message] Hide message',
 
   // chartsheets
-  newChartSheet: '[ChartSheet] New chartsheet'
+  newChartSheet: '[ChartSheet] New chartsheet',
+  setTitleChartSheet: '[ChartSheet] Set title',
+  setConfigSheet: '[Sheet] Set config sheet'
 }

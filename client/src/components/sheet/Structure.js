@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Check } from 'phosphor-react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setConfigSheet } from '../../actions/sheet'
 
 import cardC1 from '../../asset/images/config/card-1c.png'
 import cardC2 from '../../asset/images/config/card-2c.png'
@@ -234,19 +236,11 @@ function TypeS3 ({ config, selectConfig }) {
 }
 
 function Structure () {
-  const [config, setConfig] = useState({
-    columns: 'cardC2',
-    styles: 'cardS1',
-    types: '',
-    colors: 'dark',
-    sizes: '2x'
-  })
+  const { currentSheet: { config } } = useSelector(state => state.sheet)
+  const dispatch = useDispatch()
 
   const handlerConfig = (newConfig) => {
-    setConfig(prevState => {
-      return { ...prevState, ...newConfig }
-    })
-    console.log('config', config)
+    dispatch(setConfigSheet({ ...config, ...newConfig }))
   }
 
   return (

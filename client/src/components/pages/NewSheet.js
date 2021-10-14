@@ -1,20 +1,22 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
 import ContentEditable from '../helpers/ContentEditable'
+import { useDispatch, useSelector } from 'react-redux'
 
 import '../../styles/pages/sheet.scss'
 import '../../styles/ui/elements.scss'
 import viewColumns from '../../asset/icons/view-columns.svg'
 import Configuration from '../sheet/Configuration'
 import Editor from '../sheet/Editor'
+import { setChartsheetTitle } from '../../actions/sheet'
 
 function NewSheet () {
-  const [title, setTitle] = useState('Titulo de la sección')
   const [showSheetItems, setShowSheetItems] = useState(true)
+  const dispatch = useDispatch()
+  const { nameSection } = useSelector(state => state.sheet)
 
   const handlerChange = (evt) => {
-    console.log(evt.target.value)
-    setTitle(evt.target.value)
+    dispatch(setChartsheetTitle(evt.target.value))
   }
 
   const highlightAll = () => {
@@ -39,7 +41,7 @@ function NewSheet () {
             <ContentEditable
               className='title'
               tagName='h4'
-              html={title}
+              html={nameSection}
               onChange={handlerChange}
               onFocus={highlightAll}
             />
