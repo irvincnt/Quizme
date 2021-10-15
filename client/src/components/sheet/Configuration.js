@@ -30,7 +30,7 @@ function Configuration () {
           onFocus={highlightAll}
         />
       </div>
-      <p className='label'>Sheet editor</p>
+      <p className='label'>Configuración del Sheet</p>
       <Structure />
     </div>
   )
