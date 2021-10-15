@@ -10,7 +10,7 @@ const initialState = {
       styles: 'cardS1',
       types: '',
       colors: 'dark',
-      sizes: '3x'
+      sizes: '1x'
     },
     rows: {}
   }

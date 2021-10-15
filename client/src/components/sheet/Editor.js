@@ -18,7 +18,6 @@ function Editor () {
         {sizes === '1x' && <DesignOne />}
         {sizes === '2x' && <DesignTwo />}
         {sizes === '3x' && <DesignThree />}
-
       </div>
     </div>
   )
