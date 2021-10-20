@@ -124,11 +124,19 @@
           }
           .body {
             .cell {
-              padding: 3px 3px 3px 5px;
+              padding: 3px 12px 3px 5px;
+              position: relative;
+
+              .icon-menu {
+                position: absolute;
+                right: 0;
+                cursor: pointer;
+              }
             }
             .cell:nth-child(even) {
               background-color: rgb(116 120 141 / 16%);
             }
+
           }
         }
         .two {

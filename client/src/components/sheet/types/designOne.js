@@ -1,11 +1,20 @@
 import React, { useState } from 'react'
 import ContentEditable from '../../helpers/ContentEditable'
+import { DotsThreeVertical } from 'phosphor-react'
 
 export const DesignOne = () => {
   const [sheet, setSheet] = useState({
     rows: [
       {
         id: 1,
+        columnOne: ' '
+      },
+      {
+        id: 2,
+        columnOne: ' '
+      },
+      {
+        id: 3,
         columnOne: ' '
       }
     ],
@@ -62,16 +71,20 @@ export const DesignOne = () => {
         <div className='body'>
           {sheet.rows.map((item, i) => {
             return (
-              <ContentEditable
+              <div
                 key={item.id}
-                data-column='columnOne'
-                data-row={i}
-                html={item.columnOne}
                 className='cell'
-                onPaste={pasteAsPlainText}
-                onFocus={highlightAll}
-                onChange={handleContentEditableUpdate}
-              />
+              >
+                <DotsThreeVertical size={16} weight='bold' className='icon-menu' />
+                <ContentEditable
+                  data-column='columnOne'
+                  data-row={i}
+                  html={item.columnOne}
+                  onPaste={pasteAsPlainText}
+                  onFocus={highlightAll}
+                  onChange={handleContentEditableUpdate}
+                />
+              </div>
             )
           })}
         </div>

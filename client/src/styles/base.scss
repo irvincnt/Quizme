@@ -87,3 +87,7 @@ body {
     }
   }
 }
+
+div[contenteditable="true"]:focus-visible {
+  outline: none;
+}
