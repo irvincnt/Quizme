@@ -1,7 +1,7 @@
 @import '../variables.scss';
 
 .dropdown {
-  position: relative;
+  // position: relative;
   .content {
     display: none;
     position: absolute;
@@ -11,22 +11,16 @@
     box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%);
     border-radius: .25rem;
     min-width: 10rem;
+    background-color: $c-white;
     .item {
       gap: 4px;
       font-size: 13px;
       display: flex;
       cursor: pointer;
       align-items: center;
-      padding: .35rem 1.5rem;
+      padding: .35rem 1rem;
       img {
         width: 20px;
-      }
-    }
-    li:last-of-type {
-      margin-top: 10px;
-      color: $c-danger;
-      img {
-        width: 18px;
       }
     }
   }

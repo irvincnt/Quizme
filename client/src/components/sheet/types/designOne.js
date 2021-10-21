@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import ContentEditable from '../../helpers/ContentEditable'
 import { DotsThreeVertical } from 'phosphor-react'
+import Dropdown from '../../ui/Dropdown'
+
+import '../../../styles/ui/dropdown.scss'
 
 export const DesignOne = () => {
   const [sheet, setSheet] = useState({
@@ -62,6 +65,14 @@ export const DesignOne = () => {
     }, 0)
   }
 
+  function contentDropdown () {
+    return (
+      <>
+        <p>hola</p>
+      </>
+    )
+  }
+
   return (
     <>
       <div className='design one'>
@@ -75,7 +86,10 @@ export const DesignOne = () => {
                 key={item.id}
                 className='cell'
               >
-                <DotsThreeVertical size={16} weight='bold' className='icon-menu' />
+                <Dropdown
+                  head={<DotsThreeVertical size={16} weight='bold' className='icon-menu' />}
+                  content={contentDropdown()}
+                />
                 <ContentEditable
                   data-column='columnOne'
                   data-row={i}

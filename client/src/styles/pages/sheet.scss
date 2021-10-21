@@ -112,6 +112,12 @@
         .design {
           border-radius: 2px;
           margin: 0 auto;
+          .body {
+            .dropdown {
+              position: absolute;
+              right: 0;
+            }
+          }
         }
         .one {
           min-width: 350px;

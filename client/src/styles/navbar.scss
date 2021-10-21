@@ -10,20 +10,31 @@
     align-items: center;
     justify-content: space-between;
     height: 60px;
-    .user {
-      gap: 5px;
-      height: 60px;
-      cursor: pointer;
-      color: $c-white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .avatar {
-        height: 40px;
-        width: 40px;
-        border-radius: 50%;
-        background-color: hsla(0,0%,100%,.25);
-        padding: 3px;
+    .dropdown {
+      .user {
+        gap: 5px;
+        height: 60px;
+        cursor: pointer;
+        color: $c-white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .avatar {
+          height: 40px;
+          width: 40px;
+          border-radius: 50%;
+          background-color: hsla(0,0%,100%,.25);
+          padding: 3px;
+        }
+      }
+      .content {
+        li:last-of-type {
+          margin-top: 10px;
+          color: $c-danger;
+          img {
+            width: 18px;
+          }
+        }
       }
     }
   }
