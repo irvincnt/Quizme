@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ContentEditable from '../../helpers/ContentEditable'
-import { DotsThreeVertical } from 'phosphor-react'
+import { DotsThreeVertical, Trash } from 'phosphor-react'
 import Dropdown from '../../ui/Dropdown'
 
 import '../../../styles/ui/dropdown.scss'
@@ -9,15 +9,15 @@ export const DesignOne = () => {
   const [sheet, setSheet] = useState({
     rows: [
       {
-        id: 1,
+        id: Math.floor(Math.random() * Date.now()),
         columnOne: ' '
       },
       {
-        id: 2,
+        id: Math.floor(Math.random() * Date.now()),
         columnOne: ' '
       },
       {
-        id: 3,
+        id: Math.floor(Math.random() * Date.now()),
         columnOne: ' '
       }
     ],
@@ -28,7 +28,7 @@ export const DesignOne = () => {
   })
 
   const addRow = (curretnRow) => {
-    const idRow = sheet.rows.length + 1
+    const idRow = Math.floor(Math.random() * Date.now())
     setSheet({
       rows: [...sheet.rows, { ...sheet.row, id: idRow }],
       row: sheet.row
@@ -43,12 +43,12 @@ export const DesignOne = () => {
       target: { value }
     } = event
 
-    const updatedRow = sheet.rows.filter((item, i) => parseInt(i) === parseInt(row))[0]
+    const updatedRow = sheet.rows.filter((item, i) => item.id === parseInt(row))[0]
     updatedRow[column] = value
 
     setSheet({
       ...sheet,
-      rows: sheet.rows.map((item, i) => i === row ? updatedRow : item)
+      rows: sheet.rows.map(item => item.id === row ? updatedRow : item)
     })
   }
 
@@ -65,10 +65,26 @@ export const DesignOne = () => {
     }, 0)
   }
 
-  function contentDropdown () {
+  const deleteRow = (id) => {
+    setSheet({
+      ...sheet,
+      rows: sheet.rows.filter((item) => id !== item.id)
+    })
+  }
+
+  function contentDropdown (item) {
     return (
       <>
-        <p>hola</p>
+        <li>
+          <a>
+            <div
+              className='item' onClick={() => { deleteRow(item.id) }}
+            >
+              <Trash size={16} />
+              <span>Borrar</span>
+            </div>
+          </a>
+        </li>
       </>
     )
   }
@@ -88,11 +104,11 @@ export const DesignOne = () => {
               >
                 <Dropdown
                   head={<DotsThreeVertical size={16} weight='bold' className='icon-menu' />}
-                  content={contentDropdown()}
+                  content={contentDropdown(item)}
                 />
                 <ContentEditable
                   data-column='columnOne'
-                  data-row={i}
+                  data-row={item.id}
                   html={item.columnOne}
                   onPaste={pasteAsPlainText}
                   onFocus={highlightAll}

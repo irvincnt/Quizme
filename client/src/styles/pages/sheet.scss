@@ -116,6 +116,9 @@
             .dropdown {
               position: absolute;
               right: 0;
+              .content {
+                min-width: 0px;
+              }
             }
           }
         }
