@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import ContentEditable from '../../helpers/ContentEditable'
-import { DotsThreeVertical, Trash } from 'phosphor-react'
+import { DotsThreeVertical, Trash, DotsSixVertical } from 'phosphor-react'
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
+
 import Dropdown from '../../ui/Dropdown'
 
 import '../../../styles/ui/dropdown.scss'
@@ -89,6 +91,32 @@ export const DesignOne = () => {
     )
   }
 
+  const reorder = (list, startIndex, endIndex) => {
+    const result = [...list]
+    const [removed] = result.splice(startIndex, 1)
+    result.splice(endIndex, 0, removed)
+
+    return result
+  }
+
+  const onDragEnd = (result) => {
+    const { source, destination } = result
+    if (!destination) return
+
+    if (
+      source.index === destination.index &&
+      source.droppableId === destination.droppableId
+    ) {
+      // eslint-disable-next-line no-useless-return
+      return
+    }
+
+    setSheet({
+      ...sheet,
+      rows: reorder(sheet.rows, source.index, destination.index)
+    })
+  }
+
   return (
     <>
       <div className='design one'>
@@ -96,27 +124,47 @@ export const DesignOne = () => {
           Titulo
         </div>
         <div className='body'>
-          {sheet.rows.map((item, i) => {
-            return (
-              <div
-                key={item.id}
-                className='cell'
-              >
-                <Dropdown
-                  head={<DotsThreeVertical size={16} weight='bold' className='icon-menu' />}
-                  content={contentDropdown(item)}
-                />
-                <ContentEditable
-                  data-column='columnOne'
-                  data-row={item.id}
-                  html={item.columnOne}
-                  onPaste={pasteAsPlainText}
-                  onFocus={highlightAll}
-                  onChange={handleContentEditableUpdate}
-                />
-              </div>
-            )
-          })}
+          <DragDropContext onDragEnd={onDragEnd}>
+            <Droppable droppableId='sheet'>
+              {(droppableProvided) => (
+                <div
+                  {...droppableProvided.droppableProps}
+                  ref={droppableProvided.innerRef}
+                  className='container'
+                >
+                  {sheet.rows.map((item, i) => (
+                    <Draggable key={`${item.id}`} draggableId={`${item.id}`} index={i}>
+                      {(draggableProvided) => (
+                        <div
+                          key={`${item.id}`}
+                          className='cell'
+                          {...draggableProvided.draggableProps}
+                          ref={draggableProvided.innerRef}
+                        >
+                          <div {...draggableProvided.dragHandleProps}>
+                            <DotsSixVertical size={20} weight='bold' className='drag' />
+                          </div>
+                          <Dropdown
+                            head={<DotsThreeVertical size={16} weight='bold' className='icon-menu' />}
+                            content={contentDropdown(item)}
+                          />
+                          <ContentEditable
+                            data-column='columnOne'
+                            data-row={item.id}
+                            html={item.columnOne}
+                            onPaste={pasteAsPlainText}
+                            onFocus={highlightAll}
+                            onChange={handleContentEditableUpdate}
+                          />
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {droppableProvided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
         </div>
       </div>
       <div className='add'>

@@ -112,13 +112,18 @@
         .design {
           border-radius: 2px;
           margin: 0 auto;
-          .body {
+          .body .container {
             .dropdown {
               position: absolute;
               right: 0;
               .content {
                 min-width: 0px;
               }
+            }
+            .drag {
+              position: absolute;
+              left: -23px;
+              // cursor: pointer;
             }
           }
         }
