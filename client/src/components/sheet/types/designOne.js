@@ -8,6 +8,9 @@ import Dropdown from '../../ui/Dropdown'
 import '../../../styles/ui/dropdown.scss'
 
 export const DesignOne = () => {
+  const [designConfig, setDesing] = useState({
+    previousKey: null
+  })
   const [sheet, setSheet] = useState({
     rows: [
       {
@@ -29,7 +32,7 @@ export const DesignOne = () => {
     }
   })
 
-  const addRow = (curretnRow) => {
+  const addRow = () => {
     const idRow = Math.floor(Math.random() * Date.now())
     setSheet({
       rows: [...sheet.rows, { ...sheet.row, id: idRow }],
@@ -52,6 +55,15 @@ export const DesignOne = () => {
       ...sheet,
       rows: sheet.rows.map(item => item.id === row ? updatedRow : item)
     })
+  }
+
+  const handlerOnKeyDown = (e) => {
+    if (e.key === 'Enter' && designConfig.previousKey !== 'Shift') {
+      e.preventDefault()
+      addRow()
+    }
+
+    setDesing({ ...designConfig, previousKey: e.key })
   }
 
   const pasteAsPlainText = (event) => {
@@ -155,6 +167,7 @@ export const DesignOne = () => {
                             onPaste={pasteAsPlainText}
                             onFocus={highlightAll}
                             onChange={handleContentEditableUpdate}
+                            onKeyDown={handlerOnKeyDown}
                           />
                         </div>
                       )}
@@ -166,9 +179,6 @@ export const DesignOne = () => {
             </Droppable>
           </DragDropContext>
         </div>
-      </div>
-      <div className='add'>
-        <button onClick={addRow}>Add</button>
       </div>
     </>
   )
