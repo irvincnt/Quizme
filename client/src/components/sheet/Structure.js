@@ -348,22 +348,22 @@ function Structure () {
         <p>Tamaño</p>
         <div className='sizes parent'>
           <div
-            className={`size children ${config.sizes === '1x' ? 'show' : 'hide'}`}
-            onClick={() => handlerConfig({ sizes: '1x' })}
+            className={`size children ${config.sizes === 'x' ? 'show' : 'hide'}`}
+            onClick={() => handlerConfig({ sizes: 'x' })}
           >
             <img src={OneX} alt='1x' />
             <p>1x</p>
           </div>
           <div
-            className={`size children ${config.sizes === '2x' ? 'show' : 'hide'}`}
-            onClick={() => handlerConfig({ sizes: '2x' })}
+            className={`size children ${config.sizes === 'xx' ? 'show' : 'hide'}`}
+            onClick={() => handlerConfig({ sizes: 'xx' })}
           >
             <img src={TwoX} alt='2x' />
             <p>2x</p>
           </div>
           <div
-            className={`size children ${config.sizes === '3x' ? 'show' : 'hide'}`}
-            onClick={() => handlerConfig({ sizes: '3x' })}
+            className={`size children ${config.sizes === 'xxx' ? 'show' : 'hide'}`}
+            onClick={() => handlerConfig({ sizes: 'xxx' })}
           >
             <img src={threeX} alt='3x' />
             <p>3x</p>

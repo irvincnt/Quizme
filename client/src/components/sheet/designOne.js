@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
-import ContentEditable from '../../helpers/ContentEditable'
+import ContentEditable from '../helpers/ContentEditable'
 import { DotsThreeVertical, Trash, DotsSixVertical } from 'phosphor-react'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
-import Dropdown from '../../ui/Dropdown'
+import Dropdown from '../ui/Dropdown'
 
-import '../../../styles/ui/dropdown.scss'
+import '../../styles/ui/dropdown.scss'
+import { useSelector } from 'react-redux'
 
 export const DesignOne = () => {
+  const { currentSheet: { config: { styles, sizes } } } = useSelector(state => state.sheet)
+
   const [designConfig, setDesing] = useState({
     previousKey: null
   })
@@ -131,7 +134,7 @@ export const DesignOne = () => {
 
   return (
     <>
-      <div className='design one'>
+      <div className={`design ${styles} ${sizes}`}>
         <div className='head'>
           Titulo
         </div>
