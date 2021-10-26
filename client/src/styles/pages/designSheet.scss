@@ -1,0 +1,101 @@
+@import '../variables.scss';
+
+.content {
+  .design {
+    border-radius: 2px;
+    margin: 0 auto;
+    .body .container {
+      .dropdown {
+        position: absolute;
+        right: 0;
+        .content {
+          min-width: 0px;
+        }
+      }
+      .drag {
+        position: absolute;
+        left: -23px;
+        // cursor: pointer;
+      }
+    }
+  }
+  .x {
+    min-width: 350px;
+    max-width: 350px;
+  }
+  .xx {
+    min-width: 500px;
+    max-width: 500px;
+  }
+  .xxx {
+    min-width: 700px;
+    max-width: 700px;
+  }
+  .cardS3 {
+    border: 1px solid $c-gray;
+    .head {
+      background-color: $c-gray;
+      color: $c-white;
+      padding: 5px;
+    }
+    .body {
+      .cell {
+        padding: 3px 12px 3px 5px;
+        position: relative;
+
+        .icon-menu {
+          position: absolute;
+          right: 0;
+          cursor: pointer;
+        }
+        // &.red:nth-child(even) {
+        //   background-color: rgb(251 113 129 / 16%);
+        // }
+        // &.purple:nth-child(even) {
+        //   background-color: $c-gray;;
+        // }
+      }
+      .cell:nth-child(even) {
+        background-color: rgb(116 120 141 / 16%);
+      }
+      .cell.red:nth-child(even) {
+        background-color: #FB7181;
+      }
+      .cell.blue:nth-child(even) {
+        background-color: #40BFFF;
+      }
+      .cell.purple:nth-child(even) {
+        background-color: #5C61F4;
+      }
+
+      // .blue { background-color: #40BFFF;}
+      // .red { background-color: #FB7181;}
+      // .yellow { background-color: #FFC833;}
+      // .green { background-color: #53D1B6;}
+      // .purple { background-color: #5C61F4;}
+      // .dark { background-color: #343a40;;}
+    }
+  }
+  .cardS2 {
+    border-bottom: 3px solid $c-gray;
+    .head {
+      background-color: purple;
+      color: $c-white;
+      padding: 5px;
+      border-radius: 2px 2px 0px 0px;
+    }
+    .body {
+      padding: 5px;
+    }
+  }
+  .cardS1 {
+    .head {
+      background-color: $c-gray;
+      color: $c-white;
+      padding: 5px;
+    }
+    .body {
+      padding: 5px;
+    }
+  }
+}

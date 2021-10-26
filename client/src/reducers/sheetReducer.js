@@ -9,7 +9,7 @@ const initialState = {
       columns: 'cardC2',
       styles: 'cardS1',
       types: '',
-      colors: 'dark',
+      colors: 'red',
       sizes: 'x'
     },
     rows: {}

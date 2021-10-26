@@ -7,8 +7,8 @@ import '../../styles/pages/sheet.scss'
 import '../../styles/ui/elements.scss'
 import viewColumns from '../../asset/icons/view-columns.svg'
 import Configuration from '../sheet/Configuration'
-import Editor from '../sheet/Editor'
 import { setChartsheetTitle } from '../../actions/sheet'
+import { Editor } from '../sheet/Editor'
 
 function NewSheet () {
   const [showSheetItems, setShowSheetItems] = useState(true)
