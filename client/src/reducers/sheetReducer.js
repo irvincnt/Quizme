@@ -7,9 +7,9 @@ const initialState = {
     id: '',
     config: {
       columns: 'cardC2',
-      styles: 'cardS1',
+      styles: 'cardS2',
       types: '',
-      colors: 'red',
+      colors: 'gray',
       sizes: 'x'
     },
     rows: {}

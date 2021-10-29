@@ -31,6 +31,23 @@ $bs-gradient: linear-gradient(180deg,hsla(0,0%,100%,0.15),hsla(0,0%,100%,0));
 
 $border-radius: .25rem;
 
+$c-orange-head: rgb(161, 84, 88);
+$c-orange-body: rgba(161, 84, 88, .2);
+$c-blue-head: rgb(102, 128, 230);
+$c-blue-body: rgba(102, 128, 230, .2);
+$c-purple-head: rgb(86, 59, 122);
+$c-purple-body: rgba(86, 59, 122, .2);
+$c-green-head: rgb(2, 79, 73);
+$c-green-body: rgba(2, 79, 73, .2);
+$c-gray-head: rgb(116, 120, 141);
+$c-gray-body: rgba(116, 120, 141, .2);
+$c-dark-head: rgb(0, 0, 0);
+$c-dark-body: rgba(0, 0, 0, .2);
+$c-orange-head: rgb(227, 71, 59);
+$c-orange-body: rgba(227, 71, 59, .2);
+$c-red-head: rgb(154, 11, 15);
+$c-red-body: rgba(154, 11, 15, .2);
+
 //Fonts
 $bs-font-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
 $fontPoppins: "Poppins";

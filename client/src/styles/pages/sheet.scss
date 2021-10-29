@@ -58,12 +58,13 @@
               border-radius: 50%;
               cursor: pointer;
             }
-            .blue { background-color: #40BFFF;}
-            .red { background-color: #FB7181;}
-            .yellow { background-color: #FFC833;}
-            .green { background-color: #53D1B6;}
-            .purple { background-color: #5C61F4;}
-            .dark { background-color: #343a40;;}
+            .blue { background-color: $c-blue-head}
+            .red { background-color: $c-red-head}
+            .green { background-color: $c-green-head}
+            .purple { background-color: $c-purple-head}
+            .dark { background-color: $c-dark-head}
+            .gray { background-color: $c-gray-head}
+            .orange { background-color: $c-orange-head}
           }
           .parent-color .children-color {
             &.show {

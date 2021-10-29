@@ -141,11 +141,11 @@ export const Editor = () => {
       <h4 className='title'>Preview</h4>
       <p className='label'>Ve los cambios en tiempo real</p>
       <div className='content'>
-        <div className={`design ${styles} ${sizes}`}>
+        <div className={`design ${styles} ${sizes} ${colors}`}>
           <div className={`head ${colors}`}>
             Titulo
           </div>
-          <div className='body'>
+          <div className={`body ${colors}`}>
             <DragDropContext onDragEnd={onDragEnd}>
               <Droppable droppableId='sheet'>
                 {(droppableProvided) => (

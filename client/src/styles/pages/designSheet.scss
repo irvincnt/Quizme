@@ -34,9 +34,15 @@
   .cardS3 {
     border: 1px solid $c-gray;
     .head {
-      background-color: $c-gray;
       color: $c-white;
       padding: 5px;
+
+      &.dark { background-color: $c-dark-head; }
+      &.gray { background-color: $c-gray-head; }
+      &.red { background-color: $c-red-head; }
+      &.blue { background-color: $c-blue-head; }
+      &.purple { background-color: $c-purple-head; }
+      &.green { background-color: $c-green-head; }
     }
     .body {
       .cell {
@@ -48,44 +54,43 @@
           right: 0;
           cursor: pointer;
         }
-        // &.red:nth-child(even) {
-        //   background-color: rgb(251 113 129 / 16%);
-        // }
-        // &.purple:nth-child(even) {
-        //   background-color: $c-gray;;
-        // }
+        &:nth-child(even) { background-color: $c-gray-body; }
+        &.gray:nth-child(even) { background-color: $c-gray-body; }
+        &.dark:nth-child(even) { background-color: $c-dark-body; }
+        &.red:nth-child(even) { background-color: $c-red-body; }
+        &.blue:nth-child(even) { background-color: $c-blue-body; }
+        &.purple:nth-child(even) { background-color: $c-purple-body; }
+        &.green:nth-child(even) { background-color: $c-green-body; }
       }
-      .cell:nth-child(even) {
-        background-color: rgb(116 120 141 / 16%);
-      }
-      .cell.red:nth-child(even) {
-        background-color: #FB7181;
-      }
-      .cell.blue:nth-child(even) {
-        background-color: #40BFFF;
-      }
-      .cell.purple:nth-child(even) {
-        background-color: #5C61F4;
-      }
-
-      // .blue { background-color: #40BFFF;}
-      // .red { background-color: #FB7181;}
-      // .yellow { background-color: #FFC833;}
-      // .green { background-color: #53D1B6;}
-      // .purple { background-color: #5C61F4;}
-      // .dark { background-color: #343a40;;}
     }
   }
   .cardS2 {
-    border-bottom: 3px solid $c-gray;
+    &.orange { border-bottom: 3px solid $c-orange-head}
+    &.gray { border-bottom: 3px solid $c-gray-head }
+    &.green { border-bottom: 3px solid $c-green-head }
+    &.blue { border-bottom: 3px solid $c-blue-head; }
+    &.red { border-bottom: 3px solid  $c-red-head; }
+
     .head {
-      background-color: purple;
       color: $c-white;
       padding: 5px;
       border-radius: 2px 2px 0px 0px;
+
+      &.orange { background-color: $c-orange-head }
+      &.gray { background-color: $c-gray-head }
+      &.green { background-color: $c-green-head }
+      &.blue { background-color: $c-blue-head; }
+      &.red { background-color:  $c-red-head; }
     }
     .body {
-      padding: 5px;
+      &.orange { background-color: $c-orange-body }
+      &.gray { background-color: $c-gray-body }
+      &.green { background-color: $c-green-body }
+      &.blue { background-color: $c-blue-body; }
+      &.red { background-color:  $c-red-body; }
+      .cell {
+        padding: 3px 12px 3px 5px;
+      }
     }
   }
   .cardS1 {

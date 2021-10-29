@@ -271,12 +271,12 @@ function Structure () {
       <div className='items'>
         <p>Estilos</p>
         <div className='styles parent'>
-          <div
+          {/* <div
             className={`children ${config.styles === 'cardS1' ? 'show' : 'hide'}`}
             onClick={() => handlerConfig({ styles: 'cardS1' })}
           >
             <img src={cardS1} alt='one column' />
-          </div>
+          </div> */}
           <div
             className={`children ${config.styles === 'cardS2' ? 'show' : 'hide'}`}
             onClick={() => handlerConfig({ styles: 'cardS2' })}
@@ -300,48 +300,55 @@ function Structure () {
       <div className='items'>
         <p>Colores</p>
         <div className='colors parent-color'>
-          <div
+          {(config.styles === 'cardS2' || config.styles === 'cardS3') && <div
             className={`children-color ${config.colors === 'blue' ? 'show' : 'hide'}`}
             onClick={() => handlerConfig({ colors: 'blue' })}
           >
             <Check size={22} color='#f7f7f8' weight='bold' className='check' />
             <div className='circle blue' />
-          </div>
-          <div
+          </div>}
+          {(config.styles === 'cardS2' || config.styles === 'cardS3') && <div
             className={`children-color ${config.colors === 'red' ? 'show' : 'hide'}`}
             onClick={() => handlerConfig({ colors: 'red' })}
           >
             <Check size={22} color='#f7f7f8' weight='bold' className='check' />
             <div className='circle red' />
-          </div>
-          <div
-            className={`children-color ${config.colors === 'yellow' ? 'show' : 'hide'}`}
-            onClick={() => handlerConfig({ colors: 'yellow' })}
-          >
-            <Check size={22} color='#f7f7f8' weight='bold' className='check' />
-            <div className='circle yellow' />
-          </div>
-          <div
+          </div>}
+          {(config.styles === 'cardS2' || config.styles === 'cardS3') && <div
             className={`children-color ${config.colors === 'green' ? 'show' : 'hide'}`}
             onClick={() => handlerConfig({ colors: 'green' })}
           >
             <Check size={22} color='#f7f7f8' weight='bold' className='check' />
             <div className='circle green' />
-          </div>
-          <div
+          </div>}
+          {(config.styles === 'cardS3') && <div
             className={`children-color ${config.colors === 'purple' ? 'show' : 'hide'}`}
             onClick={() => handlerConfig({ colors: 'purple' })}
           >
             <Check size={22} color='#f7f7f8' weight='bold' className='check' />
             <div className='circle purple' />
-          </div>
-          <div
+          </div>}
+          {( config.styles === 'cardS3') && <div
             className={`children-color ${config.colors === 'dark' ? 'show' : 'hide'}`}
             onClick={() => handlerConfig({ colors: 'dark' })}
           >
             <Check size={22} color='#f7f7f8' weight='bold' className='check' />
             <div className='circle dark' />
-          </div>
+          </div>}
+          {(config.styles === 'cardS2' || config.styles === 'cardS3') && <div
+            className={`children-color ${config.colors === 'gray' ? 'show' : 'hide'}`}
+            onClick={() => handlerConfig({ colors: 'gray' })}
+          >
+            <Check size={22} color='#f7f7f8' weight='bold' className='check' />
+            <div className='circle gray' />
+          </div>}
+          {(config.styles === 'cardS2') && <div
+            className={`children-color ${config.colors === 'orange' ? 'show' : 'hide'}`}
+            onClick={() => handlerConfig({ colors: 'orange' })}
+          >
+            <Check size={22} color='#f7f7f8' weight='bold' className='check' />
+            <div className='circle orange' />
+          </div>}
         </div>
       </div>
       <div className='items'>
