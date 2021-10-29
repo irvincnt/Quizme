@@ -2,6 +2,7 @@ import React from 'react'
 import { Check } from 'phosphor-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setConfigSheet } from '../../actions/sheet'
+import {baseConfig} from '../../dictionary/baseConfig'
 
 import cardC1 from '../../asset/images/config/card-1c.png'
 import cardC2 from '../../asset/images/config/card-2c.png'
@@ -300,55 +301,17 @@ function Structure () {
       <div className='items'>
         <p>Colores</p>
         <div className='colors parent-color'>
-          {(config.styles === 'cardS2' || config.styles === 'cardS3') && <div
-            className={`children-color ${config.colors === 'blue' ? 'show' : 'hide'}`}
-            onClick={() => handlerConfig({ colors: 'blue' })}
+          {baseConfig.colors.map(item => {
+            return (
+              item.show.includes(config.styles) && <div
+            className={`children-color ${config.colors === item.color ? 'show' : 'hide'}`}
+            onClick={() => handlerConfig({ colors: item.color })}
           >
             <Check size={22} color='#f7f7f8' weight='bold' className='check' />
-            <div className='circle blue' />
-          </div>}
-          {(config.styles === 'cardS2' || config.styles === 'cardS3') && <div
-            className={`children-color ${config.colors === 'red' ? 'show' : 'hide'}`}
-            onClick={() => handlerConfig({ colors: 'red' })}
-          >
-            <Check size={22} color='#f7f7f8' weight='bold' className='check' />
-            <div className='circle red' />
-          </div>}
-          {(config.styles === 'cardS2' || config.styles === 'cardS3') && <div
-            className={`children-color ${config.colors === 'green' ? 'show' : 'hide'}`}
-            onClick={() => handlerConfig({ colors: 'green' })}
-          >
-            <Check size={22} color='#f7f7f8' weight='bold' className='check' />
-            <div className='circle green' />
-          </div>}
-          {(config.styles === 'cardS3') && <div
-            className={`children-color ${config.colors === 'purple' ? 'show' : 'hide'}`}
-            onClick={() => handlerConfig({ colors: 'purple' })}
-          >
-            <Check size={22} color='#f7f7f8' weight='bold' className='check' />
-            <div className='circle purple' />
-          </div>}
-          {( config.styles === 'cardS3') && <div
-            className={`children-color ${config.colors === 'dark' ? 'show' : 'hide'}`}
-            onClick={() => handlerConfig({ colors: 'dark' })}
-          >
-            <Check size={22} color='#f7f7f8' weight='bold' className='check' />
-            <div className='circle dark' />
-          </div>}
-          {(config.styles === 'cardS2' || config.styles === 'cardS3') && <div
-            className={`children-color ${config.colors === 'gray' ? 'show' : 'hide'}`}
-            onClick={() => handlerConfig({ colors: 'gray' })}
-          >
-            <Check size={22} color='#f7f7f8' weight='bold' className='check' />
-            <div className='circle gray' />
-          </div>}
-          {(config.styles === 'cardS2') && <div
-            className={`children-color ${config.colors === 'orange' ? 'show' : 'hide'}`}
-            onClick={() => handlerConfig({ colors: 'orange' })}
-          >
-            <Check size={22} color='#f7f7f8' weight='bold' className='check' />
-            <div className='circle orange' />
-          </div>}
+            <div className={`circle ${item.color}`} />
+          </div>
+            )
+          })}
         </div>
       </div>
       <div className='items'>

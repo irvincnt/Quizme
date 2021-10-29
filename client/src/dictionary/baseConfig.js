@@ -1,4 +1,4 @@
-export const config = {
+export const baseConfig = {
   columns: {
     c1: 'cardC1',
     c2: 'cardC2',
@@ -56,14 +56,36 @@ export const config = {
       }
     }
   },
-  colors: {
-    a: 'blue',
-    b: 'red',
-    c: 'yellow',
-    d: 'green',
-    e: 'purple',
-    f: 'dark'
-  },
+  colors: [
+    {
+      color: 'blue',
+      show: ['cardS2', 'cardS3']
+    },
+    {
+      color: 'red',
+      show: ['cardS2', 'cardS3']
+    },
+    {
+      color: 'green',
+      show: ['cardS2', 'cardS3']
+    },
+    {
+      color: 'purple',
+      show: ['cardS2', 'cardS3']
+    },
+    {
+      color: 'dark',
+      show: ['cardS3']
+    },
+    {
+      color: 'orange',
+      show: ['cardS2']
+    },
+    {
+      color: 'gray',
+      show: ['cardS2', 'cardS3']
+    }
+  ],
   sizes: {
     a: '1x',
     b: '2x',
