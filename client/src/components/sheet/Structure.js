@@ -15,13 +15,13 @@ import OneX from '../../asset/images/config/1x.png'
 import TwoX from '../../asset/images/config/2x.png'
 import threeX from '../../asset/images/config/3x.png'
 
-import cardS1C1a from '../../asset/images/config/cardS1/card-s1-c1-a.png'
-import cardS1C2a from '../../asset/images/config/cardS1/card-s1-c2-a.png'
-import cardS1C2b from '../../asset/images/config/cardS1/card-s1-c2-b.png'
-import cardS1C2c from '../../asset/images/config/cardS1/card-s1-2c-c.png'
-import cardS1C3a from '../../asset/images/config/cardS1/card-s1-3c-a.png'
-import cardS1C3b from '../../asset/images/config/cardS1/card-s1-3c-b.png'
-import cardS1C3c from '../../asset/images/config/cardS1/card-s1-c3-c.png'
+import cardS1C1a from '../../asset/images/config/cardS4/card-s4-1c-a.png'
+import cardS1C2a from '../../asset/images/config/cardS4/card-s4-2c-a.png'
+import cardS1C2b from '../../asset/images/config/cardS4/card-s4-2c-b.png'
+import cardS1C2c from '../../asset/images/config/cardS4/card-s4-2c-c.png'
+import cardS1C3a from '../../asset/images/config/cardS4/card-s4-3c-a.png'
+import cardS1C3b from '../../asset/images/config/cardS4/card-s4-3c-b.png'
+import cardS1C3c from '../../asset/images/config/cardS4/card-s4-3c-c.png'
 
 import cardS2C1a from '../../asset/images/config/cardS2/card-s2.png'
 import cardS2C2a from '../../asset/images/config/cardS2/card-s2-2c-a.png'
@@ -272,12 +272,12 @@ function Structure () {
       <div className='items'>
         <p>Estilos</p>
         <div className='styles parent'>
-          {/* <div
+          <div
             className={`children ${config.styles === 'cardS1' ? 'show' : 'hide'}`}
             onClick={() => handlerConfig({ styles: 'cardS1' })}
           >
             <img src={cardS1} alt='one column' />
-          </div> */}
+          </div>
           <div
             className={`children ${config.styles === 'cardS2' ? 'show' : 'hide'}`}
             onClick={() => handlerConfig({ styles: 'cardS2' })}
@@ -301,9 +301,10 @@ function Structure () {
       <div className='items'>
         <p>Colores</p>
         <div className='colors parent-color'>
-          {baseConfig.colors.map(item => {
+          {baseConfig.colors.map((item, i) => {
             return (
               item.show.includes(config.styles) && <div
+              key={i}
             className={`children-color ${config.colors === item.color ? 'show' : 'hide'}`}
             onClick={() => handlerConfig({ colors: item.color })}
           >

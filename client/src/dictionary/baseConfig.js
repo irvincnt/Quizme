@@ -63,7 +63,7 @@ export const baseConfig = {
     },
     {
       color: 'red',
-      show: ['cardS2', 'cardS3']
+      show: ['cardS1', 'cardS2', 'cardS3']
     },
     {
       color: 'green',
@@ -71,19 +71,19 @@ export const baseConfig = {
     },
     {
       color: 'purple',
-      show: ['cardS2', 'cardS3']
-    },
-    {
-      color: 'dark',
       show: ['cardS3']
     },
     {
+      color: 'dark',
+      show: ['cardS1','cardS3']
+    },
+    {
       color: 'orange',
-      show: ['cardS2']
+      show: ['cardS1','cardS2']
     },
     {
       color: 'gray',
-      show: ['cardS2', 'cardS3']
+      show: ['cardS1','cardS2', 'cardS3']
     }
   ],
   sizes: {
