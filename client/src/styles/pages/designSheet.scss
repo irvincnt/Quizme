@@ -94,9 +94,28 @@
     }
   }
   .cardS1 {
+    &.orange { 
+      border: 2px solid $c-orange-head;
+      box-shadow: 5px 5px 0px 0px $c-orange-head;
+    }
+    &.gray { 
+      border: 2px solid $c-gray-head;
+      box-shadow: 5px 5px 0px 0px $c-gray-head;
+    }
+    &.green { 
+      border: 2px solid $c-green-head;
+      box-shadow: 5px 5px 0px 0px $c-green-head;
+    }
+    &.red { 
+      border: 2px solid $c-red-head;
+      box-shadow: 5px 5px 0px 0px $c-red-head;
+    }
+    &.dark { 
+      border: 2px solid $c-dark-head;
+      box-shadow: 5px 5px 0px 0px $c-dark-head;
+    }
     .head {
-      background-color: $c-gray;
-      color: $c-white;
+      color: $c-dark;
       padding: 5px;
     }
     .body {
