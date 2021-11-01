@@ -15,7 +15,6 @@
       .drag {
         position: absolute;
         left: -23px;
-        // cursor: pointer;
       }
     }
   }
@@ -90,6 +89,7 @@
       &.red { background-color:  $c-red-body; }
       .cell {
         padding: 3px 12px 3px 5px;
+        position: relative;
       }
     }
   }
@@ -112,14 +112,17 @@
     }
     &.dark { 
       border: 2px solid $c-dark-head;
-      box-shadow: 5px 5px 0px 0px $c-dark-head;
+      box-shadow: 5px 5px 0px 0px;
     }
     .head {
       color: $c-dark;
       padding: 5px;
     }
     .body {
-      padding: 5px;
+      .cell {
+        padding: 3px 12px 3px 5px;
+        position: relative;
+      }
     }
   }
 }
