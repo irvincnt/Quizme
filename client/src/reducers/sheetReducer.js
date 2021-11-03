@@ -1,4 +1,7 @@
+import { baseConfig } from '../dictionary/baseConfig'
 import { types } from '../types/types'
+
+const { configInitial } = baseConfig
 
 const initialState = {
   nameSection: 'Titulo de la sección',
@@ -8,7 +11,8 @@ const initialState = {
     config: {
       columns: 'cardC2',
       styles: 'cardS2',
-      types: '',
+      types: configInitial['cardC2']['cardS2'],
+      modifiedType: false,
       colors: 'gray',
       sizes: 'x'
     },

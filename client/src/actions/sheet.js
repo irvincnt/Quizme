@@ -1,3 +1,4 @@
+import { baseConfig } from '../dictionary/baseConfig'
 import { types } from '../types/types'
 
 export const setChartsheetTitle = (title) => {
@@ -10,6 +11,13 @@ export const setChartsheetTitle = (title) => {
 }
 
 export const setConfigSheet = (config) => {
+  let {columns, styles, modifiedType } = config
+  const { configInitial } = baseConfig
+  
+  if (!modifiedType){
+    config.types = configInitial[columns][styles]
+  }
+
   return (dispatch) => {
     dispatch({
       type: types.setConfigSheet,
