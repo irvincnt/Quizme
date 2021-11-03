@@ -13,7 +13,7 @@ import '../../styles/pages/designSheet.scss'
 import { useSelector } from 'react-redux'
 
 export const Editor = () => {
-  const { currentSheet: { config: { styles, sizes, colors } } } = useSelector(state => state.sheet)
+  const { currentSheet: { config: { styles, sizes, colors, types, columns } } } = useSelector(state => state.sheet)
 
   const [designConfig, setDesing] = useState({
     previousKey: null
@@ -22,20 +22,20 @@ export const Editor = () => {
     rows: [
       {
         id: Math.floor(Math.random() * Date.now()),
-        columnOne: ' '
+        columnOne: ''
       },
       {
         id: Math.floor(Math.random() * Date.now()),
-        columnOne: ' '
+        columnOne: ''
       },
       {
         id: Math.floor(Math.random() * Date.now()),
-        columnOne: ' '
+        columnOne: ''
       }
     ],
     row: {
       id: '',
-      columnOne: ' '
+      columnOne: ''
     }
   })
 
@@ -159,7 +159,7 @@ export const Editor = () => {
                         {(draggableProvided) => (
                           <div
                             key={`${item.id}`}
-                            className={`cell ${colors}`}
+                            className={`row ${colors}`}
                             {...draggableProvided.draggableProps}
                             ref={draggableProvided.innerRef}
                           >
@@ -170,15 +170,48 @@ export const Editor = () => {
                               head={<DotsThreeVertical size={16} weight='bold' className='icon-menu' />}
                               content={contentDropdown(item)}
                             />
-                            <ContentEditable
-                              data-column='columnOne'
-                              data-row={item.id}
-                              html={item.columnOne}
-                              onPaste={pasteAsPlainText}
-                              onFocus={highlightAll}
-                              onChange={handleContentEditableUpdate}
-                              onKeyDown={handlerOnKeyDown}
-                            />
+                            <div className={`container-columns ${types}`}>
+                              {
+                                (columns === 'cardC1' ||
+                                columns === 'cardC2' ||
+                                columns === 'cardC3' )
+                                && <ContentEditable
+                                  data-column='columnOne'
+                                  data-row={item.id}
+                                  html={item.columnOne}
+                                  className={`cell`}
+                                  placeholder="To write..."
+                                  onPaste={pasteAsPlainText}
+                                  onFocus={highlightAll}
+                                  onChange={handleContentEditableUpdate}
+                                  onKeyDown={handlerOnKeyDown}
+                                />}
+                              {(columns === 'cardC2' ||
+                                columns === 'cardC3' )
+                                && <ContentEditable
+                                  data-column='columnTwo'
+                                  data-row={item.id}
+                                  html={item.columnOne}
+                                  className={`cell`}
+                                  placeholder="To write..."
+                                  onPaste={pasteAsPlainText}
+                                  onFocus={highlightAll}
+                                  onChange={handleContentEditableUpdate}
+                                  onKeyDown={handlerOnKeyDown}
+                                />}
+                              {columns === 'cardC3' && 
+                                <ContentEditable
+                                data-column='columnThree'
+                                data-row={item.id}
+                                html={item.columnOne}
+                                className={`cell`}
+                                placeholder="To write..."
+                                onPaste={pasteAsPlainText}
+                                onFocus={highlightAll}
+                                onChange={handleContentEditableUpdate}
+                                onKeyDown={handlerOnKeyDown}
+                              />}
+                            </div>
                           </div>
                         )}
                       </Draggable>

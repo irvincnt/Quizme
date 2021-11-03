@@ -44,7 +44,7 @@
       &.green { background-color: $c-green-head; }
     }
     .body {
-      .cell {
+      .row {
         padding: 3px 12px 3px 5px;
         position: relative;
 
@@ -52,6 +52,50 @@
           position: absolute;
           right: 0;
           cursor: pointer;
+        }
+        .container-columns {
+          display: flex;
+          justify-content: space-between;
+
+          &.cardS3C1a .cell{
+            &:nth-child(1) {background: red; width: 100%;}
+          }
+
+          &.cardS3C2a .cell{
+            &:nth-child(1) {background: red; width: 30%;}
+            &:nth-child(2) {background: blue; width: 70%;}
+          }
+          &.cardS3C2b .cell {
+            &:nth-child(1) {background: red; width: 70%;}
+            &:nth-child(2) {background: blue; width: 30%;}
+          }
+          &.cardS3C2c .cell {
+            &:nth-child(1) {background: red; width: 50%;}
+            &:nth-child(2) {background: blue; width: 50%;}
+          }
+
+          &.cardS3C3a .cell {
+            &:nth-child(1) {background: red; width: 20%;}
+            &:nth-child(2) {background: blue; width: 20%;}
+            &:nth-child(3) {background: green; width: 60%;}
+          }
+          &.cardS3C3b .cell {
+            &:nth-child(1) {background: red; width: 33.3%;}
+            &:nth-child(2) {background: blue; width: 33.3%;}
+            &:nth-child(3) {background: green; width: 33.3%;}
+          }
+          &.cardS3C3c .cell {
+            &:nth-child(1) {background: red; width: 20%;}
+            &:nth-child(2) {background: blue; width: 60%;}
+            &:nth-child(3) {background: green; width: 20%;}
+          }
+
+          [contenteditable=true]:empty:before {
+            content: attr(placeholder);
+            pointer-events: none;
+            display: block; /* For Firefox */
+            color: #b5b8bf;
+          }
         }
         &:nth-child(even) { background-color: $c-gray-body; }
         &.gray:nth-child(even) { background-color: $c-gray-body; }
@@ -87,9 +131,54 @@
       &.green { background-color: $c-green-body }
       &.blue { background-color: $c-blue-body; }
       &.red { background-color:  $c-red-body; }
-      .cell {
+      .row {
         padding: 3px 12px 3px 5px;
         position: relative;
+
+        .container-columns {
+          display: flex;
+          // justify-content: space-between;
+
+          &.cardS2C1a .cell{
+            &:nth-child(1) {background: red; width: 100%;}
+          }
+
+          &.cardS2C2a .cell{
+            &:nth-child(1) {background: red; width: 30%;}
+            &:nth-child(2) {background: blue; width: 70%;}
+          }
+          &.cardS2C2b .cell {
+            &:nth-child(1) {background: red; width: 70%;}
+            &:nth-child(2) {background: blue; width: 30%;}
+          }
+          &.cardS2C2c .cell {
+            &:nth-child(1) {background: red; width: 50%;}
+            &:nth-child(2) {background: blue; width: 50%;}
+          }
+
+          &.cardS2C3a .cell {
+            &:nth-child(1) {background: red; width: 20%;}
+            &:nth-child(2) {background: blue; width: 20%;}
+            &:nth-child(3) {background: green; width: 60%;}
+          }
+          &.cardS2C3b .cell {
+            &:nth-child(1) {background: red; width: 33.3%;}
+            &:nth-child(2) {background: blue; width: 33.3%;}
+            &:nth-child(3) {background: green; width: 33.3%;}
+          }
+          &.cardS2C3c .cell {
+            &:nth-child(1) {background: red; width: 20%;}
+            &:nth-child(2) {background: blue; width: 60%;}
+            &:nth-child(3) {background: green; width: 20%;}
+          }
+
+          [contenteditable=true]:empty:before {
+            content: attr(placeholder);
+            pointer-events: none;
+            display: block; /* For Firefox */
+            color: #b5b8bf;
+          }
+        }
       }
     }
   }
@@ -119,9 +208,54 @@
       padding: 5px;
     }
     .body {
-      .cell {
+      .row {
         padding: 3px 12px 3px 5px;
         position: relative;
+
+        .container-columns {
+          display: flex;
+          justify-content: space-between;
+
+          &.cardS1C1a .cell{
+            &:nth-child(1) {background: red; width: 100%;}
+          }
+
+          &.cardS1C2a .cell{
+            &:nth-child(1) {background: red; width: 30%;}
+            &:nth-child(2) {background: blue; width: 70%;}
+          }
+          &.cardS1C2b .cell {
+            &:nth-child(1) {background: red; width: 70%;}
+            &:nth-child(2) {background: blue; width: 30%;}
+          }
+          &.cardS1C2c .cell {
+            &:nth-child(1) {background: red; width: 50%;}
+            &:nth-child(2) {background: blue; width: 50%;}
+          }
+
+          &.cardS1C3a .cell {
+            &:nth-child(1) {background: red; width: 20%;}
+            &:nth-child(2) {background: blue; width: 20%;}
+            &:nth-child(3) {background: green; width: 60%;}
+          }
+          &.cardS1C3b .cell {
+            &:nth-child(1) {background: red; width: 33.3%;}
+            &:nth-child(2) {background: blue; width: 33.3%;}
+            &:nth-child(3) {background: green; width: 33.3%;}
+          }
+          &.cardS1C3c .cell {
+            &:nth-child(1) {background: red; width: 20%;}
+            &:nth-child(2) {background: blue; width: 60%;}
+            &:nth-child(3) {background: green; width: 20%;}
+          }
+
+          [contenteditable=true]:empty:before {
+            content: attr(placeholder);
+            pointer-events: none;
+            display: block; /* For Firefox */
+            color: #b5b8bf;
+          }
+        }
       }
     }
   }
