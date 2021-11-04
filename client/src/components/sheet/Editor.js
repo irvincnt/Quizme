@@ -22,20 +22,28 @@ export const Editor = () => {
     rows: [
       {
         id: Math.floor(Math.random() * Date.now()),
-        columnOne: ''
+        columnOne: '',
+        columnTwo: '',
+        columnThree: ''
       },
       {
         id: Math.floor(Math.random() * Date.now()),
-        columnOne: ''
+        columnOne: '',
+        columnTwo: '',
+        columnThree: ''
       },
       {
         id: Math.floor(Math.random() * Date.now()),
-        columnOne: ''
+        columnOne: '',
+        columnTwo: '',
+        columnThree: ''
       }
     ],
     row: {
       id: '',
-      columnOne: ''
+      columnOne: '',
+      columnTwo: '',
+      columnThree: ''
     }
   })
 
@@ -54,7 +62,7 @@ export const Editor = () => {
       },
       target: { value }
     } = event
-
+    
     const updatedRow = sheet.rows.filter((item, i) => item.id === parseInt(row))[0]
     updatedRow[column] = value
 
@@ -63,7 +71,7 @@ export const Editor = () => {
       rows: sheet.rows.map(item => item.id === row ? updatedRow : item)
     })
   }
-
+    
   const handlerOnKeyDown = (e) => {
     if (e.key === 'Enter' && designConfig.previousKey !== 'Shift') {
       e.preventDefault()
@@ -191,7 +199,7 @@ export const Editor = () => {
                                 && <ContentEditable
                                   data-column='columnTwo'
                                   data-row={item.id}
-                                  html={item.columnOne}
+                                  html={item.columnTwo}
                                   className={`cell`}
                                   placeholder="To write..."
                                   onPaste={pasteAsPlainText}
@@ -203,7 +211,7 @@ export const Editor = () => {
                                 <ContentEditable
                                 data-column='columnThree'
                                 data-row={item.id}
-                                html={item.columnOne}
+                                html={item.columnThree}
                                 className={`cell`}
                                 placeholder="To write..."
                                 onPaste={pasteAsPlainText}
