@@ -25,3 +25,38 @@ export const setConfigSheet = (config) => {
     })
   }
 }
+
+export const updateContentSheet = (row, updatedRow) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.updateContentSheet,
+      payload: {row, updatedRow}
+    })
+  }
+}
+
+export const addRow = () => {
+  return (dispatch) => {
+    dispatch({
+      type: types.addRow
+    })
+  }
+}
+
+export const deleteRow = (id) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.deleteRow,
+      payload: id
+    })
+  }
+}
+
+export const reOrder = (sourceIndex, destinationIndex) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.reOrder,
+      payload: {sourceIndex, destinationIndex}
+    })
+  }
+}

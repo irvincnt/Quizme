@@ -1,4 +1,5 @@
 import { baseConfig } from '../dictionary/baseConfig'
+import { reorder } from '../helpers/general'
 import { types } from '../types/types'
 
 const { configInitial } = baseConfig
@@ -16,7 +17,32 @@ const initialState = {
       colors: 'gray',
       sizes: 'x'
     },
-    rows: {}
+    rows: [
+      {
+        id: Math.floor(Math.random() * Date.now()),
+        columnOne: '',
+        columnTwo: '',
+        columnThree: ''
+      },
+      {
+        id: Math.floor(Math.random() * Date.now()),
+        columnOne: '',
+        columnTwo: '',
+        columnThree: ''
+      },
+      {
+        id: Math.floor(Math.random() * Date.now()),
+        columnOne: '',
+        columnTwo: '',
+        columnThree: ''
+      }
+    ],
+    row: {
+      id: '',
+      columnOne: '',
+      columnTwo: '',
+      columnThree: ''
+    }
   }
 }
 
@@ -35,6 +61,39 @@ export const sheetReducer = (state = initialState, action) => {
           config: action.payload
         }
       }
+    case types.updateContentSheet:
+      return {
+        ...state,
+        currentSheet: {
+          ...state.currentSheet,
+          rows: state.currentSheet.rows.map(item => item.id === action.payload.row ? action.payload.updatedRow : item)
+        }
+      }
+    case types.addRow:
+      const idRow = Math.floor(Math.random() * Date.now())
+      return {
+        ...state,
+        currentSheet: {
+          ...state.currentSheet,
+          rows: [...state.currentSheet.rows, { ...state.currentSheet.row, id: idRow}]
+        }
+      }
+    case types.deleteRow:
+      return {
+        ...state,
+        currentSheet: {
+          ...state.currentSheet,
+          rows: state.currentSheet.rows.filter((item) => action.payload !== item.id)
+        }
+      }
+      case types.reOrder:
+        return {
+          ...state,
+          currentSheet: {
+            ...state.currentSheet,
+            rows: reorder(state.currentSheet.rows, action.payload.sourceIndex, action.payload.destinationIndex)
+          }
+        }
 
     default:
       return state

@@ -11,5 +11,9 @@ export const types = {
   // chartsheets
   newChartSheet: '[ChartSheet] New chartsheet',
   setTitleChartSheet: '[ChartSheet] Set title',
-  setConfigSheet: '[Sheet] Set config sheet'
+  setConfigSheet: '[Sheet] Set config sheet',
+  updateContentSheet: '[Sheet] update content sheet',
+  addRow: '[Sheet] add Row',
+  deleteRow: '[Sheet] delete Row',
+  reOrder: '[Sheet] reorder Rows',
 }

@@ -10,50 +10,22 @@ import '../../styles/pages/sheet.scss'
 import '../../styles/ui/elements.scss'
 import '../../styles/pages/designSheet.scss'
 
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { updateContentSheet, addRow, deleteRow, reOrder } from '../../actions/sheet'
 
 export const Editor = () => {
-  const { currentSheet: { config: { styles, sizes, colors, types, columns } } } = useSelector(state => state.sheet)
+  const dispatch = useDispatch()
+  const { currentSheet: {
+      config: { 
+        styles, sizes, colors, types, columns
+      },
+      rows,
+    }
+  } = useSelector(state => state.sheet)
 
   const [designConfig, setDesing] = useState({
     previousKey: null
   })
-  const [sheet, setSheet] = useState({
-    rows: [
-      {
-        id: Math.floor(Math.random() * Date.now()),
-        columnOne: '',
-        columnTwo: '',
-        columnThree: ''
-      },
-      {
-        id: Math.floor(Math.random() * Date.now()),
-        columnOne: '',
-        columnTwo: '',
-        columnThree: ''
-      },
-      {
-        id: Math.floor(Math.random() * Date.now()),
-        columnOne: '',
-        columnTwo: '',
-        columnThree: ''
-      }
-    ],
-    row: {
-      id: '',
-      columnOne: '',
-      columnTwo: '',
-      columnThree: ''
-    }
-  })
-
-  const addRow = () => {
-    const idRow = Math.floor(Math.random() * Date.now())
-    setSheet({
-      rows: [...sheet.rows, { ...sheet.row, id: idRow }],
-      row: sheet.row
-    })
-  }
 
   const handleContentEditableUpdate = (event) => {
     const {
@@ -63,19 +35,16 @@ export const Editor = () => {
       target: { value }
     } = event
     
-    const updatedRow = sheet.rows.filter((item, i) => item.id === parseInt(row))[0]
+    const updatedRow = rows.filter((item, i) => item.id === parseInt(row))[0]
     updatedRow[column] = value
 
-    setSheet({
-      ...sheet,
-      rows: sheet.rows.map(item => item.id === row ? updatedRow : item)
-    })
+    dispatch(updateContentSheet(row, updatedRow))
   }
     
   const handlerOnKeyDown = (e) => {
     if (e.key === 'Enter' && designConfig.previousKey !== 'Shift') {
       e.preventDefault()
-      addRow()
+      dispatch(addRow())
     }
 
     setDesing({ ...designConfig, previousKey: e.key })
@@ -94,11 +63,8 @@ export const Editor = () => {
     }, 0)
   }
 
-  const deleteRow = (id) => {
-    setSheet({
-      ...sheet,
-      rows: sheet.rows.filter((item) => id !== item.id)
-    })
+  const removeRow = (id) => {
+    dispatch(deleteRow(id))
   }
 
   function contentDropdown (item) {
@@ -107,7 +73,7 @@ export const Editor = () => {
         <li>
           <a>
             <div
-              className='item' onClick={() => { deleteRow(item.id) }}
+              className='item' onClick={() => { removeRow(item.id) }}
             >
               <Trash size={16} />
               <span>Borrar</span>
@@ -116,14 +82,6 @@ export const Editor = () => {
         </li>
       </>
     )
-  }
-
-  const reorder = (list, startIndex, endIndex) => {
-    const result = [...list]
-    const [removed] = result.splice(startIndex, 1)
-    result.splice(endIndex, 0, removed)
-
-    return result
   }
 
   const onDragEnd = (result) => {
@@ -138,10 +96,7 @@ export const Editor = () => {
       return
     }
 
-    setSheet({
-      ...sheet,
-      rows: reorder(sheet.rows, source.index, destination.index)
-    })
+    dispatch(reOrder(source.index, destination.index))
   }
 
   return (
@@ -162,7 +117,7 @@ export const Editor = () => {
                     ref={droppableProvided.innerRef}
                     className='container'
                   >
-                    {sheet.rows.map((item, i) => (
+                    {rows.map((item, i) => (
                       <Draggable key={`${item.id}`} draggableId={`${item.id}`} index={i}>
                         {(draggableProvided) => (
                           <div
