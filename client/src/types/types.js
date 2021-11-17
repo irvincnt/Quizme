@@ -16,4 +16,6 @@ export const types = {
   addRow: '[Sheet] add Row',
   deleteRow: '[Sheet] delete Row',
   reOrder: '[Sheet] reorder Rows',
+  checkingAction: '[Sheet] checking event',
+  saveSheet: '[Sheet] Save sheet'
 }

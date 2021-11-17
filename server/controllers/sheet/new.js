@@ -27,7 +27,7 @@ const newSheet = async (req, res = response) => {
     console.log(error)
     res.status(400).json({
       ok: false,
-      msg: 'Error'
+      msg: 'Error al guardar el sheet'
     })
   }
 }

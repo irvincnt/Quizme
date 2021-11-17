@@ -1,6 +1,7 @@
 import { baseConfig } from '../dictionary/baseConfig'
 import { fetchWithToken } from '../helpers/fetch'
 import { types } from '../types/types'
+import toast from "react-hot-toast";
 
 export const setChartsheetTitle = (title) => {
   return (dispatch) => {
@@ -62,14 +63,37 @@ export const reOrder = (sourceIndex, destinationIndex) => {
   }
 }
 
-export const saveSheet = (sheet) => {
+export const sendSheet = (sheet) => {
   return async (dispatch) => {
-    const resp = await fetchWithToken(
-      'sheet/new',
-      {sheet},
-      'POST'
-    )
+    dispatch(checkingEvent(true))
+    const resp = await fetchWithToken('sheet/new', { sheet }, 'POST')
     const body = await resp.json()
-    console.log(body)
+    const {ok, msg, data} = body
+    
+    
+    if (ok) {
+      console.log('data', data)
+      toast.success("Sucess!");
+      dispatch(checkingEvent(false))
+      const {sheet} = data
+      dispatch(saveSheet(sheet))
+    } else {
+      toast.error(`${msg}`);
+      dispatch(checkingEvent(false))
+    }
   }
 }
+
+const checkingEvent = (checking) => (
+  {  
+    type: types.checkingAction,
+    payload: checking
+  }
+)
+
+const saveSheet = (data) => (
+  {  
+    type: types.saveSheet,
+    payload: {rows: data.rows, config: data.config}
+  }
+)

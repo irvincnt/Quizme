@@ -7,8 +7,10 @@ import '../../styles/pages/sheet.scss'
 import '../../styles/ui/elements.scss'
 import viewColumns from '../../asset/icons/view-columns.svg'
 import Configuration from '../sheet/Configuration'
-import { saveSheet, setChartsheetTitle } from '../../actions/sheet'
+import { sendSheet, setChartsheetTitle } from '../../actions/sheet'
 import { Editor } from '../sheet/Editor'
+
+import { Toaster } from "react-hot-toast";
 
 function NewSheet () {
   const [showSheetItems, setShowSheetItems] = useState(true)
@@ -29,9 +31,11 @@ function NewSheet () {
     setShowSheetItems(!showSheetItems)
   }
 
-  const handlerSaveSheet = () => {
-    dispatch(saveSheet(currentSheet))
+  const handlerSendSheet = () => {
+    console.log('Send');
+    dispatch(sendSheet(currentSheet))
   }
+
 
   return (
     <div className='container-fluid sheet'>
@@ -39,7 +43,7 @@ function NewSheet () {
         <h1>New sheert</h1>
         <div className='flex gap-10'>
           <button className='btn btn-outline-primary' disabled>Atrás</button>
-          <button className='btn btn-primary' onClick={handlerSaveSheet}>Guardar y continuar</button>
+          <button className='btn btn-primary' onClick={handlerSendSheet}>Guardar y continuar</button>
         </div>
       </div>
       {/* <div className='card sheet-head'>
@@ -68,6 +72,7 @@ function NewSheet () {
         <Configuration />
         <Editor />
       </div>
+      <Toaster />
     </div>
   )
 }
