@@ -32,7 +32,6 @@ function NewSheet () {
   }
 
   const handlerSendSheet = () => {
-    console.log('Send');
     dispatch(sendSheet(currentSheet))
   }
 

@@ -11,7 +11,7 @@ const newSheet = async (req, res = response) => {
       res.status(400).json({ ok: false, data: 'User not found' })
     }
     const sheet = await Sheet.create({ 
-      title: 'titulo', 
+      // title: 'titulo', 
       rows: body.sheet.rows, 
       config: body.sheet.config, 
       author: userId })

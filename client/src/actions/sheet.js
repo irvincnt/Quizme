@@ -72,7 +72,6 @@ export const sendSheet = (sheet) => {
     
     
     if (ok) {
-      console.log('data', data)
       toast.success("Sucess!");
       dispatch(checkingEvent(false))
       const {sheet} = data

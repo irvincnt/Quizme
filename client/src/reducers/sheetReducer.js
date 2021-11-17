@@ -46,6 +46,29 @@ const initialState = {
   }
 }
 
+const clearData = {
+  rows: [
+    {
+      id: Math.floor(Math.random() * Date.now()),
+      columnOne: '',
+      columnTwo: '',
+      columnThree: ''
+    },
+    {
+      id: Math.floor(Math.random() * Date.now()),
+      columnOne: '',
+      columnTwo: '',
+      columnThree: ''
+    },
+    {
+      id: Math.floor(Math.random() * Date.now()),
+      columnOne: '',
+      columnTwo: '',
+      columnThree: ''
+    }
+  ]
+}
+
 export const sheetReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.setTitleChartSheet:
@@ -104,9 +127,12 @@ export const sheetReducer = (state = initialState, action) => {
         }
         case types.saveSheet:
           return {
-            ...state,
+            checkingAction: false,
             sheets: [...state.sheets, action.payload],
-            currentSheet: initialState.currentSheet
+            currentSheet: {
+              ...state.currentSheet,
+              rows: clearData.rows
+            }
           }
 
     default:
