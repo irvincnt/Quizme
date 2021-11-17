@@ -1,4 +1,5 @@
 import { baseConfig } from '../dictionary/baseConfig'
+import { fetchWithToken } from '../helpers/fetch'
 import { types } from '../types/types'
 
 export const setChartsheetTitle = (title) => {
@@ -58,5 +59,17 @@ export const reOrder = (sourceIndex, destinationIndex) => {
       type: types.reOrder,
       payload: {sourceIndex, destinationIndex}
     })
+  }
+}
+
+export const saveSheet = (sheet) => {
+  return async (dispatch) => {
+    const resp = await fetchWithToken(
+      'sheet/new',
+      {sheet},
+      'POST'
+    )
+    const body = await resp.json()
+    console.log(body)
   }
 }

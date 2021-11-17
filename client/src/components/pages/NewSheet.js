@@ -7,13 +7,13 @@ import '../../styles/pages/sheet.scss'
 import '../../styles/ui/elements.scss'
 import viewColumns from '../../asset/icons/view-columns.svg'
 import Configuration from '../sheet/Configuration'
-import { setChartsheetTitle } from '../../actions/sheet'
+import { saveSheet, setChartsheetTitle } from '../../actions/sheet'
 import { Editor } from '../sheet/Editor'
 
 function NewSheet () {
   const [showSheetItems, setShowSheetItems] = useState(true)
   const dispatch = useDispatch()
-  const { nameSection } = useSelector(state => state.sheet)
+  const { nameSection, currentSheet } = useSelector(state => state.sheet)
 
   const handlerChange = (evt) => {
     dispatch(setChartsheetTitle(evt.target.value))
@@ -29,13 +29,20 @@ function NewSheet () {
     setShowSheetItems(!showSheetItems)
   }
 
+  const handlerSaveSheet = () => {
+    dispatch(saveSheet(currentSheet))
+  }
+
   return (
     <div className='container-fluid sheet'>
       <div className='flex align-items-center justify-content-between'>
         <h1>New sheert</h1>
-        breadcrumb
+        <div className='flex gap-10'>
+          <button className='btn btn-outline-primary' disabled>Atrás</button>
+          <button className='btn btn-primary' onClick={handlerSaveSheet}>Guardar y continuar</button>
+        </div>
       </div>
-      <div className='card sheet-head'>
+      {/* <div className='card sheet-head'>
         <div className='card-title flex justify-content-between'>
           <div className='flex align-items-center gap-5'>
             <ContentEditable
@@ -56,7 +63,7 @@ function NewSheet () {
       </div>
       <div className={classNames('card sheet-items', { 'is-disabled': showSheetItems })}>
         Items chartsheets
-      </div>
+      </div> */}
       <div className='flex gap-12 sheet-content'>
         <Configuration />
         <Editor />

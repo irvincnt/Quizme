@@ -8,7 +8,6 @@ const initialState = {
   nameSection: 'Titulo de la sección',
   sheets: [],
   currentSheet: {
-    id: '',
     config: {
       columns: 'cardC2',
       styles: 'cardS2',

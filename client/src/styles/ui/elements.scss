@@ -65,14 +65,30 @@
   color: #f46a6a;
   border-color: #f46a6a;
 }
+.btn-outline-primary {
+  color: $c-primary;
+  border-color: $c-primary;
+}
 .btn-outline-danger:hover {
   color: #fff;
   background-color: #f46a6a;
   border-color: #f46a6a;
 }
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: $c-primary;
+  border-color: $c-primary;
+}
 .btn-sm {
   padding: .25rem .5rem;
   font-size: .7109375rem;
   border-radius: .2rem;
+}
+
+.flex{
+  display: flex;
+}
+.gap-10{
+  gap: 10px
 }
 
