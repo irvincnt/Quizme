@@ -12,7 +12,7 @@ const initialState = {
     config: {
       columns: 'cardC2',
       styles: 'cardS2',
-      types: configInitial['cardC2']['cardS2'],
+      types: configInitial.cardC2.cardS2,
       modifiedType: false,
       colors: 'gray',
       sizes: 'x'
@@ -92,15 +92,16 @@ export const sheetReducer = (state = initialState, action) => {
           rows: state.currentSheet.rows.map(item => item.id === action.payload.row ? action.payload.updatedRow : item)
         }
       }
-    case types.addRow:
+    case types.addRow: {
       const idRow = Math.floor(Math.random() * Date.now())
       return {
         ...state,
         currentSheet: {
           ...state.currentSheet,
-          rows: [...state.currentSheet.rows, { ...state.currentSheet.row, id: idRow}]
+          rows: [...state.currentSheet.rows, { ...state.currentSheet.row, id: idRow }]
         }
       }
+    }
     case types.deleteRow:
       return {
         ...state,
@@ -109,31 +110,31 @@ export const sheetReducer = (state = initialState, action) => {
           rows: state.currentSheet.rows.filter((item) => action.payload !== item.id)
         }
       }
-      case types.reOrder:
-        return {
-          ...state,
-          currentSheet: {
-            ...state.currentSheet,
-            rows: reorder(state.currentSheet.rows, action.payload.sourceIndex, action.payload.destinationIndex)
-          }
+    case types.reOrder:
+      return {
+        ...state,
+        currentSheet: {
+          ...state.currentSheet,
+          rows: reorder(state.currentSheet.rows, action.payload.sourceIndex, action.payload.destinationIndex)
         }
-      case types.checkingAction:
-        return {
-          ...state,
-          currentSheet: {
-            ...state.currentSheet,
-            checkingAction: action.payload
-          }
+      }
+    case types.checkingAction:
+      return {
+        ...state,
+        currentSheet: {
+          ...state.currentSheet,
+          checkingAction: action.payload
         }
-        case types.saveSheet:
-          return {
-            checkingAction: false,
-            sheets: [...state.sheets, action.payload],
-            currentSheet: {
-              ...state.currentSheet,
-              rows: clearData.rows
-            }
-          }
+      }
+    case types.saveSheet:
+      return {
+        checkingAction: false,
+        sheets: [...state.sheets, action.payload],
+        currentSheet: {
+          ...state.currentSheet,
+          rows: clearData.rows
+        }
+      }
 
     default:
       return state

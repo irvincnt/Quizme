@@ -2,7 +2,7 @@ import React from 'react'
 import { Check } from 'phosphor-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setConfigSheet } from '../../actions/sheet'
-import {baseConfig} from '../../dictionary/baseConfig'
+import { baseConfig } from '../../dictionary/baseConfig'
 
 import cardC1 from '../../asset/images/config/card-1c.png'
 import cardC2 from '../../asset/images/config/card-2c.png'
@@ -62,19 +62,19 @@ const TypeS1 = ({ config, selectConfig }) => {
         <div className='types parent'>
           <div
             className={`children ${config.types === 'cardS1C2a' ? 'show' : 'hide'}`}
-            onClick={() => handlerSelectConfig({ types: 'cardS1C2a', modifiedType: true  })}
+            onClick={() => handlerSelectConfig({ types: 'cardS1C2a', modifiedType: true })}
           >
             <img src={cardS1C2a} alt='two column' />
           </div>
           <div
             className={`children ${config.types === 'cardS1C2b' ? 'show' : 'hide'}`}
-            onClick={() => handlerSelectConfig({ types: 'cardS1C2b', modifiedType: true  })}
+            onClick={() => handlerSelectConfig({ types: 'cardS1C2b', modifiedType: true })}
           >
             <img src={cardS1C2b} alt='three column' />
           </div>
           <div
             className={`children ${config.types === 'cardS1C2c' ? 'show' : 'hide'}`}
-            onClick={() => handlerSelectConfig({ types: 'cardS1C2c', modifiedType: true  })}
+            onClick={() => handlerSelectConfig({ types: 'cardS1C2c', modifiedType: true })}
           >
             <img src={cardS1C2c} alt='three column' />
           </div>
@@ -84,19 +84,19 @@ const TypeS1 = ({ config, selectConfig }) => {
         <div className='types parent'>
           <div
             className={`children ${config.types === 'cardS1C3a' ? 'show' : 'hide'}`}
-            onClick={() => handlerSelectConfig({ types: 'cardS1C3a', modifiedType: true  })}
+            onClick={() => handlerSelectConfig({ types: 'cardS1C3a', modifiedType: true })}
           >
             <img src={cardS1C3a} alt='two column' />
           </div>
           <div
             className={`children ${config.types === 'cardS1C3b' ? 'show' : 'hide'}`}
-            onClick={() => handlerSelectConfig({ types: 'cardS1C3b', modifiedType: true  })}
+            onClick={() => handlerSelectConfig({ types: 'cardS1C3b', modifiedType: true })}
           >
             <img src={cardS1C3b} alt='three column' />
           </div>
           <div
             className={`children ${config.types === 'cardS1C3c' ? 'show' : 'hide'}`}
-            onClick={() => handlerSelectConfig({ types: 'cardS1C3c', modifiedType: true  })}
+            onClick={() => handlerSelectConfig({ types: 'cardS1C3c', modifiedType: true })}
           >
             <img src={cardS1C3c} alt='three column' />
           </div>
@@ -117,7 +117,7 @@ function TypeS2 ({ config, selectConfig }) {
         <div className='types parent'>
           <div
             className={`children ${config.types === 'cardS2C1a' ? 'show' : 'hide'}`}
-            onClick={() => handlerSelectConfig({ types: 'cardS2C1a', modifiedType: true  })}
+            onClick={() => handlerSelectConfig({ types: 'cardS2C1a', modifiedType: true })}
           >
             <img src={cardS2C1a} alt='one column' />
           </div>
@@ -127,7 +127,7 @@ function TypeS2 ({ config, selectConfig }) {
         <div className='types parent'>
           <div
             className={`children ${config.types === 'cardS2C2a' ? 'show' : 'hide'}`}
-            onClick={() => handlerSelectConfig({ types: 'cardS2C2a', modifiedType: true  })}
+            onClick={() => handlerSelectConfig({ types: 'cardS2C2a', modifiedType: true })}
           >
             <img src={cardS2C2a} alt='two column' />
           </div>
@@ -139,7 +139,7 @@ function TypeS2 ({ config, selectConfig }) {
           </div>
           <div
             className={`children ${config.types === 'cardS2C2c' ? 'show' : 'hide'}`}
-            onClick={() => handlerSelectConfig({ types: 'cardS2C2c', modifiedType: true  })}
+            onClick={() => handlerSelectConfig({ types: 'cardS2C2c', modifiedType: true })}
           >
             <img src={cardS2C2c} alt='three column' />
           </div>
@@ -149,19 +149,19 @@ function TypeS2 ({ config, selectConfig }) {
         <div className='types parent'>
           <div
             className={`children ${config.types === 'cardS2C3a' ? 'show' : 'hide'}`}
-            onClick={() => handlerSelectConfig({ types: 'cardS2C3a', modifiedType: true  })}
+            onClick={() => handlerSelectConfig({ types: 'cardS2C3a', modifiedType: true })}
           >
             <img src={cardS2C3a} alt='two column' />
           </div>
           <div
             className={`children ${config.types === 'cardS2C3b' ? 'show' : 'hide'}`}
-            onClick={() => handlerSelectConfig({ types: 'cardS2C3b', modifiedType: true  })}
+            onClick={() => handlerSelectConfig({ types: 'cardS2C3b', modifiedType: true })}
           >
             <img src={cardS2C3b} alt='three column' />
           </div>
           <div
             className={`children ${config.types === 'cardS2C3c' ? 'show' : 'hide'}`}
-            onClick={() => handlerSelectConfig({ types: 'cardS2C3c', modifiedType: true  })}
+            onClick={() => handlerSelectConfig({ types: 'cardS2C3c', modifiedType: true })}
           >
             <img src={cardS2C3c} alt='three column' />
           </div>
@@ -183,7 +183,7 @@ function TypeS3 ({ config, selectConfig }) {
         <div className='types parent'>
           <div
             className={`children ${config.types === 'cardS3C1a' ? 'show' : 'hide'}`}
-            onClick={() => handlerSelectConfig({ types: 'cardS3C1a', modifiedType: true  })}
+            onClick={() => handlerSelectConfig({ types: 'cardS3C1a', modifiedType: true })}
           >
             <img src={cardS3C1a} alt='one column' />
           </div>
@@ -193,19 +193,19 @@ function TypeS3 ({ config, selectConfig }) {
         <div className='types parent'>
           <div
             className={`children ${config.types === 'cardS3C2a' ? 'show' : 'hide'}`}
-            onClick={() => handlerSelectConfig({ types: 'cardS3C2a', modifiedType: true  })}
+            onClick={() => handlerSelectConfig({ types: 'cardS3C2a', modifiedType: true })}
           >
             <img src={cardS3C2a} alt='two column' />
           </div>
           <div
             className={`children ${config.types === 'cardS3C2b' ? 'show' : 'hide'}`}
-            onClick={() => handlerSelectConfig({ types: 'cardS3C2b', modifiedType: true  })}
+            onClick={() => handlerSelectConfig({ types: 'cardS3C2b', modifiedType: true })}
           >
             <img src={cardS3C2b} alt='three column' />
           </div>
           <div
             className={`children ${config.types === 'cardS3C2c' ? 'show' : 'hide'}`}
-            onClick={() => handlerSelectConfig({ types: 'cardS3C2c', modifiedType: true  })}
+            onClick={() => handlerSelectConfig({ types: 'cardS3C2c', modifiedType: true })}
           >
             <img src={cardS3C2c} alt='three column' />
           </div>
@@ -215,19 +215,19 @@ function TypeS3 ({ config, selectConfig }) {
         <div className='types parent'>
           <div
             className={`children ${config.types === 'cardS3C3a' ? 'show' : 'hide'}`}
-            onClick={() => handlerSelectConfig({ types: 'cardS3C3a', modifiedType: true  })}
+            onClick={() => handlerSelectConfig({ types: 'cardS3C3a', modifiedType: true })}
           >
             <img src={cardS3C3a} alt='two column' />
           </div>
           <div
             className={`children ${config.types === 'cardS3C3b' ? 'show' : 'hide'}`}
-            onClick={() => handlerSelectConfig({ types: 'cardS3C3b', modifiedType: true  })}
+            onClick={() => handlerSelectConfig({ types: 'cardS3C3b', modifiedType: true })}
           >
             <img src={cardS3C3b} alt='three column' />
           </div>
           <div
             className={`children ${config.types === 'cardS3C3c' ? 'show' : 'hide'}`}
-            onClick={() => handlerSelectConfig({ types: 'cardS3C3c', modifiedType: true  })}
+            onClick={() => handlerSelectConfig({ types: 'cardS3C3c', modifiedType: true })}
           >
             <img src={cardS3C3c} alt='three column' />
           </div>
@@ -303,14 +303,15 @@ function Structure () {
         <div className='colors parent-color'>
           {baseConfig.colors.map((item, i) => {
             return (
-              item.show.includes(config.styles) && <div
-              key={i}
-            className={`children-color ${config.colors === item.color ? 'show' : 'hide'}`}
-            onClick={() => handlerConfig({ colors: item.color, modifiedType: false })}
-          >
-            <Check size={22} color='#f7f7f8' weight='bold' className='check' />
-            <div className={`circle ${item.color}`} />
-          </div>
+              item.show.includes(config.styles) &&
+                <div
+                  key={i}
+                  className={`children-color ${config.colors === item.color ? 'show' : 'hide'}`}
+                  onClick={() => handlerConfig({ colors: item.color, modifiedType: false })}
+                >
+                  <Check size={22} color='#f7f7f8' weight='bold' className='check' />
+                  <div className={`circle ${item.color}`} />
+                </div>
             )
           })}
         </div>

@@ -1,40 +1,39 @@
-import React, { useState } from 'react'
-import classNames from 'classnames'
-import ContentEditable from '../helpers/ContentEditable'
+import React from 'react'
+// import classNames from 'classnames'
+// import ContentEditable from '../helpers/ContentEditable'
 import { useDispatch, useSelector } from 'react-redux'
 
 import '../../styles/pages/sheet.scss'
 import '../../styles/ui/elements.scss'
-import viewColumns from '../../asset/icons/view-columns.svg'
+// import viewColumns from '../../asset/icons/view-columns.svg'
 import Configuration from '../sheet/Configuration'
-import { sendSheet, setChartsheetTitle } from '../../actions/sheet'
+import { sendSheet } from '../../actions/sheet'
 import { Editor } from '../sheet/Editor'
 
-import { Toaster } from "react-hot-toast";
+import { Toaster } from 'react-hot-toast'
 
 function NewSheet () {
-  const [showSheetItems, setShowSheetItems] = useState(true)
+  // const [showSheetItems, setShowSheetItems] = useState(true)
   const dispatch = useDispatch()
-  const { nameSection, currentSheet } = useSelector(state => state.sheet)
+  const { currentSheet } = useSelector(state => state.sheet)
 
-  const handlerChange = (evt) => {
-    dispatch(setChartsheetTitle(evt.target.value))
-  }
+  // const handlerChange = (evt) => {
+  //   dispatch(setChartsheetTitle(evt.target.value))
+  // }
 
-  const highlightAll = () => {
-    setTimeout(() => {
-      document.execCommand('selectAll', false, null)
-    }, 0)
-  }
+  // const highlightAll = () => {
+  //   setTimeout(() => {
+  //     document.execCommand('selectAll', false, null)
+  //   }, 0)
+  // }
 
-  const handlerShowSheetItems = () => {
-    setShowSheetItems(!showSheetItems)
-  }
+  // const handlerShowSheetItems = () => {
+  //   setShowSheetItems(!showSheetItems)
+  // }
 
   const handlerSendSheet = () => {
     dispatch(sendSheet(currentSheet))
   }
-
 
   return (
     <div className='container-fluid sheet'>

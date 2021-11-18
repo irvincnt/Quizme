@@ -15,11 +15,12 @@ import { updateContentSheet, addRow, deleteRow, reOrder } from '../../actions/sh
 
 export const Editor = () => {
   const dispatch = useDispatch()
-  const { currentSheet: {
-      config: { 
+  const {
+    currentSheet: {
+      config: {
         styles, sizes, colors, types, columns
       },
-      rows,
+      rows
     }
   } = useSelector(state => state.sheet)
 
@@ -34,13 +35,13 @@ export const Editor = () => {
       },
       target: { value }
     } = event
-    
+
     const updatedRow = rows.filter((item, i) => item.id === parseInt(row))[0]
     updatedRow[column] = value
 
     dispatch(updateContentSheet(row, updatedRow))
   }
-    
+
   const handlerOnKeyDown = (e) => {
     if (e.key === 'Enter' && designConfig.previousKey !== 'Shift') {
       e.preventDefault()
@@ -137,43 +138,44 @@ export const Editor = () => {
                               {
                                 (columns === 'cardC1' ||
                                 columns === 'cardC2' ||
-                                columns === 'cardC3' )
-                                && <ContentEditable
-                                  data-column='columnOne'
-                                  data-row={item.id}
-                                  html={item.columnOne}
-                                  className={`cell`}
-                                  placeholder="To write..."
-                                  onPaste={pasteAsPlainText}
-                                  onFocus={highlightAll}
-                                  onChange={handleContentEditableUpdate}
-                                  onKeyDown={handlerOnKeyDown}
-                                />}
+                                columns === 'cardC3') &&
+                                  <ContentEditable
+                                    data-column='columnOne'
+                                    data-row={item.id}
+                                    html={item.columnOne}
+                                    className='cell'
+                                    placeholder='To write...'
+                                    onPaste={pasteAsPlainText}
+                                    onFocus={highlightAll}
+                                    onChange={handleContentEditableUpdate}
+                                    onKeyDown={handlerOnKeyDown}
+                                  />
+}
                               {(columns === 'cardC2' ||
-                                columns === 'cardC3' )
-                                && <ContentEditable
-                                  data-column='columnTwo'
+                                columns === 'cardC3') &&
+                                  <ContentEditable
+                                    data-column='columnTwo'
+                                    data-row={item.id}
+                                    html={item.columnTwo}
+                                    className='cell'
+                                    placeholder='To write...'
+                                    onPaste={pasteAsPlainText}
+                                    onFocus={highlightAll}
+                                    onChange={handleContentEditableUpdate}
+                                    onKeyDown={handlerOnKeyDown}
+                                  />}
+                              {columns === 'cardC3' &&
+                                <ContentEditable
+                                  data-column='columnThree'
                                   data-row={item.id}
-                                  html={item.columnTwo}
-                                  className={`cell`}
-                                  placeholder="To write..."
+                                  html={item.columnThree}
+                                  className='cell'
+                                  placeholder='To write...'
                                   onPaste={pasteAsPlainText}
                                   onFocus={highlightAll}
                                   onChange={handleContentEditableUpdate}
                                   onKeyDown={handlerOnKeyDown}
                                 />}
-                              {columns === 'cardC3' && 
-                                <ContentEditable
-                                data-column='columnThree'
-                                data-row={item.id}
-                                html={item.columnThree}
-                                className={`cell`}
-                                placeholder="To write..."
-                                onPaste={pasteAsPlainText}
-                                onFocus={highlightAll}
-                                onChange={handleContentEditableUpdate}
-                                onKeyDown={handlerOnKeyDown}
-                              />}
                             </div>
                           </div>
                         )}

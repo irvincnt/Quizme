@@ -1,7 +1,7 @@
 import { baseConfig } from '../dictionary/baseConfig'
 import { fetchWithToken } from '../helpers/fetch'
 import { types } from '../types/types'
-import toast from "react-hot-toast";
+import toast from 'react-hot-toast'
 
 export const setChartsheetTitle = (title) => {
   return (dispatch) => {
@@ -13,10 +13,10 @@ export const setChartsheetTitle = (title) => {
 }
 
 export const setConfigSheet = (config) => {
-  let {columns, styles, modifiedType } = config
+  const { columns, styles, modifiedType } = config
   const { configInitial } = baseConfig
-  
-  if (!modifiedType){
+
+  if (!modifiedType) {
     config.types = configInitial[columns][styles]
   }
 
@@ -32,7 +32,7 @@ export const updateContentSheet = (row, updatedRow) => {
   return (dispatch) => {
     dispatch({
       type: types.updateContentSheet,
-      payload: {row, updatedRow}
+      payload: { row, updatedRow }
     })
   }
 }
@@ -58,7 +58,7 @@ export const reOrder = (sourceIndex, destinationIndex) => {
   return (dispatch) => {
     dispatch({
       type: types.reOrder,
-      payload: {sourceIndex, destinationIndex}
+      payload: { sourceIndex, destinationIndex }
     })
   }
 }
@@ -68,31 +68,30 @@ export const sendSheet = (sheet) => {
     dispatch(checkingEvent(true))
     const resp = await fetchWithToken('sheet/new', { sheet }, 'POST')
     const body = await resp.json()
-    const {ok, msg, data} = body
-    
-    
+    const { ok, msg, data } = body
+
     if (ok) {
-      toast.success("Sucess!");
+      toast.success('Sucess!')
       dispatch(checkingEvent(false))
-      const {sheet} = data
+      const { sheet } = data
       dispatch(saveSheet(sheet))
     } else {
-      toast.error(`${msg}`);
+      toast.error(`${msg}`)
       dispatch(checkingEvent(false))
     }
   }
 }
 
 const checkingEvent = (checking) => (
-  {  
+  {
     type: types.checkingAction,
     payload: checking
   }
 )
 
 const saveSheet = (data) => (
-  {  
+  {
     type: types.saveSheet,
-    payload: {rows: data.rows, config: data.config}
+    payload: { rows: data.rows, config: data.config }
   }
 )
