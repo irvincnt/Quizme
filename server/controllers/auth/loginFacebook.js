@@ -45,7 +45,7 @@ const loginWithFacebook = async (req, res = response) => {
     console.log('ERROR =>', error.response.data)
     res.status(500).json({
       ok: false,
-      msg: 'Error login with Google'
+      msg: 'Error login with Facebook'
     })
   }
 }

@@ -12,10 +12,11 @@ import login from '../../asset/images/login.svg'
 import google from '../../asset/icons/google.svg'
 import facebook from '../../asset/icons/facebook.svg'
 import Alerts from '../ui/Alerts'
+import Spinner from '../ui/spinner'
 
 export default function Register () {
   const dispatch = useDispatch()
-  const { ok: okError, msg } = useSelector(state => state.msg)
+  const { msg: { ok: okError, msg }, auth: { loading } } = useSelector(state => state)
 
   const [errors, setErrors] = useState({})
   const [values, handleInputChange] = useForm({
@@ -130,6 +131,7 @@ export default function Register () {
           <div className='sigin-with'>
             <h5>Sign in with</h5>
             <div className='icons'>
+              {loading && <Spinner />}
               <img src={google} alt='google icon' width='26px' />
               <img src={facebook} alt='facebook icon' width='26px' />
             </div>

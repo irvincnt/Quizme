@@ -65,27 +65,26 @@ export const reOrder = (sourceIndex, destinationIndex) => {
 
 export const sendSheet = (sheet) => {
   return async (dispatch) => {
-    dispatch(checkingEvent(true))
+    dispatch(loadingEvent(true))
     const resp = await fetchWithToken('sheet/new', { sheet }, 'POST')
     const body = await resp.json()
     const { ok, msg, data } = body
 
     if (ok) {
       toast.success('Sucess!')
-      dispatch(checkingEvent(false))
       const { sheet } = data
       dispatch(saveSheet(sheet))
     } else {
       toast.error(`${msg}`)
-      dispatch(checkingEvent(false))
+      dispatch(loadingEvent(false))
     }
   }
 }
 
-const checkingEvent = (checking) => (
+const loadingEvent = (loading) => (
   {
-    type: types.checkingAction,
-    payload: checking
+    type: types.loadingEvent,
+    payload: loading
   }
 )
 

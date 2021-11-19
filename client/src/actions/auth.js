@@ -3,6 +3,7 @@ import { types } from '../types/types'
 
 export const startLogin = (path, data) => {
   return async (dispatch) => {
+    dispatch(loading())
     const resp = await fetchWithoutToken(path, data, 'POST')
     const body = await resp.json()
     if (body.ok) {
@@ -83,7 +84,7 @@ export const startLogout = () => {
     dispatch(logout())
   }
 }
-
+const loading = () => ({ type: types.authLoading })
 const logout = () => ({ type: types.authLogout })
 const checkingFinish = () => ({ type: types.authCheckingFinish })
 

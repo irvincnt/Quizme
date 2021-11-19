@@ -7,7 +7,7 @@ const { configInitial } = baseConfig
 const initialState = {
   nameSection: 'Titulo de la sección',
   sheets: [],
-  checkingAction: false,
+  loadingEvent: false,
   currentSheet: {
     config: {
       columns: 'cardC2',
@@ -118,17 +118,17 @@ export const sheetReducer = (state = initialState, action) => {
           rows: reorder(state.currentSheet.rows, action.payload.sourceIndex, action.payload.destinationIndex)
         }
       }
-    case types.checkingAction:
+    case types.loadingEvent:
       return {
         ...state,
+        loadingEvent: action.payload,
         currentSheet: {
-          ...state.currentSheet,
-          checkingAction: action.payload
+          ...state.currentSheet
         }
       }
     case types.saveSheet:
       return {
-        checkingAction: false,
+        loadingEvent: false,
         sheets: [...state.sheets, action.payload],
         currentSheet: {
           ...state.currentSheet,

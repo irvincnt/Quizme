@@ -12,13 +12,15 @@ import '../../styles/auth/login_register.scss'
 import login from '../../asset/images/login.svg'
 import google from '../../asset/icons/google.svg'
 import facebook from '../../asset/icons/facebook.svg'
+import Spinner from '../ui/spinner'
 
 const googleClient = process.env.GOOLE_CLIENT_ID
 const facebookClient = process.env.FACEBOOK_CLIENT_ID
 
 export default function Login () {
   const dispatch = useDispatch()
-  const { ok: okError, msg } = useSelector(state => state.msg)
+  const { msg: { ok: okError, msg }, auth: { loading } } = useSelector(state => state)
+
   const [values, handleInputChange] = useForm({
     email: '',
     password: ''
@@ -26,7 +28,6 @@ export default function Login () {
 
   const handlerSubmit = (e) => {
     e.preventDefault()
-
     dispatch(startLogin(
       'auth/login',
       {
@@ -38,7 +39,6 @@ export default function Login () {
 
   const googleSucces = async (res) => {
     const { tokenId: tokenGoogle } = res
-
     dispatch(startLogin(
       'auth/google-login',
       {
@@ -53,7 +53,6 @@ export default function Login () {
 
   const responseFacebook = async (res) => {
     const { userID, accessToken } = res
-
     dispatch(startLogin(
       'auth/facebook-login',
       {
@@ -92,29 +91,32 @@ export default function Login () {
           <div className='sigin-with'>
             <h5>Sign in with</h5>
             <div className='icons'>
-              <GoogleLogin
-                clientId={googleClient}
-                render={renderProps => (
+              {loading && <Spinner />}
+              {!loading && <>
+                <GoogleLogin
+                  clientId={googleClient}
+                  render={renderProps => (
                   // eslint-disable-next-line react/jsx-handler-names
-                  <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                    <img src={google} alt='facebook icon' width='26px' />
-                  </button>
-                )}
-                onSuccess={googleSucces}
-                onFailure={googleError}
-                cookiePolicy='single_host_origin'
-              />
-              <FacebookLogin
-                appId={facebookClient}
-                autoLoad={false}
-                callback={responseFacebook}
-                render={renderProps => (
-                  // eslint-disable-next-line react/jsx-handler-names
-                  <button onClick={renderProps.onClick} disabled={renderProps.isDisabled}>
-                    <img src={facebook} alt='facebook icon' width='26px' />
-                  </button>
-                )}
-              />
+                    <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                      <img src={google} alt='facebook icon' width='26px' />
+                    </button>
+                  )}
+                  onSuccess={googleSucces}
+                  onFailure={googleError}
+                  cookiePolicy='single_host_origin'
+                />
+                <FacebookLogin
+                  appId={facebookClient}
+                  autoLoad={false}
+                  callback={responseFacebook}
+                  render={renderProps => (
+                    // eslint-disable-next-line react/jsx-handler-names
+                    <button onClick={renderProps.onClick} disabled={renderProps.isDisabled}>
+                      <img src={facebook} alt='facebook icon' width='26px' />
+                    </button>
+                  )}
+                />
+                           </>}
             </div>
             <p>¿Forgot your password?</p>
             <p>Don't have an account ? <Link to='/register'> Signup now </Link> </p>

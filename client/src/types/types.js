@@ -1,4 +1,5 @@
 export const types = {
+  authLoading: '[auth] Loading',
   authStartLogin: '[auth] Start login',
   authLogin: '[auth] Login',
   authCheckingFinish: '[auth] Checking finish login state',
@@ -16,6 +17,6 @@ export const types = {
   addRow: '[Sheet] add Row',
   deleteRow: '[Sheet] delete Row',
   reOrder: '[Sheet] reorder Rows',
-  checkingAction: '[Sheet] checking event',
+  loadingEvent: '[Sheet] loading event',
   saveSheet: '[Sheet] Save sheet'
 }

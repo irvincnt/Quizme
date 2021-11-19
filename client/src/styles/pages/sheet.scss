@@ -1,7 +1,12 @@
 @import '../variables.scss';
 
 .sheet {
-
+  .btn-custom {
+    width: 140.9px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   &-head {
     .title[contenteditable="true"]:focus-visible {
       outline: none;

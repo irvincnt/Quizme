@@ -11,11 +11,12 @@ import { sendSheet } from '../../actions/sheet'
 import { Editor } from '../sheet/Editor'
 
 import { Toaster } from 'react-hot-toast'
+import Spinner from '../ui/spinner'
 
 function NewSheet () {
   // const [showSheetItems, setShowSheetItems] = useState(true)
   const dispatch = useDispatch()
-  const { currentSheet } = useSelector(state => state.sheet)
+  const { currentSheet, loadingEvent } = useSelector(state => state.sheet)
 
   // const handlerChange = (evt) => {
   //   dispatch(setChartsheetTitle(evt.target.value))
@@ -41,7 +42,12 @@ function NewSheet () {
         <h1>New sheert</h1>
         <div className='flex gap-10'>
           <button className='btn btn-outline-primary' disabled>Atrás</button>
-          <button className='btn btn-primary' onClick={handlerSendSheet}>Guardar y continuar</button>
+          <button
+            className='btn btn-primary btn-custom'
+            onClick={handlerSendSheet}
+          >
+            {loadingEvent ? <Spinner height={14} width={14} /> : 'Guardar y continuar'}
+          </button>
         </div>
       </div>
       {/* <div className='card sheet-head'>
