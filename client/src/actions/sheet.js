@@ -71,7 +71,7 @@ export const sendSheet = (sheet) => {
     const { ok, msg, data } = body
 
     if (ok) {
-      toast.success('Sucess!')
+      toast.success('¡Guardado!')
       const { sheet } = data
       dispatch(saveSheet(sheet))
     } else {

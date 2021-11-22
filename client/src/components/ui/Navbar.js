@@ -1,10 +1,10 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import '../../styles/navbar.scss'
 import q from '../../asset/icons/quizme.svg'
 import down from '../../asset/icons/down.svg'
-
 import profile from '../../asset/icons/profile.svg'
 import settings from '../../asset/icons/settings.svg'
 import logout from '../../asset/icons/log-out.svg'
@@ -69,7 +69,9 @@ function Navbar () {
   return (
     <nav className='nabvar'>
       <div className='wrapper'>
-        <img src={q} alt='icono quizme' width='50px' />
+        <Link to='/home'>
+          <img src={q} alt='icono quizme' width='50px' />
+        </Link>
         <Dropdown
           head={headDropdown()}
           content={contentDropdown()}
