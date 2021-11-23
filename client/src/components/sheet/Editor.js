@@ -11,12 +11,13 @@ import '../../styles/ui/elements.scss'
 import '../../styles/pages/designSheet.scss'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { updateContentSheet, addRow, deleteRow, reOrder } from '../../actions/sheet'
+import { updateContentSheet, addRow, deleteRow, reOrder, setChartsheetTitle } from '../../actions/sheet'
 
 export const Editor = () => {
   const dispatch = useDispatch()
   const {
     currentSheet: {
+      title,
       config: {
         styles, sizes, colors, types, columns
       },
@@ -100,6 +101,11 @@ export const Editor = () => {
     dispatch(reOrder(source.index, destination.index))
   }
 
+  const handlerChangeTitle = (evt) => {
+    console.log(evt.target.value)
+    dispatch(setChartsheetTitle(evt.target.value))
+  }
+
   return (
     <div className='card preview'>
       <h4 className='title'>Preview</h4>
@@ -107,7 +113,12 @@ export const Editor = () => {
       <div className='content'>
         <div className={`design ${styles} ${sizes} ${colors}`}>
           <div className={`head ${colors}`}>
-            Titulo
+            <ContentEditable
+              // className='title'
+              html={title}
+              onChange={handlerChangeTitle}
+              onFocus={highlightAll}
+            />
           </div>
           <div className={`body ${colors}`}>
             <DragDropContext onDragEnd={onDragEnd}>

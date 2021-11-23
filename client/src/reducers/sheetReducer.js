@@ -9,6 +9,7 @@ const initialState = {
   sheets: [],
   loadingEvent: false,
   currentSheet: {
+    title: 'Untitled',
     config: {
       columns: 'cardC2',
       styles: 'cardS2',
@@ -74,7 +75,10 @@ export const sheetReducer = (state = initialState, action) => {
     case types.setTitleChartSheet:
       return {
         ...state,
-        nameSection: action.payload
+        currentSheet: {
+          ...state.currentSheet,
+          title: action.payload
+        }
       }
     case types.setConfigSheet:
       return {
