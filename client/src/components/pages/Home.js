@@ -10,7 +10,6 @@ function Home () {
       const resp = await fetchWithToken('home/')
       const body = await resp.json()
 
-      console.log(body)
       setHome(body)
     }
     fetchData()

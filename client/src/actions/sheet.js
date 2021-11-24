@@ -81,6 +81,14 @@ export const sendSheet = (sheet) => {
   }
 }
 
+export const eventReset = () => {
+  return (dispatch) => {
+    dispatch({
+      type: types.eventReset
+    })
+  }
+}
+
 const loadingEvent = (loading) => (
   {
     type: types.loadingEvent,

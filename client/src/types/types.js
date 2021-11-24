@@ -18,5 +18,6 @@ export const types = {
   deleteRow: '[Sheet] delete Row',
   reOrder: '[Sheet] reorder Rows',
   loadingEvent: '[Sheet] loading event',
-  saveSheet: '[Sheet] Save sheet'
+  saveSheet: '[Sheet] Save sheet',
+  eventReset: '[sheet] Event reset'
 }

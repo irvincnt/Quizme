@@ -102,7 +102,6 @@ export const Editor = () => {
   }
 
   const handlerChangeTitle = (evt) => {
-    console.log(evt.target.value)
     dispatch(setChartsheetTitle(evt.target.value))
   }
 

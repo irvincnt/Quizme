@@ -5,7 +5,6 @@ import { types } from '../types/types'
 const { configInitial } = baseConfig
 
 const initialState = {
-  nameSection: 'Titulo de la sección',
   sheets: [],
   loadingEvent: false,
   currentSheet: {
@@ -125,19 +124,22 @@ export const sheetReducer = (state = initialState, action) => {
     case types.loadingEvent:
       return {
         ...state,
-        loadingEvent: action.payload,
-        currentSheet: {
-          ...state.currentSheet
-        }
+        loadingEvent: action.payload
       }
     case types.saveSheet:
       return {
         loadingEvent: false,
+        successEvent: true,
         sheets: [...state.sheets, action.payload],
         currentSheet: {
           ...state.currentSheet,
           rows: clearData.rows
         }
+      }
+    case types.eventReset:
+      return {
+        ...state,
+        successEvent: false
       }
 
     default:
