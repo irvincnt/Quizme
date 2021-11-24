@@ -8,6 +8,7 @@
     align-items: center;
   }
   &-content {
+    height: 81vh;
     .settings {
       flex: 35%;
       .title {
@@ -98,6 +99,7 @@
       }
     }
     .preview {
+      overflow: scroll;
       flex: 65%;
       .title {
         margin: 0px;
