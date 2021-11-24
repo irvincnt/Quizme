@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 
 import '../../styles/pages/sheet.scss'
 import '../../styles/ui/elements.scss'
-import Configuration from '../sheet/Configuration'
+import Settings from '../sheet/Settings'
 import { eventReset, sendSheet } from '../../actions/sheet'
 import { Editor } from '../sheet/Editor'
 
@@ -44,7 +44,7 @@ function NewSheet () {
         </div>
       </div>
       <div className='flex gap-12 sheet-content'>
-        <Configuration />
+        <Settings />
         <Editor />
       </div>
       <Toaster />
