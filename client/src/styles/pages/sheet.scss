@@ -21,7 +21,7 @@
         margin: 3px 0px 20px 0px;
         color: $c-gray;
       }
-      .config {
+      .structure {
         .items {
           .columns,
           .styles,
@@ -91,11 +91,42 @@
           }
         }
       }
-      .actions {
-        margin-top: 1.5rem;
-        display: flex;
-        justify-content: flex-end;
-        gap: 5px;
+      .config {
+        .input-group {
+          margin-top: 1rem;
+          .label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 13px;
+            font-weight: 500;
+          }
+          textarea {
+            display: block;
+            width: 100%;
+          }
+        }
+        .permissions {
+          display: flex;
+          gap: 5px;
+          text-align: center;
+          margin-top: 25px;
+          .item {
+            flex: 1;
+            border: 1px solid $c-gray;
+            border-radius: 5px;
+            padding-top: 5px;
+            padding-bottom: 3px;
+            p {
+              margin-block: .2rem;
+              font-size: 13px;
+              font-weight: 500;
+            }
+            span {
+              font-size: 12px;
+              color: $c-gray
+            } 
+          }
+        }
       }
     }
     .preview {

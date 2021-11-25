@@ -245,7 +245,7 @@ function Structure () {
   }
 
   return (
-    <div className='config'>
+    <div className='structure'>
       <div className='items'>
         <p>Columnas</p>
         <div className='columns parent'>

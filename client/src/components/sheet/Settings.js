@@ -31,9 +31,10 @@ function Settings () {
           <div className={`${tab === 'editor' ? 'item active' : 'item'}`} onClick={() => handlerTab('editor')}><span>Editor</span></div>
           <div className={`${tab === 'config' ? 'item active' : 'item'}`} onClick={() => handlerTab('config')}><span>Configuración</span></div>
         </div>
-        <div className='tab-body' />
+        <div className='tab-body'>
+          {tabsComponent[tab].component}
+        </div>
       </div>
-      {tabsComponent[tab].component}
     </div>
   )
 }
