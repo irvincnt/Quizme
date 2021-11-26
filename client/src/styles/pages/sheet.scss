@@ -103,6 +103,8 @@
           textarea {
             display: block;
             width: 100%;
+            font-family: "Poppins";
+            font-size: 13px;
           }
         }
         .permissions {
@@ -125,6 +127,10 @@
               font-size: 12px;
               color: $c-gray
             } 
+          }
+          .active {
+            border: 2px solid #556ee6;
+            box-shadow: -2px -2px 12px -1px rgb(85 110 230 / 20%);
           }
         }
       }

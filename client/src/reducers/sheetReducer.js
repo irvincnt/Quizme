@@ -9,6 +9,10 @@ const initialState = {
   loadingEvent: false,
   currentSheet: {
     title: 'Untitled',
+    description: '',
+    section: {},
+    tags: [],
+    permissions: '',
     config: {
       columns: 'cardC2',
       styles: 'cardS2',
@@ -93,6 +97,30 @@ export const sheetReducer = (state = initialState, action) => {
         currentSheet: {
           ...state.currentSheet,
           rows: state.currentSheet.rows.map(item => item.id === action.payload.row ? action.payload.updatedRow : item)
+        }
+      }
+    case types.updateDescriptionSheet:
+      return {
+        ...state,
+        currentSheet: {
+          ...state.currentSheet,
+          description: action.payload
+        }
+      }
+    case types.updateSectionSheet:
+      return {
+        ...state,
+        currentSheet: {
+          ...state.currentSheet,
+          section: action.payload
+        }
+      }
+    case types.updateTagsSheet:
+      return {
+        ...state,
+        currentSheet: {
+          ...state.currentSheet,
+          tags: [...action.payload]
         }
       }
     case types.addRow: {

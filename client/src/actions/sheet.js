@@ -89,6 +89,33 @@ export const eventReset = () => {
   }
 }
 
+export const updateDescriptionSheet = (content) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.updateDescriptionSheet,
+      payload: content
+    })
+  }
+}
+
+export const updateSectionSheet = (section) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.updateSectionSheet,
+      payload: section
+    })
+  }
+}
+
+export const updateTagsSheet = (tags) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.updateTagsSheet,
+      payload: tags
+    })
+  }
+}
+
 const loadingEvent = (loading) => (
   {
     type: types.loadingEvent,

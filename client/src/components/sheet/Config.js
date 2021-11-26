@@ -1,6 +1,9 @@
 import React from 'react'
-import Select from 'react-select'
+import CreatableSelect from 'react-select/creatable'
+
 import { LockKey, LockKeyOpen } from 'phosphor-react'
+import { useDispatch } from 'react-redux'
+import { updateDescriptionSheet, updateSectionSheet, updateTagsSheet } from '../../actions/sheet'
 
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -9,22 +12,43 @@ const options = [
 ]
 
 function Config () {
+  const dispatch = useDispatch()
+  const handlerDescriptionUpdate = (event) => {
+    const { target: { value } } = event
+    dispatch(updateDescriptionSheet(value))
+  }
+
+  const handleChangeSelect = (section) => {
+    dispatch(updateSectionSheet(section))
+  }
+
+  const handleChangeTags = (tags) => {
+    dispatch(updateTagsSheet(tags))
+  }
+
   return (
     <div className='config'>
       <div className='input-group'>
         <label className='label'>Descripción</label>
-        <textarea name='' id='' cols='30' rows='4' />
+        <textarea name='' id='' cols='30' rows='4' onChange={handlerDescriptionUpdate} />
       </div>
       <div className='input-group'>
         <label className='label'>Sección</label>
-        <Select options={options} />
+        <CreatableSelect
+          options={options}
+          onChange={handleChangeSelect}
+        />
       </div>
       <div className='input-group'>
         <label className='label'>Tags</label>
-        <Select isMulti options={options} />
+        <CreatableSelect
+          isMulti
+          options={options}
+          onChange={handleChangeTags}
+        />
       </div>
       <div className='permissions'>
-        <div className='item'>
+        <div className='item active'>
           <LockKeyOpen size={36} />
           <p>Público</p>
           <span>Cualquiera en Internet puede ver este cheatsheet.</span>
