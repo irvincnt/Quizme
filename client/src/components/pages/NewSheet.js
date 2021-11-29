@@ -2,13 +2,15 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
+import { Warning } from 'phosphor-react'
+
 import '../../styles/pages/sheet.scss'
 import '../../styles/ui/elements.scss'
 import Settings from '../sheet/Settings'
 import { eventReset, sendSheet } from '../../actions/sheet'
 import { Editor } from '../sheet/Editor'
 
-import { Toaster } from 'react-hot-toast'
+import toast, { Toaster } from 'react-hot-toast'
 import Spinner from '../ui/spinner'
 
 function NewSheet () {
@@ -26,7 +28,46 @@ function NewSheet () {
   }, [successEvent])
 
   const handlerSendSheet = () => {
-    dispatch(sendSheet(currentSheet))
+    const { ok, msg } = validateConfig()
+    if (ok) {
+      toast((t) => (
+        <div>
+          <Warning size={24} color='#ffcc2e' weight='fill' />
+          {msg.length === 1 ? 'El siguiente campo es requerido' : 'Los siguientes campos son requeridos'}
+          <ul>
+            {msg.map((e, i) => {
+              return <li key={i}>{e}</li>
+            })}
+          </ul>
+          <span>Los encontrarás en configuración</span>
+        </div>
+      ))
+    } else {
+      dispatch(sendSheet(currentSheet))
+    }
+  }
+
+  const validateConfig = () => {
+    const { title, description, section, tags } = currentSheet
+    let errors = { ok: false, msg: [] }
+
+    if (title === 'To write title' || title === '') {
+      errors = { ok: true, msg: [...errors.msg, 'Titulo del Cheatsheet'] }
+    }
+
+    if (description === '') {
+      errors = { ok: true, msg: [...errors.msg, 'Descripción'] }
+    }
+
+    if (Object.keys(section).length === 0) {
+      errors = { ok: true, msg: [...errors.msg, 'Sección'] }
+    }
+
+    if (tags.length === 0) {
+      errors = { ok: true, msg: [...errors.msg, 'Tags'] }
+    }
+
+    return errors
   }
 
   return (

@@ -8,11 +8,11 @@ const initialState = {
   sheets: [],
   loadingEvent: false,
   currentSheet: {
-    title: 'Untitled',
+    title: 'To write title',
     description: '',
     section: {},
     tags: [],
-    permissions: '',
+    permissions: 'public',
     config: {
       columns: 'cardC2',
       styles: 'cardS2',
