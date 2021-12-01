@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import classNames from 'classnames'
 
 import '../../styles/ui/dropdown.scss'
+import { useDetectOutsideClick } from '../../hooks/useDetectOutsideClick'
 
 function Dropdown (props) {
-  const { handlerClickDropdown, isActive, head, content, dropdownRef } = props
+  const { head, content } = props
+  const dropdownRef = useRef(null)
+  const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false)
+
+  function handlerClickDropdown (isActive) {
+    setIsActive(!isActive)
+  }
 
   return (
     <div className='dropdown' onClick={() => handlerClickDropdown(isActive)}>

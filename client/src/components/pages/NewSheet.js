@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast'
@@ -14,14 +14,10 @@ import { Editor } from '../sheet/Editor'
 import Spinner from '../ui/spinner'
 import Dropdown from '../ui/Dropdown'
 
-import { useDetectOutsideClick } from '../../hooks/useDetectOutsideClick'
-
 function NewSheet () {
   const history = useHistory()
   const dispatch = useDispatch()
   const { currentSheet, loadingEvent, successEvent } = useSelector(state => state.sheet)
-  const dropdownRef = useRef(null)
-  const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false)
 
   useEffect(() => {
     if (successEvent) {
@@ -31,10 +27,6 @@ function NewSheet () {
       }, 2000)
     }
   }, [successEvent])
-
-  function handlerClickDropdown (isActive) {
-    setIsActive(!isActive)
-  }
 
   const handlerSendSheet = () => {
     const { ok, msg } = validateConfig()
@@ -86,9 +78,6 @@ function NewSheet () {
         <div className='flex gap-10'>
           <button className='btn btn-outline-primary' disabled>Atrás</button>
           <Dropdown
-            isActive={isActive}
-            handlerClickDropdown={handlerClickDropdown}
-            dropdownRef={dropdownRef}
             head={
               <button
                 className='btn btn-primary btn-custom'
