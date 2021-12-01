@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import classNames from 'classnames'
 
 import '../../styles/ui/dropdown.scss'
 
 function Dropdown (props) {
-  const [isActive, setDropdown] = useState(false)
+  const { handlerClickDropdown, isActive, head, content, dropdownRef } = props
 
   return (
-    <div className='dropdown' onClick={() => setDropdown(!isActive)}>
-      {props.head}
-      <ul className={classNames('content', { 'active ': isActive })}>
-        {props.content}
+    <div className='dropdown' onClick={() => handlerClickDropdown(isActive)}>
+      {head}
+      <ul ref={dropdownRef} className={classNames('content', { 'active ': isActive })}>
+        {content}
       </ul>
     </div>
   )

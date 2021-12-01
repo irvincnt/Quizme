@@ -1,22 +1,27 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-
+import toast, { Toaster } from 'react-hot-toast'
 import { Warning } from 'phosphor-react'
+
+import { eventReset, sendSheet } from '../../actions/sheet'
 
 import '../../styles/pages/sheet.scss'
 import '../../styles/ui/elements.scss'
-import Settings from '../sheet/Settings'
-import { eventReset, sendSheet } from '../../actions/sheet'
-import { Editor } from '../sheet/Editor'
 
-import toast, { Toaster } from 'react-hot-toast'
+import Settings from '../sheet/Settings'
+import { Editor } from '../sheet/Editor'
 import Spinner from '../ui/spinner'
+import Dropdown from '../ui/Dropdown'
+
+import { useDetectOutsideClick } from '../../hooks/useDetectOutsideClick'
 
 function NewSheet () {
   const history = useHistory()
   const dispatch = useDispatch()
   const { currentSheet, loadingEvent, successEvent } = useSelector(state => state.sheet)
+  const dropdownRef = useRef(null)
+  const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false)
 
   useEffect(() => {
     if (successEvent) {
@@ -26,6 +31,10 @@ function NewSheet () {
       }, 2000)
     }
   }, [successEvent])
+
+  function handlerClickDropdown (isActive) {
+    setIsActive(!isActive)
+  }
 
   const handlerSendSheet = () => {
     const { ok, msg } = validateConfig()
@@ -76,12 +85,37 @@ function NewSheet () {
         <h1>New sheert</h1>
         <div className='flex gap-10'>
           <button className='btn btn-outline-primary' disabled>Atrás</button>
-          <button
-            className='btn btn-primary btn-custom'
-            onClick={handlerSendSheet}
-          >
-            {loadingEvent ? <Spinner height={14} width={14} /> : 'Guardar y continuar'}
-          </button>
+          <Dropdown
+            isActive={isActive}
+            handlerClickDropdown={handlerClickDropdown}
+            dropdownRef={dropdownRef}
+            head={
+              <button
+                className='btn btn-primary btn-custom'
+                onClick={handlerSendSheet}
+              >
+                {loadingEvent ? <Spinner height={14} width={14} /> : 'Guardar ...'}
+              </button>
+            }
+            content={
+              <>
+                <li>
+                  <a>
+                    <div className='item'>
+                      <span>como borrador</span>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <div className='item'>
+                      <span>y publicar</span>
+                    </div>
+                  </a>
+                </li>
+              </>
+            }
+          />
         </div>
       </div>
       <div className='flex gap-12 sheet-content'>
