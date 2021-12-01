@@ -1,11 +1,12 @@
 @import '../variables.scss';
 
 .dropdown {
-  // position: relative;
+  position: relative;
   .content {
     display: none;
     position: absolute;
     list-style: none;
+    right: 0px;
     margin: 0;
     padding: 0;
     box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%);
@@ -29,5 +30,6 @@
   }
   .active {
     display: block;
+    z-index: 1;
   }
 }

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -12,13 +12,10 @@ import logout from '../../asset/icons/log-out.svg'
 import Dropdown from './Dropdown'
 
 import { startLogout } from '../../actions/auth'
-import { useDetectOutsideClick } from '../../hooks/useDetectOutsideClick'
 
 function Navbar () {
   const { name, picture } = useSelector(state => state.auth)
   const dispatch = useDispatch()
-  const dropdownRef = useRef(null)
-  const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false)
 
   // eslint-disable-next-line no-undef
   const user = JSON.parse(localStorage.getItem('user') || '')
@@ -27,11 +24,6 @@ function Navbar () {
   const handlerLogout = () => {
     dispatch(startLogout())
   }
-
-  function handlerClickDropdown (isActive) {
-    setIsActive(!isActive)
-  }
-
   function headDropdown () {
     return (
       <div className='user'>

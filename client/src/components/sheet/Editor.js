@@ -5,8 +5,8 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
 import Dropdown from '../ui/Dropdown'
 
-import '../../styles/ui/dropdown.scss'
 import '../../styles/pages/sheet.scss'
+import '../../styles/ui/dropdown.scss'
 import '../../styles/ui/elements.scss'
 import '../../styles/pages/designSheet.scss'
 

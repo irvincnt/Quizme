@@ -145,7 +145,10 @@
         margin: 3px 0px 20px 0px;
         color: $c-gray;
       }
-      
+      .body .dropdown .content {  
+        left: 0px;
+        min-width: 7rem;
+      }
     }
   }
 }
