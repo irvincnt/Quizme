@@ -3,7 +3,7 @@ import CreatableSelect from 'react-select/creatable'
 
 import { LockKey, LockKeyOpen } from 'phosphor-react'
 import { useDispatch } from 'react-redux'
-import { updateDescriptionSheet, updateSectionSheet, updateTagsSheet } from '../../actions/sheet'
+import { selectPermissionsSheet, updateDescriptionSheet, updateSectionSheet, updateTagsSheet } from '../../actions/sheet'
 
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -24,6 +24,10 @@ function Config () {
 
   const handleChangeTags = (tags) => {
     dispatch(updateTagsSheet(tags))
+  }
+
+  const handlerPermissions = (value) => {
+    dispatch(selectPermissionsSheet(value))
   }
 
   return (
@@ -48,12 +52,12 @@ function Config () {
         />
       </div>
       <div className='permissions'>
-        <div className='item active'>
+        <div className='item active' onClick={() => handlerPermissions('public')}>
           <LockKeyOpen size={36} />
           <p>Público</p>
           <span>Cualquiera en Internet puede ver este cheatsheet.</span>
         </div>
-        <div className='item'>
+        <div className='item' onClick={() => handlerPermissions('public')}>
           <LockKey size={36} />
           <p>Privado</p>
           <span>Solo tu puede ver este cheatsheet.</span>

@@ -81,7 +81,6 @@ function NewSheet () {
             head={
               <button
                 className='btn btn-primary btn-custom'
-                onClick={handlerSendSheet}
               >
                 {loadingEvent ? <Spinner height={14} width={14} /> : 'Guardar ...'}
               </button>
@@ -90,7 +89,7 @@ function NewSheet () {
               <>
                 <li>
                   <a>
-                    <div className='item'>
+                    <div className='item' onClick={handlerSendSheet}>
                       <span>como borrador</span>
                     </div>
                   </a>

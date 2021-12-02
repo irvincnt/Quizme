@@ -22,5 +22,6 @@ export const types = {
   reOrder: '[Sheet] reorder Rows',
   loadingEvent: '[Sheet] loading event',
   saveSheet: '[Sheet] Save sheet',
-  eventReset: '[sheet] Event reset'
+  eventReset: '[sheet] Event reset',
+  selectPermissions: '[sheet] Select permissions sheet'
 }

@@ -116,6 +116,15 @@ export const updateTagsSheet = (tags) => {
   }
 }
 
+export const selectPermissionsSheet = (permission) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.selectPermissions,
+      payload: permission
+    })
+  }
+}
+
 const loadingEvent = (loading) => (
   {
     type: types.loadingEvent,

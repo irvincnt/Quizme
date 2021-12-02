@@ -123,6 +123,14 @@ export const sheetReducer = (state = initialState, action) => {
           tags: [...action.payload]
         }
       }
+    case types.selectPermissions:
+      return {
+        ...state,
+        currentSheet: {
+          ...state.currentSheet,
+          permissions: action.payload
+        }
+      }
     case types.addRow: {
       const idRow = Math.floor(Math.random() * Date.now())
       return {
