@@ -1,0 +1,12 @@
+.home {
+  .cheatsheet-list {
+    display: flex;
+    flex-wrap: wrap;
+    .cheatsheet {
+      cursor: pointer;
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+  }
+}

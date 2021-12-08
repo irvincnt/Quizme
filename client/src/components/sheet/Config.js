@@ -4,7 +4,7 @@ import CreatableSelect from 'react-select/creatable'
 import { LockKey, LockKeyOpen } from 'phosphor-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectPermissionsSheet, updateDescriptionSheet, updateSectionSheet, updateTagsSheet } from '../../actions/sheet'
-
+import { sections } from '../../dictionary/sectionsConfig'
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
   { value: 'strawberry', label: 'Strawberry' },
@@ -19,7 +19,7 @@ function Config () {
     dispatch(updateDescriptionSheet(value))
   }
 
-  const handleChangeSelect = (section) => {
+  const handleChangeSection = (section) => {
     dispatch(updateSectionSheet(section))
   }
 
@@ -40,14 +40,16 @@ function Config () {
       <div className='input-group'>
         <label className='label'>Sección</label>
         <CreatableSelect
-          options={options}
-          onChange={handleChangeSelect}
+          placeholder='Selecciona un elemento'
+          options={sections}
+          onChange={handleChangeSection}
         />
       </div>
       <div className='input-group'>
         <label className='label'>Tags</label>
         <CreatableSelect
           isMulti
+          placeholder='Selecciona un elemento'
           options={options}
           onChange={handleChangeTags}
         />

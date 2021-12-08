@@ -10,10 +10,15 @@ const newSheet = async (req, res = response) => {
     if (!user) {
       res.status(400).json({ ok: false, data: 'User not found' })
     }
+
     const sheet = await Sheet.create({
       title: body.sheet.title,
+      description: body.sheet.description,
       rows: body.sheet.rows,
       config: body.sheet.config,
+      section: body.sheet.section,
+      tags: body.sheet.tags,
+      permissions: body.sheet.permissions,
       author: userId
     })
 

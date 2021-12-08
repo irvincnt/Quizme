@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { fetchWithToken } from '../../helpers/fetch'
 import PerfilCard from '../ui/Perfil-card'
 
+import '../../styles/pages/home.scss'
+
 function Home () {
   const [stateHome, setHome] = useState({ ok: false, allCheatSheets: [] })
 
@@ -16,18 +18,21 @@ function Home () {
   }, [])
 
   return (
-    <div className='container-fluid'>
+    <div className='container-fluid home'>
       <h1>Home</h1>
       <PerfilCard />
       <hr />
-      hola
-      {
-        stateHome.allCheatSheets.map(item => {
-          return (
-            <p key={item.id}>{item.title}</p>
-          )
-        })
-      }
+      <div className='cheatsheet-list'>
+        {
+          stateHome.allCheatSheets.map(item => {
+            return (
+              <div key={item.id} className='card cheatsheet'>
+                <span>{item.title}</span>
+              </div>
+            )
+          })
+        }
+      </div>
     </div>
   )
 }
