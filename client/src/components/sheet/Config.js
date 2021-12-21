@@ -1,19 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CreatableSelect from 'react-select/creatable'
 
 import { LockKey, LockKeyOpen } from 'phosphor-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectPermissionsSheet, updateDescriptionSheet, updateSectionSheet, updateTagsSheet } from '../../actions/sheet'
 import { sections } from '../../dictionary/sectionsConfig'
-const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
-]
+import { fetchWithToken } from '../../helpers/fetch'
 
 function Config () {
   const { currentSheet: { permissions } } = useSelector(state => state.sheet)
   const dispatch = useDispatch()
+  const [tags, setTags] = useState([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const resp = await fetchWithToken('sheet/tags/')
+      const body = await resp.json()
+      const { data } = body
+      setTags(data.allTags)
+    }
+    fetchData()
+  }, [])
+
   const handlerDescriptionUpdate = (event) => {
     const { target: { value } } = event
     dispatch(updateDescriptionSheet(value))
@@ -50,7 +58,7 @@ function Config () {
         <CreatableSelect
           isMulti
           placeholder='Selecciona un elemento'
-          options={options}
+          options={tags}
           onChange={handleChangeTags}
         />
       </div>
