@@ -11,7 +11,8 @@ const SheetSchema = Schema({
   created: { type: Date, default: Date.now },
   publishedAt: { type: Date },
   rows: { type: Array },
-  config: { type: Object }
+  config: { type: Object },
+  permissions: { type: String, required: true }
 }, {
   toObject: {
     transform: function (doc, ret) {

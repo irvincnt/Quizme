@@ -28,6 +28,8 @@ function Home () {
             return (
               <div key={item.id} className='card cheatsheet'>
                 <span>{item.title}</span>
+                <p>{item.permissions}</p>
+                <p>{item.author.name}</p>
               </div>
             )
           })
