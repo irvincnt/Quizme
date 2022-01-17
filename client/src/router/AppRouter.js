@@ -8,7 +8,8 @@ import Register from '../components/auth/Register'
 import Home from '../components/pages/Home'
 import { startChecking } from '../actions/auth'
 import Navbar from '../components/ui/Navbar'
-import NewSheet from '../components/pages/newSheet'
+import ConfigSheet from '../components/pages/ConfigSheet'
+import ContentSheet from '../components/pages/contentSheet'
 
 export const AppRouter = () => {
   const dispatch = useDispatch()
@@ -34,7 +35,8 @@ export const AppRouter = () => {
         <PublicRoute exact path='/register' component={Register} isAuthenticated={!!id} />
 
         <PrivateRoute exact path='/home' component={Home} isAuthenticated={!!id} />
-        <PrivateRoute exact path='/new-sheet' component={NewSheet} isAuthenticated={!!id} />
+        <PrivateRoute exact path='/cheatsheet/config' component={ConfigSheet} isAuthenticated={!!id} />
+        <PrivateRoute exact path='/cheatsheet/content' component={ContentSheet} isAuthenticated={!!id} />
 
         <Redirect to='/home' />
       </Switch>

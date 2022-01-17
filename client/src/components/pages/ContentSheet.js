@@ -14,7 +14,7 @@ import { Editor } from '../sheet/Editor'
 import Spinner from '../ui/spinner'
 import Dropdown from '../ui/Dropdown'
 
-function NewSheet () {
+function ContentSheet () {
   const history = useHistory()
   const dispatch = useDispatch()
   const { currentSheet, loadingEvent, successEvent } = useSelector(state => state.sheet)
@@ -115,4 +115,4 @@ function NewSheet () {
   )
 }
 
-export default NewSheet
+export default ContentSheet

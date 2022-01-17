@@ -34,7 +34,7 @@ function PerfilCard () {
               <p>Favorite</p>
             </div>
           </div>
-          <Link to='/new-sheet' className='btn btn-primary btn-sm'>Create sheet</Link>
+          <Link to='/cheatsheet/content' className='btn btn-primary btn-sm'>Create sheet</Link>
         </div>
       </div>
     </div>
