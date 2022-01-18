@@ -1,95 +1,6 @@
 @import '../variables.scss';
 
-.alert {
-  padding: .75rem 1.25rem;
-  margin-bottom: 1rem;
-  border: 1px solid transparent;
-  border-radius: .25rem;
-  font-size: 13px;
-  &.danger {
-    color: #924040;
-    background-color: #fde1e1;
-    border-color: #fcd2d2;
-  }
-  &.success {
-    color: #1f7556;
-    background-color: #d6f3e9;
-    border-color: #c2eddd;
-  }
-  &.warning {
-    color: #916c2e;
-    background-color: #fcf0db;
-    border-color: #fbe9c9;
-  }
-  &.info {
-    color: #306391;
-    background-color: #dcedfc;
-    border-color: #cbe4fb;
-  }
-}
-
-.spinner {
-  animation: rotate 2s linear infinite;
-  margin: 0 auto;
-  
-  & .path {
-    stroke: hsl(210, 70, 75);
-    stroke-linecap: round;
-    animation: dash 1.5s ease-in-out infinite;
-  }
-  
-}
-
-@keyframes rotate {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes dash {
-  0% {
-    stroke-dasharray: 1, 150;
-    stroke-dashoffset: 0;
-  }
-  50% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -35;
-  }
-  100% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -124;
-  }
-}
-
-
-// Tabs component
-
-.tab {
-  width: 100%;
-  &-head {
-    display: flex;
-    align-items: center;
-    background: rgba(118, 118, 128, 0.12);
-    border-radius: 8px;
-    height: 38px;
-    padding: 4px;
-    .item {
-      font-weight: bold;
-      display: inherit;
-      justify-content: space-around;
-      align-items: center;
-      width: 50%;
-      height: 30px;
-      cursor: pointer;
-    }
-    .active {
-      background: $c-white;
-      border-radius: 6px;
-    }
-  }
-}
-
-
+// Buttons
 .btnn {
   font-weight: 400;
   border: 1px solid transparent;
@@ -147,6 +58,116 @@
   border-radius: .2rem;
 }
 
+// card styles component
+.card {
+  box-shadow: 0 0.75rem 1.5rem rgb(18 38 63 / 3%);
+  border: 0 solid $c-border;
+  border-radius: .25rem;
+  background-color: $c-white;
+  padding: 1rem 1rem;
+  margin-bottom: 12px;
+  &-title {
+    margin: 0px;
+    padding: 0px;
+    font-size: 15px;
+    font-weight: 600; 
+  }
+  &-content {
+    margin-top: 12px;
+  }
+}
+
+//alert component styles
+.alert {
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  font-size: 13px;
+  &.danger {
+    color: #924040;
+    background-color: #fde1e1;
+    border-color: #fcd2d2;
+  }
+  &.success {
+    color: #1f7556;
+    background-color: #d6f3e9;
+    border-color: #c2eddd;
+  }
+  &.warning {
+    color: #916c2e;
+    background-color: #fcf0db;
+    border-color: #fbe9c9;
+  }
+  &.info {
+    color: #306391;
+    background-color: #dcedfc;
+    border-color: #cbe4fb;
+  }
+}
+
+// spinner
+.spinner {
+  animation: rotate 2s linear infinite;
+  margin: 0 auto;
+  
+  & .path {
+    stroke: hsl(210, 70, 75);
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+  }
+  
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+
+// Tabs component
+.tab {
+  width: 100%;
+  &-head {
+    display: flex;
+    align-items: center;
+    background: rgba(118, 118, 128, 0.12);
+    border-radius: 8px;
+    height: 38px;
+    padding: 4px;
+    .item {
+      font-weight: bold;
+      display: inherit;
+      justify-content: space-around;
+      align-items: center;
+      width: 50%;
+      height: 30px;
+      cursor: pointer;
+    }
+    .active {
+      background: $c-white;
+      border-radius: 6px;
+    }
+  }
+}
+
+// elements
 .flex{
   display: flex;
 }

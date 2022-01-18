@@ -1,17 +1,21 @@
 import React from 'react'
+import Config from '../sheet/Config'
 
 import '../../styles/pages/sheetConfig.scss'
-import Config from '../sheet/Config'
+import '../../styles/ui/elements.scss'
 
 function ConfigSheet () {
   return (
-    <div className='container-fluid configuration'>
-      <h1>Configuración</h1>
+    <div className='configuration container-fluid'>
       <div className='flex gap-12'>
         <div className='card config'>
-          <Config />
+          <h4 className='card-title'>Configuración</h4>
+          <div className='card-content'>
+            <Config />
+            <button className='btn btn-primary'>Crear cheatsheet</button>
+          </div>
         </div>
-        <div className='card preview'> preview</div>
+        <div className='card preview'>preview</div>
       </div>
     </div>
   )

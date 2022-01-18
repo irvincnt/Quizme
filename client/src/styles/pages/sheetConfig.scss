@@ -2,9 +2,12 @@
 
 .configuration {
   .config {
+    margin-top: 2rem; // quitar
     flex: 35%;
-    .input-group {
+    .input-group:not(:first-child){
       margin-top: 1rem;
+    }
+    .input-group {
       .label {
         display: block;
         margin-bottom: 6px;
@@ -51,8 +54,13 @@
         box-shadow: -2px -2px 12px -1px rgb(85 110 230 / 20%);
       }
     }
+    .btn {
+      margin-top: 1.4rem;
+      float: right;
+    }
   }
   .preview {
+    margin-top: 2rem; // quitar
     flex: 65%
   }
 }
