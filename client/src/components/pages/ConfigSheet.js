@@ -1,20 +1,32 @@
 import React from 'react'
-import Config from '../sheet/Config'
 
 import '../../styles/pages/sheetConfig.scss'
 import '../../styles/ui/elements.scss'
+import Breadcrumb from '../ui/Breadcrumb'
+
+const breadcrumbContent = [
+  {
+    label: 'Home',
+    open: '/home'
+  },
+  {
+    label: 'Configuración'
+  }
+]
 
 function ConfigSheet () {
   return (
     <div className='configuration container-fluid'>
-      <h2>Configuración</h2>
-      <div className='flex gap-12'>
-        <div className='card config'>
-          <Config />
-          <button className='btn btn-primary'>Crear cheatsheet</button>
-        </div>
-        <div className='card preview'>preview</div>
+      <div className='head'>
+        <h2>Configuración</h2>
+        <Breadcrumb content={breadcrumbContent} />
       </div>
+      <div className='wrapper'>
+        <div className='sheet'>
+          contenido
+        </div>
+      </div>
+
     </div>
   )
 }

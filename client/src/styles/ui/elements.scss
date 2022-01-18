@@ -165,6 +165,29 @@
   }
 }
 
+// Breadcrumb Component
+.breadcrumb {
+  ul {
+    list-style-type: none;
+    display: flex;
+    gap: 4px;
+    li:first-of-type a {
+      color: $c-dark-head;
+      cursor: pointer;
+    }
+    li:first-of-type::after {
+      padding-left: 6px;
+      font-size: 10px;
+      color: black;
+      content: "/\00a0";
+    }
+    li a {
+      text-decoration: none;
+      color: $c-gray
+    }
+  }
+}
+
 // elements
 .flex{
   display: flex;

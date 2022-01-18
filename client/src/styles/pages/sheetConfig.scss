@@ -1,72 +1,19 @@
 @import '../variables.scss';
 
 .configuration {
-  .config {
-    flex: 35%;
-    .input-group:not(:first-child){
-      margin-top: 1rem;
-    }
-    .input-group {
-      .label {
-        display: block;
-        margin-bottom: 6px;
-        font-size: 13px;
-        font-weight: 500;
-      }
-      input, textarea {
-        display: block;
-        width: 100%;
-        padding: 0.47rem 9.5px;
-        font-size: 13px;
-        font-weight: 400;
-        line-height: 1.5;
-        color: #495057;
-        background-color: #fff;
-        font-family: "Poppins";
-        border: 1px solid #cccccc;
-        border-radius: 0.25rem;
-      }
-      textarea:focus-visible {
-        outline-color: #556ee6;
-        outline-style: auto;
-        outline-width: 1px;
-      }
-    }
-    .permissions {
-      display: flex;
-      gap: 5px;
-      text-align: center;
-      margin-top: 25px;
-      .item {
-        flex: 1;
-        border: 1px solid #cccccc;
-        border-radius: 5px;
-        padding-top: 5px;
-        padding-bottom: 3px;
-        border-width: 2px;
-        cursor: pointer;
-        p {
-          margin-block: .2rem;
-          font-size: 13px;
-          font-weight: 500;
-        }
-        span {
-          font-size: 12px;
-          color: $c-gray
-        } 
-      }
-      .active {
-        border: 2px solid #556ee6;
-        box-shadow: -2px -2px 12px -1px rgb(85 110 230 / 20%);
-      }
-    }
-    .btn {
-      margin-top: 1.4rem;
-      float: right;
-    }
+  .head {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
   }
-  .preview {
-    flex: 65%;
-    height: 82vh;
+  .wrapper {
+    width: 100%;
+    .sheet {
+      margin: 0 auto;
+      background: $c-white;
+      box-shadow: 0 1px 3px 1px rgb(60 64 67 / 15%);
+      width: 816px;
+      height: 1056px;
+    }
   }
 }
