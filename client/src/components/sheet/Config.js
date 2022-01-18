@@ -40,7 +40,11 @@ function Config () {
   }
 
   return (
-    <div className='config'>
+    <>
+      <div className='input-group'>
+        <label className='label'>Titulo</label>
+        <input type='text' name='title' />
+      </div>
       <div className='input-group'>
         <label className='label'>Descripción</label>
         <textarea name='' id='' cols='30' rows='4' onChange={handlerDescriptionUpdate} />
@@ -74,7 +78,7 @@ function Config () {
           <span>Solo tu puede ver este cheatsheet.</span>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
