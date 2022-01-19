@@ -74,6 +74,7 @@ function Navbar () {
         <Dropdown
           head={headDropdown()}
           content={contentDropdown()}
+          aligned='is-right'
         />
       </div>
     </nav>

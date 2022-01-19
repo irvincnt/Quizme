@@ -6,13 +6,13 @@
     display: none;
     position: absolute;
     list-style: none;
-    right: 0px;
     margin: 0;
     padding: 0;
     box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%);
     border-radius: .25rem;
     min-width: 10rem;
     background-color: $c-white;
+
     li:hover {
       background-color: #F7F8FB;
     }
@@ -27,6 +27,12 @@
         width: 20px;
       }
     }
+  }
+  .is-right {
+    right: 0px;
+  }
+  .is-left {
+    left: 0px;
   }
   .active {
     display: block;

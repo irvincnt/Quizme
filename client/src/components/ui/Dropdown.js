@@ -5,7 +5,7 @@ import '../../styles/ui/dropdown.scss'
 import { useDetectOutsideClick } from '../../hooks/useDetectOutsideClick'
 
 function Dropdown (props) {
-  const { head, content } = props
+  const { head, content, aligned } = props
   const dropdownRef = useRef(null)
   const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false)
 
@@ -16,7 +16,7 @@ function Dropdown (props) {
   return (
     <div className='dropdown' onClick={() => handlerClickDropdown(isActive)}>
       {head}
-      <ul ref={dropdownRef} className={classNames('content', { 'active ': isActive })}>
+      <ul ref={dropdownRef} className={classNames(`content ${aligned}`, { 'active ': isActive })}>
         {content}
       </ul>
     </div>

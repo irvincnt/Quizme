@@ -19,7 +19,7 @@ const breadcrumbContent = [
 function ConfigSheet () {
   function headDropdown () {
     return (
-      <div className='item'>
+      <div className='controll'>
         <LockKeyOpen size={22} />
         <span>Público</span>
       </div>
@@ -29,12 +29,18 @@ function ConfigSheet () {
     return (
       <>
         <div className='item'>
-          <LockKey size={22} />
-          <span>Privado</span>
+          <div className='permision'>
+            <LockKey size={22} />
+            <p>Privado</p>
+          </div>
+          <span className='instruction'>Sólo tú puede ver este Cheatsheet.</span>
         </div>
         <div className='item'>
-          <LockKeyOpen size={22} />
-          <span>Público</span>
+          <div className='permision'>
+            <LockKeyOpen size={22} />
+            <p>Público</p>
+          </div>
+          <span className='instruction'>Cualquiera en internet puede ver este Cheatsheet.</span>
         </div>
       </>
     )
@@ -48,22 +54,23 @@ function ConfigSheet () {
       </div>
       <div className='wrapper'>
         <div className='elements'>
-          <div className='controls'>
+          <div className='elements_controlls'>
             <Dropdown
               head={headDropdown()}
               content={contentDropdown()}
+              aligned='is-left'
             />
-            <div className='item'>
+            <div className='controll'>
               <Star size={24} color='#f9c10b' weight='fill' />
             </div>
             {/* <div className='item'>
               <Star size={24} color='#f9c10b' weight='fill' />
             </div> */}
-            <div className='item'>
+            <div className='controll'>
               <Atom size={22} />
               <span>Sección</span>
             </div>
-            <div className='item'>
+            <div className='controll'>
               <Tag size={22} />
               <span>Tags</span>
             </div>
