@@ -25,7 +25,7 @@
         background: $c-white;
         border-radius: 0.25rem;
         padding: 0.47rem 0.375rem;
-        box-shadow: 0 0.75rem 1.5rem rgb(18 38 63 / 3%);
+        box-shadow: 0 0.75rem 1.5rem rgb(18 38 63 / 5%);
         .controll {
           display: flex;
           align-items: center;
@@ -38,7 +38,7 @@
           }
         }
         .content {
-          min-width: 13rem;
+          min-width: 14rem;
           .item {
             display: block;
             .permision {

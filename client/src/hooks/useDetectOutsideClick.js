@@ -6,14 +6,26 @@ import { useState, useEffect } from 'react'
  * @param {boolean} initialState
  */
 
-export const useDetectOutsideClick = (el, initialState) => {
+export const useDetectOutsideClick = (el, initialState, nValidate = true) => {
   const [isActive, setIsActive] = useState(initialState)
 
   useEffect(() => {
     const onClick = e => {
       // If the active element exists and is clicked outside of
       if (el.current !== null && !el.current.contains(e.target)) {
+        console.log('Existe y click fuera de el')
         setIsActive(!isActive)
+      }
+
+      console.group('EXIT')
+      console.log('el.current', el.current)
+      console.log('e.target', e.target)
+      console.log('contains', el.current.contains(e.target))
+      console.groupEnd()
+
+      if (!nValidate && el.current.contains(e.target)) {
+        console.log('Existe y click en el elemento')
+        setIsActive(isActive)
       }
     }
 

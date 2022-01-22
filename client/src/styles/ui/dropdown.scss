@@ -8,7 +8,9 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%);
+    // box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%);
+    box-shadow: 0 0.75rem 1.5rem rgb(18 38 63 / 3%);
+    border: 1px solid #eff2f7;
     border-radius: .25rem;
     min-width: 10rem;
     background-color: $c-white;

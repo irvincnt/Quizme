@@ -1,10 +1,12 @@
 import React from 'react'
+import CreatableSelect from 'react-select/creatable'
 import Breadcrumb from '../ui/Breadcrumb'
 import { LockKey, LockKeyOpen, Star, Tag, Atom, PlusCircle } from 'phosphor-react'
 
 import '../../styles/pages/sheetConfig.scss'
 import '../../styles/ui/elements.scss'
 import Dropdown from '../ui/Dropdown'
+import Config from '../sheet/Config'
 
 const breadcrumbContent = [
   {
@@ -15,9 +17,13 @@ const breadcrumbContent = [
     label: 'Configuración'
   }
 ]
-
+const options = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' }
+]
 function ConfigSheet () {
-  function headDropdown () {
+  function headDropdownPermissions () {
     return (
       <div className='controll'>
         <LockKeyOpen size={22} />
@@ -25,7 +31,7 @@ function ConfigSheet () {
       </div>
     )
   }
-  function contentDropdown () {
+  function contentDropdownPermissions () {
     return (
       <>
         <div className='item'>
@@ -45,6 +51,43 @@ function ConfigSheet () {
       </>
     )
   }
+  function headDropdownSection () {
+    return (
+      <div className='controll'>
+        <Atom size={22} />
+        <span>Sección</span>
+      </div>
+    )
+  }
+  function contentDropdownSection () {
+    return (
+      <div className='card'>
+        <CreatableSelect
+          placeholder='Selecciona un elemento'
+          options={options}
+        />
+      </div>
+    )
+  }
+  function headDropdownTags () {
+    return (
+      <div className='controll'>
+        <Tag size={22} />
+        <span>Tags</span>
+      </div>
+    )
+  }
+  function contentDropdownTags () {
+    return (
+    // <div className='card'>
+      <CreatableSelect
+        isMulti
+        placeholder='Selecciona un elemento'
+        options={options}
+      />
+    // </div>
+    )
+  }
 
   return (
     <div className='configuration container-fluid'>
@@ -56,8 +99,8 @@ function ConfigSheet () {
         <div className='elements'>
           <div className='elements_controlls'>
             <Dropdown
-              head={headDropdown()}
-              content={contentDropdown()}
+              head={headDropdownPermissions()}
+              content={contentDropdownPermissions()}
               aligned='is-left'
             />
             <div className='controll'>
@@ -66,14 +109,21 @@ function ConfigSheet () {
             {/* <div className='item'>
               <Star size={24} color='#f9c10b' weight='fill' />
             </div> */}
-            <div className='controll'>
-              <Atom size={22} />
-              <span>Sección</span>
-            </div>
-            <div className='controll'>
-              <Tag size={22} />
-              <span>Tags</span>
-            </div>
+            <Dropdown
+              head={headDropdownSection()}
+              content={contentDropdownSection()}
+              aligned='is-left'
+              nValidate={false}
+
+            />
+            <Dropdown
+              head={headDropdownTags()}
+              content={contentDropdownTags()}
+              aligned='is-left'
+              nValidate={false}
+
+            />
+
           </div>
           <button className='btn btn-primary'>Crear</button>
         </div>
