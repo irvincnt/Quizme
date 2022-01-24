@@ -1,6 +1,8 @@
 import React from 'react'
 import CreatableSelect from 'react-select/creatable'
 import Breadcrumb from '../ui/Breadcrumb'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectPermissionsSheet, updateFavoriteSheet } from '../../actions/sheet'
 import { LockKey, LockKeyOpen, Star, Tag, Atom } from 'phosphor-react'
 
 import '../../styles/pages/sheetConfig.scss'
@@ -17,23 +19,38 @@ const breadcrumbContent = [
   }
 ]
 const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
+  { value: 'software', label: 'Software' },
+  { value: 'programation', label: 'Programación' },
+  { value: 'english', label: 'Inglés' },
+  { value: 'biblie', label: 'Biblia' }
 ]
 function ConfigSheet () {
+  const dispatch = useDispatch()
+  const { currentCheatSheet: { permissions, favorite } } = useSelector(state => state.sheet)
+
+  const handlerPermissions = (value) => {
+    dispatch(selectPermissionsSheet(value))
+  }
+
+  const handlerFavorite = () => {
+    dispatch(updateFavoriteSheet(!favorite))
+  }
+
   function headDropdownPermissions () {
     return (
       <div className='controll'>
-        <LockKeyOpen size={22} />
-        <span>Público</span>
+        {
+          permissions === 'public'
+            ? (<><LockKeyOpen size={22} /> <span>Público</span></>)
+            : (<><LockKey size={22} /> <span>Privado</span></>)
+        }
       </div>
     )
   }
   function contentDropdownPermissions () {
     return (
       <>
-        <li>
+        <li onClick={() => handlerPermissions('private')}>
           <div className='item'>
             <div className='permision'>
               <LockKey size={22} />
@@ -42,7 +59,7 @@ function ConfigSheet () {
             <span className='instruction'>Sólo tú puede ver este Cheatsheet.</span>
           </div>
         </li>
-        <li>
+        <li onClick={() => handlerPermissions('public')}>
           <div className='item'>
             <div className='permision'>
               <LockKeyOpen size={22} />
@@ -110,17 +127,18 @@ function ConfigSheet () {
       <div className='wrapper'>
         <div className='elements'>
           <div className='elements_controlls'>
+            <div className='controll'>
+              <div className='flex' onClick={() => handlerFavorite()}>
+                {
+                  favorite ? <Star size={22} color='#f9c10b' weight='fill' /> : <Star size={22} />
+                }
+              </div>
+            </div>
             <Dropdown
               head={headDropdownPermissions()}
               content={contentDropdownPermissions()}
               aligned='is-left'
             />
-            <div className='controll'>
-              <Star size={24} color='#f9c10b' weight='fill' />
-            </div>
-            {/* <div className='item'>
-              <Star size={24} color='#f9c10b' weight='fill' />
-            </div> */}
             <Dropdown
               head={headDropdownSection()}
               content={contentDropdownSection()}
@@ -135,7 +153,6 @@ function ConfigSheet () {
               isBlocked={false}
 
             />
-
           </div>
           <button className='btn btn-primary'>Crear</button>
         </div>

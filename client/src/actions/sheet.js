@@ -125,6 +125,15 @@ export const selectPermissionsSheet = (permission) => {
   }
 }
 
+export const updateFavoriteSheet = (favorire) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.updateFavorite,
+      payload: favorire
+    })
+  }
+}
+
 const loadingEvent = (loading) => (
   {
     type: types.loadingEvent,

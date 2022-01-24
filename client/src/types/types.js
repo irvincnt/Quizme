@@ -23,5 +23,6 @@ export const types = {
   loadingEvent: '[Sheet] loading event',
   saveSheet: '[Sheet] Save sheet',
   eventReset: '[sheet] Event reset',
-  selectPermissions: '[sheet] Select permissions sheet'
+  selectPermissions: '[sheet] Select permissions sheet',
+  updateFavorite: '[sheet] Update favorite sheet'
 }

@@ -50,6 +50,53 @@ const initialState = {
   }
 }
 
+const initialStateNew = {
+  cheatsheets: [],
+  loadingEvent: false,
+  currentCheatSheet: {
+    title: 'To write title',
+    description: '',
+    section: {},
+    tags: [],
+    permissions: 'public',
+    favorite: false,
+    sheets: [
+      {
+        title: '',
+        favorite: false,
+        config: {
+          columns: 'cardC2',
+          styles: 'cardS2',
+          types: configInitial.cardC2.cardS2,
+          modifiedType: false,
+          colors: 'gray',
+          sizes: 'x'
+        },
+        rows: [
+          {
+            id: Math.floor(Math.random() * Date.now()),
+            columnOne: '',
+            columnTwo: '',
+            columnThree: ''
+          },
+          {
+            id: Math.floor(Math.random() * Date.now()),
+            columnOne: '',
+            columnTwo: '',
+            columnThree: ''
+          },
+          {
+            id: Math.floor(Math.random() * Date.now()),
+            columnOne: '',
+            columnTwo: '',
+            columnThree: ''
+          }
+        ]
+      }
+    ]
+  }
+}
+
 const clearData = {
   rows: [
     {
@@ -73,30 +120,15 @@ const clearData = {
   ]
 }
 
-export const sheetReducer = (state = initialState, action) => {
+export const sheetReducer = (state = initialStateNew, action) => {
   switch (action.type) {
+    // CheatSheet
     case types.setTitleChartSheet:
       return {
         ...state,
         currentSheet: {
           ...state.currentSheet,
           title: action.payload
-        }
-      }
-    case types.setConfigSheet:
-      return {
-        ...state,
-        currentSheet: {
-          ...state.currentSheet,
-          config: action.payload
-        }
-      }
-    case types.updateContentSheet:
-      return {
-        ...state,
-        currentSheet: {
-          ...state.currentSheet,
-          rows: state.currentSheet.rows.map(item => item.id === action.payload.row ? action.payload.updatedRow : item)
         }
       }
     case types.updateDescriptionSheet:
@@ -126,9 +158,34 @@ export const sheetReducer = (state = initialState, action) => {
     case types.selectPermissions:
       return {
         ...state,
+        currentCheatSheet: {
+          ...state.currentCheatSheet,
+          permissions: action.payload
+        }
+      }
+    case types.updateFavorite:
+      return {
+        ...state,
+        currentCheatSheet: {
+          ...state.currentCheatSheet,
+          favorite: action.payload
+        }
+      }
+    // Sheet
+    case types.updateContentSheet:
+      return {
+        ...state,
         currentSheet: {
           ...state.currentSheet,
-          permissions: action.payload
+          rows: state.currentSheet.rows.map(item => item.id === action.payload.row ? action.payload.updatedRow : item)
+        }
+      }
+    case types.setConfigSheet:
+      return {
+        ...state,
+        currentSheet: {
+          ...state.currentSheet,
+          config: action.payload
         }
       }
     case types.addRow: {
