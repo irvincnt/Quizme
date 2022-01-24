@@ -1,12 +1,11 @@
 import React from 'react'
 import CreatableSelect from 'react-select/creatable'
 import Breadcrumb from '../ui/Breadcrumb'
-import { LockKey, LockKeyOpen, Star, Tag, Atom, PlusCircle } from 'phosphor-react'
+import { LockKey, LockKeyOpen, Star, Tag, Atom } from 'phosphor-react'
 
 import '../../styles/pages/sheetConfig.scss'
 import '../../styles/ui/elements.scss'
 import Dropdown from '../ui/Dropdown'
-import Config from '../sheet/Config'
 
 const breadcrumbContent = [
   {
@@ -34,20 +33,24 @@ function ConfigSheet () {
   function contentDropdownPermissions () {
     return (
       <>
-        <div className='item'>
-          <div className='permision'>
-            <LockKey size={22} />
-            <p>Privado</p>
+        <li>
+          <div className='item'>
+            <div className='permision'>
+              <LockKey size={22} />
+              <p>Privado</p>
+            </div>
+            <span className='instruction'>Sólo tú puede ver este Cheatsheet.</span>
           </div>
-          <span className='instruction'>Sólo tú puede ver este Cheatsheet.</span>
-        </div>
-        <div className='item'>
-          <div className='permision'>
-            <LockKeyOpen size={22} />
-            <p>Público</p>
+        </li>
+        <li>
+          <div className='item'>
+            <div className='permision'>
+              <LockKeyOpen size={22} />
+              <p>Público</p>
+            </div>
+            <span className='instruction'>Cualquiera en internet puede ver este Cheatsheet.</span>
           </div>
-          <span className='instruction'>Cualquiera en internet puede ver este Cheatsheet.</span>
-        </div>
+        </li>
       </>
     )
   }
@@ -61,12 +64,16 @@ function ConfigSheet () {
   }
   function contentDropdownSection () {
     return (
-      <div className='card'>
-        <CreatableSelect
-          placeholder='Selecciona un elemento'
-          options={options}
-        />
-      </div>
+      <>
+        <li>
+          <div className='card'>
+            <CreatableSelect
+              placeholder='Selecciona un elemento'
+              options={options}
+            />
+          </div>
+        </li>
+      </>
     )
   }
   function headDropdownTags () {
@@ -80,11 +87,16 @@ function ConfigSheet () {
   function contentDropdownTags () {
     return (
     // <div className='card'>
-      <CreatableSelect
-        isMulti
-        placeholder='Selecciona un elemento'
-        options={options}
-      />
+      <>
+        <li>
+          <CreatableSelect
+            isMulti
+            placeholder='Selecciona un elemento'
+            options={options}
+          />
+
+        </li>
+      </>
     // </div>
     )
   }
@@ -113,14 +125,14 @@ function ConfigSheet () {
               head={headDropdownSection()}
               content={contentDropdownSection()}
               aligned='is-left'
-              nValidate={false}
+              isBlocked={false}
 
             />
             <Dropdown
               head={headDropdownTags()}
               content={contentDropdownTags()}
               aligned='is-left'
-              nValidate={false}
+              isBlocked={false}
 
             />
 

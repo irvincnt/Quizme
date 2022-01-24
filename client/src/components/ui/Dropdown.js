@@ -5,9 +5,9 @@ import '../../styles/ui/dropdown.scss'
 import { useDetectOutsideClick } from '../../hooks/useDetectOutsideClick'
 
 function Dropdown (props) {
-  const { head, content, aligned, nValidate } = props
+  const { head, content, aligned, isBlocked } = props
   const dropdownRef = useRef(null)
-  const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false, nValidate)
+  const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false, isBlocked, content)
 
   function handlerClickDropdown (isActive) {
     setIsActive(!isActive)
