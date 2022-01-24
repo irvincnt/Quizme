@@ -142,16 +142,16 @@ export const sheetReducer = (state = initialStateNew, action) => {
     case types.updateSectionSheet:
       return {
         ...state,
-        currentSheet: {
-          ...state.currentSheet,
+        currentCheatSheet: {
+          ...state.currentCheatSheet,
           section: action.payload
         }
       }
     case types.updateTagsSheet:
       return {
         ...state,
-        currentSheet: {
-          ...state.currentSheet,
+        currentCheatSheet: {
+          ...state.currentCheatSheet,
           tags: [...action.payload]
         }
       }

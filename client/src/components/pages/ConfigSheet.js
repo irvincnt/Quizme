@@ -2,7 +2,7 @@ import React from 'react'
 import CreatableSelect from 'react-select/creatable'
 import Breadcrumb from '../ui/Breadcrumb'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectPermissionsSheet, updateFavoriteSheet } from '../../actions/sheet'
+import { selectPermissionsSheet, updateFavoriteSheet, updateSectionSheet, updateTagsSheet } from '../../actions/sheet'
 import { LockKey, LockKeyOpen, Star, Tag, Atom } from 'phosphor-react'
 
 import '../../styles/pages/sheetConfig.scss'
@@ -26,7 +26,7 @@ const options = [
 ]
 function ConfigSheet () {
   const dispatch = useDispatch()
-  const { currentCheatSheet: { permissions, favorite } } = useSelector(state => state.sheet)
+  const { currentCheatSheet: { permissions, favorite, section, tags } } = useSelector(state => state.sheet)
 
   const handlerPermissions = (value) => {
     dispatch(selectPermissionsSheet(value))
@@ -34,6 +34,14 @@ function ConfigSheet () {
 
   const handlerFavorite = () => {
     dispatch(updateFavoriteSheet(!favorite))
+  }
+
+  const handleChangeSection = (sectionType) => {
+    dispatch(updateSectionSheet(sectionType))
+  }
+
+  const handleChangeTags = (tags) => {
+    dispatch(updateTagsSheet(tags))
   }
 
   function headDropdownPermissions () {
@@ -75,7 +83,8 @@ function ConfigSheet () {
     return (
       <div className='controll'>
         <Atom size={22} />
-        <span>Sección</span>
+        <span>Sección: </span>
+        {section && <span>{section.label}</span>}
       </div>
     )
   }
@@ -87,6 +96,7 @@ function ConfigSheet () {
             <CreatableSelect
               placeholder='Selecciona un elemento'
               options={options}
+              onChange={handleChangeSection}
             />
           </div>
         </li>
@@ -97,7 +107,14 @@ function ConfigSheet () {
     return (
       <div className='controll'>
         <Tag size={22} />
-        <span>Tags</span>
+        <span>Tags:</span>
+        {
+          tags.length > 0 && (
+            tags.map(tag => {
+              return (<span key={tag.value} className='badge bg-info'>{tag.label}</span>)
+            })
+          )
+        }
       </div>
     )
   }
@@ -110,6 +127,7 @@ function ConfigSheet () {
             isMulti
             placeholder='Selecciona un elemento'
             options={options}
+            onChange={handleChangeTags}
           />
 
         </li>
