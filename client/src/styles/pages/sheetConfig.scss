@@ -59,18 +59,36 @@
       button {
         flex: 20%;
       }
-      // background: $c-white;
-      // width: 500px;
-      // margin-bottom: 12px;
-      // height: 40px;
-      // box-shadow: 0 0.75rem 1.5rem rgb(18 38 63 / 3%);
-      // border-radius: 0.25rem;
     }
     .sheet {
       background: $c-white;
       box-shadow: 0 1px 3px 1px rgb(60 64 67 / 15%);
       width: 816px;
       height: 1056px;
+      .content {
+        margin: 36px;
+        .title {
+          display: flex;
+          align-items: center;
+          gap: 9px;
+          .label {
+            margin: 0px;
+            font-size: 30px;
+            font-weight: 300;
+          }
+          em {
+            font-style: normal;
+            font-size: 30px;
+            font-weight: 100;
+            color: $c-gray;
+          }
+        }
+        .description {
+          font-size: 17px;
+          font-weight: 200;
+          margin: 0px;
+        }
+      }
     }
   }
 }

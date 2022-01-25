@@ -54,8 +54,8 @@ const initialStateNew = {
   cheatsheets: [],
   loadingEvent: false,
   currentCheatSheet: {
-    title: 'To write title',
-    description: '',
+    title: 'Documento sin título',
+    description: 'Descripción',
     section: {},
     tags: [],
     permissions: 'public',
@@ -126,16 +126,16 @@ export const sheetReducer = (state = initialStateNew, action) => {
     case types.setTitleChartSheet:
       return {
         ...state,
-        currentSheet: {
-          ...state.currentSheet,
+        currentCheatSheet: {
+          ...state.currentCheatSheet,
           title: action.payload
         }
       }
     case types.updateDescriptionSheet:
       return {
         ...state,
-        currentSheet: {
-          ...state.currentSheet,
+        currentCheatSheet: {
+          ...state.currentCheatSheet,
           description: action.payload
         }
       }

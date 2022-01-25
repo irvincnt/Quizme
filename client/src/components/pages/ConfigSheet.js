@@ -8,6 +8,7 @@ import { LockKey, LockKeyOpen, Star, Tag, Atom } from 'phosphor-react'
 import '../../styles/pages/sheetConfig.scss'
 import '../../styles/ui/elements.scss'
 import Dropdown from '../ui/Dropdown'
+import Sheet from '../sheet/Sheet'
 
 const breadcrumbContent = [
   {
@@ -174,9 +175,7 @@ function ConfigSheet () {
           </div>
           <button className='btn btn-primary'>Crear</button>
         </div>
-        <div className='sheet'>
-          contenido
-        </div>
+        <Sheet />
       </div>
 
     </div>
