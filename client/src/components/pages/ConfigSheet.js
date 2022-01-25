@@ -2,7 +2,8 @@ import React from 'react'
 import CreatableSelect from 'react-select/creatable'
 import Breadcrumb from '../ui/Breadcrumb'
 import { useDispatch, useSelector } from 'react-redux'
-import { LockKey, LockKeyOpen, Star, Tag, Atom } from 'phosphor-react'
+import toast, { Toaster } from 'react-hot-toast'
+import { LockKey, LockKeyOpen, Star, Tag, Atom, Warning } from 'phosphor-react'
 import {
   selectChartsheetPermissions,
   updateChartsheetFavorite,
@@ -32,7 +33,7 @@ const options = [
 ]
 function ConfigSheet () {
   const dispatch = useDispatch()
-  const { currentCheatSheet: { permissions, favorite, section, tags } } = useSelector(state => state.sheet)
+  const { currentCheatSheet: { title, description, permissions, favorite, section, tags } } = useSelector(state => state.sheet)
 
   const handlerPermissions = (value) => {
     dispatch(selectChartsheetPermissions(value))
@@ -142,6 +143,47 @@ function ConfigSheet () {
     )
   }
 
+  const handlerCreateCheatsheet = () => {
+    const { ok, msg } = validateConfig()
+    if (ok) {
+      toast((t) => (
+        <div>
+          <Warning size={24} color='#ffcc2e' weight='fill' />
+          {msg.length === 1 ? 'El siguiente campo es requerido' : 'Los siguientes campos son requeridos'}
+          <ul>
+            {msg.map((e, i) => {
+              return <li key={i}>{e}</li>
+            })}
+          </ul>
+        </div>
+      ))
+    } else {
+      // dispatch(sendSheet(currentSheet))
+      console.log('SAVE')
+    }
+  }
+
+  const validateConfig = () => {
+    let errors = { ok: false, msg: [] }
+
+    if (title === 'Documento sin título' || title === '') {
+      errors = { ok: true, msg: [...errors.msg, 'Titulo'] }
+    }
+
+    if (description === 'Descripción' || description === '') {
+      errors = { ok: true, msg: [...errors.msg, 'Descripción'] }
+    }
+
+    if (Object.keys(section).length === 0) {
+      errors = { ok: true, msg: [...errors.msg, 'Sección'] }
+    }
+
+    if (tags.length === 0) {
+      errors = { ok: true, msg: [...errors.msg, 'Tags'] }
+    }
+    return errors
+  }
+
   return (
     <div className='configuration container-fluid'>
       <div className='head'>
@@ -178,11 +220,15 @@ function ConfigSheet () {
 
             />
           </div>
-          <button className='btn btn-primary'>Crear cheatsheet</button>
+          <button
+            className='btn btn-primary'
+            onClick={handlerCreateCheatsheet}
+          >Crear cheatsheet
+          </button>
         </div>
         <Sheet />
       </div>
-
+      <Toaster />
     </div>
   )
 }
