@@ -9,20 +9,21 @@ export const types = {
   messageError: '[Message] Error message',
   hideMessage: '[Message] Hide message',
 
-  // chartsheets
+  // cheatsheets
   newChartSheet: '[ChartSheet] New chartsheet',
-  setTitleChartSheet: '[ChartSheet] Set title',
-  setConfigSheet: '[Sheet] Set config sheet',
-  updateContentSheet: '[Sheet] update content sheet',
-  updateDescriptionSheet: '[Sheet] update description sheet',
-  updateSectionSheet: '[Sheet] update section sheet',
-  updateTagsSheet: '[Sheet] update tags sheet',
+  setChartsheetTitle: '[ChartSheet] Set cheatsheet title',
+  updateCheatsheetDescription: '[ChartSheet] Update cheatsheet description',
+  updateChartsheetSection: '[ChartSheet] Update cheatsheet section',
+  updateChartsheetTags: '[ChartSheet] Update cheatsheet tags',
+  selectChartsheetPermissions: '[ChartSheet] Select cheatsheet permissions',
+  updateChartsheetFavorite: '[ChartSheet] Update cheatsheet favorite',
+  // content cheatsheet
+  setConfigCheatSheet: '[ChartSheet] Set config cheatsheet',
+  updateContentCheatSheet: '[ChartSheet] update content cheatsheet',
   addRow: '[Sheet] add Row',
   deleteRow: '[Sheet] delete Row',
   reOrder: '[Sheet] reorder Rows',
   loadingEvent: '[Sheet] loading event',
   saveSheet: '[Sheet] Save sheet',
-  eventReset: '[sheet] Event reset',
-  selectPermissions: '[sheet] Select permissions sheet',
-  updateFavorite: '[sheet] Update favorite sheet'
+  eventReset: '[sheet] Event reset'
 }

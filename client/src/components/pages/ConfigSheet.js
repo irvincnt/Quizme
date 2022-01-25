@@ -2,8 +2,13 @@ import React from 'react'
 import CreatableSelect from 'react-select/creatable'
 import Breadcrumb from '../ui/Breadcrumb'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectPermissionsSheet, updateFavoriteSheet, updateSectionSheet, updateTagsSheet } from '../../actions/sheet'
 import { LockKey, LockKeyOpen, Star, Tag, Atom } from 'phosphor-react'
+import {
+  selectChartsheetPermissions,
+  updateChartsheetFavorite,
+  updateChartsheetSection,
+  updateChartsheetTags
+} from '../../actions/sheet'
 
 import '../../styles/pages/sheetConfig.scss'
 import '../../styles/ui/elements.scss'
@@ -30,19 +35,19 @@ function ConfigSheet () {
   const { currentCheatSheet: { permissions, favorite, section, tags } } = useSelector(state => state.sheet)
 
   const handlerPermissions = (value) => {
-    dispatch(selectPermissionsSheet(value))
+    dispatch(selectChartsheetPermissions(value))
   }
 
   const handlerFavorite = () => {
-    dispatch(updateFavoriteSheet(!favorite))
+    dispatch(updateChartsheetFavorite(!favorite))
   }
 
   const handleChangeSection = (sectionType) => {
-    dispatch(updateSectionSheet(sectionType))
+    dispatch(updateChartsheetSection(sectionType))
   }
 
   const handleChangeTags = (tags) => {
-    dispatch(updateTagsSheet(tags))
+    dispatch(updateChartsheetTags(tags))
   }
 
   function headDropdownPermissions () {
@@ -173,7 +178,7 @@ function ConfigSheet () {
 
             />
           </div>
-          <button className='btn btn-primary'>Crear</button>
+          <button className='btn btn-primary'>Crear cheatsheet</button>
         </div>
         <Sheet />
       </div>

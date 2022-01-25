@@ -123,7 +123,7 @@ const clearData = {
 export const sheetReducer = (state = initialStateNew, action) => {
   switch (action.type) {
     // CheatSheet
-    case types.setTitleChartSheet:
+    case types.setChartsheetTitle:
       return {
         ...state,
         currentCheatSheet: {
@@ -131,7 +131,7 @@ export const sheetReducer = (state = initialStateNew, action) => {
           title: action.payload
         }
       }
-    case types.updateDescriptionSheet:
+    case types.updateCheatsheetDescription:
       return {
         ...state,
         currentCheatSheet: {
@@ -139,7 +139,7 @@ export const sheetReducer = (state = initialStateNew, action) => {
           description: action.payload
         }
       }
-    case types.updateSectionSheet:
+    case types.updateChartsheetSection:
       return {
         ...state,
         currentCheatSheet: {
@@ -147,7 +147,7 @@ export const sheetReducer = (state = initialStateNew, action) => {
           section: action.payload
         }
       }
-    case types.updateTagsSheet:
+    case types.updateChartsheetTags:
       return {
         ...state,
         currentCheatSheet: {
@@ -155,7 +155,7 @@ export const sheetReducer = (state = initialStateNew, action) => {
           tags: [...action.payload]
         }
       }
-    case types.selectPermissions:
+    case types.selectChartsheetPermissions:
       return {
         ...state,
         currentCheatSheet: {
@@ -163,7 +163,7 @@ export const sheetReducer = (state = initialStateNew, action) => {
           permissions: action.payload
         }
       }
-    case types.updateFavorite:
+    case types.updateChartsheetFavorite:
       return {
         ...state,
         currentCheatSheet: {

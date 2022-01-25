@@ -3,14 +3,62 @@ import { fetchWithToken } from '../helpers/fetch'
 import { types } from '../types/types'
 import toast from 'react-hot-toast'
 
+// CheatSheet actions
 export const setChartsheetTitle = (title) => {
   return (dispatch) => {
     dispatch({
-      type: types.setTitleChartSheet,
+      type: types.setChartsheetTitle,
       payload: title
     })
   }
 }
+
+export const updateCheatsheetDescription = (content) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.updateCheatsheetDescription,
+      payload: content
+    })
+  }
+}
+
+export const updateChartsheetSection = (section) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.updateChartsheetSection,
+      payload: section
+    })
+  }
+}
+
+export const updateChartsheetTags = (tags) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.updateChartsheetTags,
+      payload: tags
+    })
+  }
+}
+
+export const selectChartsheetPermissions = (permission) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.selectChartsheetPermissions,
+      payload: permission
+    })
+  }
+}
+
+export const updateChartsheetFavorite = (favorire) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.updateChartsheetFavorite,
+      payload: favorire
+    })
+  }
+}
+
+// Cheatsheet content actions
 
 export const setConfigSheet = (config) => {
   const { columns, styles, modifiedType } = config
@@ -85,51 +133,6 @@ export const eventReset = () => {
   return (dispatch) => {
     dispatch({
       type: types.eventReset
-    })
-  }
-}
-
-export const updateDescriptionSheet = (content) => {
-  return (dispatch) => {
-    dispatch({
-      type: types.updateDescriptionSheet,
-      payload: content
-    })
-  }
-}
-
-export const updateSectionSheet = (section) => {
-  return (dispatch) => {
-    dispatch({
-      type: types.updateSectionSheet,
-      payload: section
-    })
-  }
-}
-
-export const updateTagsSheet = (tags) => {
-  return (dispatch) => {
-    dispatch({
-      type: types.updateTagsSheet,
-      payload: tags
-    })
-  }
-}
-
-export const selectPermissionsSheet = (permission) => {
-  return (dispatch) => {
-    dispatch({
-      type: types.selectPermissions,
-      payload: permission
-    })
-  }
-}
-
-export const updateFavoriteSheet = (favorire) => {
-  return (dispatch) => {
-    dispatch({
-      type: types.updateFavorite,
-      payload: favorire
     })
   }
 }

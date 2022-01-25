@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setChartsheetTitle, updateDescriptionSheet } from '../../actions/sheet'
+import { setChartsheetTitle, updateCheatsheetDescription } from '../../actions/sheet'
 import ContentEditable from '../helpers/ContentEditable'
 
 import '../../styles/pages/sheetConfig.scss'
@@ -15,7 +15,7 @@ function Sheet () {
 
   const handlerDescriptionUpdate = (evt) => {
     const { target: { value } } = evt
-    dispatch(updateDescriptionSheet(value))
+    dispatch(updateCheatsheetDescription(value))
   }
 
   const highlightAll = () => {
@@ -52,7 +52,8 @@ function Sheet () {
           onChange={handlerDescriptionUpdate}
           onFocus={highlightAll}
         />
-        <hr />
+        <hr className='divider' />
+        <span className='instruction'>Podrás agregar contenido después de agregar la configuración y crear el CheatSheet</span>
       </div>
     </div>
   )
