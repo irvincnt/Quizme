@@ -17,11 +17,20 @@ function Sheet () {
     const { target: { value } } = evt
     dispatch(updateDescriptionSheet(value))
   }
+
   const highlightAll = () => {
     setTimeout(() => {
       document.execCommand('selectAll', false, null)
     }, 0)
   }
+
+  const handlerResetTitle = () => {
+    if (title.length <= 0) {
+      const evt = { target: { value: 'Documento sin título' } }
+      handlerChangeTitle(evt)
+    }
+  }
+
   return (
     <div className='sheet'>
       <div className='content'>
@@ -32,6 +41,7 @@ function Sheet () {
             tagName='h1'
             onChange={handlerChangeTitle}
             onFocus={highlightAll}
+            onBlur={handlerResetTitle}
           />
           {title !== 'Documento sin título' && <em>cheatsheet</em>}
         </div>
