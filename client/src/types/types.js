@@ -10,20 +10,22 @@ export const types = {
   hideMessage: '[Message] Hide message',
 
   // cheatsheets
-  newChartSheet: '[ChartSheet] New chartsheet',
-  setChartsheetTitle: '[ChartSheet] Set cheatsheet title',
-  updateCheatsheetDescription: '[ChartSheet] Update cheatsheet description',
-  updateChartsheetSection: '[ChartSheet] Update cheatsheet section',
-  updateChartsheetTags: '[ChartSheet] Update cheatsheet tags',
-  selectChartsheetPermissions: '[ChartSheet] Select cheatsheet permissions',
-  updateChartsheetFavorite: '[ChartSheet] Update cheatsheet favorite',
+  newChartSheet: '[CheatSheet] New chaetsheet',
+  setChartsheetTitle: '[CheatSheet] Set cheatsheet title',
+  updateCheatsheetDescription: '[CheatSheet] Update cheatsheet description',
+  updateChartsheetSection: '[CheatSheet] Update cheatsheet section',
+  updateChartsheetTags: '[CheatSheet] Update cheatsheet tags',
+  selectChartsheetPermissions: '[CheatSheet] Select cheatsheet permissions',
+  updateChartsheetFavorite: '[CheatSheet] Update cheatsheet favorite',
+  createCheatsheet: '[CheatSheet] Create cheatsheet',
   // content cheatsheet
   setConfigCheatSheet: '[ChartSheet] Set config cheatsheet',
   updateContentCheatSheet: '[ChartSheet] update content cheatsheet',
   addRow: '[Sheet] add Row',
   deleteRow: '[Sheet] delete Row',
   reOrder: '[Sheet] reorder Rows',
-  loadingEvent: '[Sheet] loading event',
-  saveSheet: '[Sheet] Save sheet',
-  eventReset: '[sheet] Event reset'
+  saveSheet: '[Sheet] Created heatsheet',
+  eventReset: '[sheet] Event reset',
+  // Events
+  loadingEvent: '[Sheet] loading event'
 }

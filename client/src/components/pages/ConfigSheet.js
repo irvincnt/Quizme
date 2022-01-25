@@ -6,6 +6,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import { LockKey, LockKeyOpen, Star, Tag, Atom, Warning } from 'phosphor-react'
 import {
   selectChartsheetPermissions,
+  sendSheet,
   updateChartsheetFavorite,
   updateChartsheetSection,
   updateChartsheetTags
@@ -33,7 +34,8 @@ const options = [
 ]
 function ConfigSheet () {
   const dispatch = useDispatch()
-  const { currentCheatSheet: { title, description, permissions, favorite, section, tags } } = useSelector(state => state.sheet)
+  const { currentCheatSheet } = useSelector(state => state.sheet)
+  const { title, description, permissions, favorite, section, tags } = currentCheatSheet
 
   const handlerPermissions = (value) => {
     dispatch(selectChartsheetPermissions(value))
@@ -158,8 +160,8 @@ function ConfigSheet () {
         </div>
       ))
     } else {
-      // dispatch(sendSheet(currentSheet))
-      console.log('SAVE')
+      // dispatch(sendSheet(currentCheatSheet))
+      console.log('SAVE', currentCheatSheet)
     }
   }
 

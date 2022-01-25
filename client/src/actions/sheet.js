@@ -58,6 +58,25 @@ export const updateChartsheetFavorite = (favorire) => {
   }
 }
 
+export const createCheatsheet = (cheatsheet) => {
+  return async (dispatch) => {
+    dispatch(loadingEvent(true))
+    const resp = await fetchWithToken('sheet/new', { cheatsheet }, 'POST')
+    const body = await resp.json()
+    const { ok, msg, data } = body
+    if (ok) {
+      toast.success('¡Guardado!')
+      // const { sheet } = data
+      console.log('DATOS DESDE ACTION', data)
+      // dispatch(saveSheet(sheet))
+    } else {
+      toast.error(`${msg}`)
+      console.log('ERROR', msg)
+      // dispatch(loadingEvent(false))
+    }
+  }
+}
+
 // Cheatsheet content actions
 
 export const setConfigSheet = (config) => {

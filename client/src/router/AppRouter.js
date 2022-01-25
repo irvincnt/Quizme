@@ -10,6 +10,7 @@ import { startChecking } from '../actions/auth'
 import Navbar from '../components/ui/Navbar'
 import ConfigSheet from '../components/pages/ConfigSheet'
 import ContentSheet from '../components/pages/contentSheet'
+import Cheatsheet from '../components/pages/Cheatsheet'
 
 export const AppRouter = () => {
   const dispatch = useDispatch()
@@ -36,6 +37,7 @@ export const AppRouter = () => {
 
         <PrivateRoute exact path='/home' component={Home} isAuthenticated={!!id} />
         <PrivateRoute exact path='/cheatsheet/config' component={ConfigSheet} isAuthenticated={!!id} />
+        <PrivateRoute exact path='/cheatsheet/:cheatsheetId' component={Cheatsheet} isAuthenticated={!!id} />
         <PrivateRoute exact path='/cheatsheet/content' component={ContentSheet} isAuthenticated={!!id} />
 
         <Redirect to='/home' />
