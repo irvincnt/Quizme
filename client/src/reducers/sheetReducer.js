@@ -171,6 +171,11 @@ export const sheetReducer = (state = initialStateNew, action) => {
           favorite: action.payload
         }
       }
+    case types.saveCheatsheet:
+      return {
+        ...state,
+        cheatsheets: [...state.cheatsheets, action.payload]
+      }
     // Sheet
     case types.updateContentSheet:
       return {

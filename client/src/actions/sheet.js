@@ -61,21 +61,28 @@ export const updateChartsheetFavorite = (favorire) => {
 export const createCheatsheet = (cheatsheet) => {
   return async (dispatch) => {
     dispatch(loadingEvent(true))
-    const resp = await fetchWithToken('sheet/new', { cheatsheet }, 'POST')
+    const resp = await fetchWithToken('cheatsheet/new', { cheatsheet }, 'POST')
     const body = await resp.json()
     const { ok, msg, data } = body
     if (ok) {
       toast.success('¡Guardado!')
-      // const { sheet } = data
-      console.log('DATOS DESDE ACTION', data)
-      // dispatch(saveSheet(sheet))
+      const { cs } = data
+      dispatch(saveCheatsheet(cs))
+      dispatch(loadingEvent(false))
     } else {
       toast.error(`${msg}`)
       console.log('ERROR', msg)
-      // dispatch(loadingEvent(false))
+      dispatch(loadingEvent(false))
     }
   }
 }
+
+const saveCheatsheet = (data) => (
+  {
+    type: types.saveCheatsheet,
+    payload: data
+  }
+)
 
 // Cheatsheet content actions
 

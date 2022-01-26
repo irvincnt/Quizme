@@ -18,6 +18,7 @@ export const types = {
   selectChartsheetPermissions: '[CheatSheet] Select cheatsheet permissions',
   updateChartsheetFavorite: '[CheatSheet] Update cheatsheet favorite',
   createCheatsheet: '[CheatSheet] Create cheatsheet',
+  saveCheatsheet: '[CheatSheet] Save cheatseet created',
   // content cheatsheet
   setConfigCheatSheet: '[ChartSheet] Set config cheatsheet',
   updateContentCheatSheet: '[ChartSheet] update content cheatsheet',

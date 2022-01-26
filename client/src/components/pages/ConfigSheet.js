@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import toast, { Toaster } from 'react-hot-toast'
 import { LockKey, LockKeyOpen, Star, Tag, Atom, Warning } from 'phosphor-react'
 import {
+  createCheatsheet,
   selectChartsheetPermissions,
-  sendSheet,
   updateChartsheetFavorite,
   updateChartsheetSection,
   updateChartsheetTags
@@ -16,6 +16,7 @@ import '../../styles/pages/sheetConfig.scss'
 import '../../styles/ui/elements.scss'
 import Dropdown from '../ui/Dropdown'
 import Sheet from '../sheet/Sheet'
+import Spinner from '../ui/spinner'
 
 const breadcrumbContent = [
   {
@@ -34,7 +35,7 @@ const options = [
 ]
 function ConfigSheet () {
   const dispatch = useDispatch()
-  const { currentCheatSheet } = useSelector(state => state.sheet)
+  const { currentCheatSheet, loadingEvent } = useSelector(state => state.sheet)
   const { title, description, permissions, favorite, section, tags } = currentCheatSheet
 
   const handlerPermissions = (value) => {
@@ -160,8 +161,7 @@ function ConfigSheet () {
         </div>
       ))
     } else {
-      // dispatch(sendSheet(currentCheatSheet))
-      console.log('SAVE', currentCheatSheet)
+      dispatch(createCheatsheet(currentCheatSheet))
     }
   }
 
@@ -225,7 +225,7 @@ function ConfigSheet () {
           <button
             className='btn btn-primary'
             onClick={handlerCreateCheatsheet}
-          >Crear cheatsheet
+          >{loadingEvent ? <Spinner height={14} width={14} /> : 'Crear cheatsheet'}
           </button>
         </div>
         <Sheet />
