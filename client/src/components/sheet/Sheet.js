@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setChartsheetTitle, updateCheatsheetDescription } from '../../actions/sheet'
 import ContentEditable from '../helpers/ContentEditable'
 
-import '../../styles/pages/sheetConfig.scss'
+import '../../styles/pages/cheatsheet.scss'
 
 function Sheet () {
   const dispatch = useDispatch()
