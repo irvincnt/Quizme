@@ -1,12 +1,12 @@
 const { response } = require('express')
-const Sheet = require('../../models/Sheet')
+const Cheatsheet = require('../../models/Cheatsheet')
 // const User = require('../../models/User')
 
 const tags = async (req, res = response) => {
   const { id: userId } = req
 
   try {
-    const allTagsForSheet = await Sheet.find({ author: userId }, 'tags')
+    const allTagsForSheet = await Cheatsheet.find({ author: userId }, 'tags')
 
     const grouped = {}
     const allTags = []

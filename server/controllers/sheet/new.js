@@ -1,5 +1,5 @@
 const { response } = require('express')
-const Sheet = require('../../models/Sheet')
+const Cheatsheet = require('../../models/Cheatsheet')
 const User = require('../../models/User')
 
 const newSheet = async (req, res = response) => {
@@ -11,14 +11,14 @@ const newSheet = async (req, res = response) => {
       res.status(400).json({ ok: false, data: 'User not found' })
     }
 
-    const sheet = await Sheet.create({
-      title: body.sheet.title,
-      description: body.sheet.description,
-      rows: body.sheet.rows,
-      config: body.sheet.config,
-      section: body.sheet.section,
-      tags: body.sheet.tags,
-      permissions: body.sheet.permissions,
+    const cs = await Cheatsheet.create({
+      title: body.cheatsheet.title,
+      description: body.cheatsheet.description,
+      section: body.cheatsheet.section,
+      tags: body.cheatsheet.tags,
+      private: body.cheatsheet.private,
+      favorite: body.cheatsheet.favorite,
+      content: body.cheatsheet.content,
       author: userId
     })
 
@@ -26,7 +26,7 @@ const newSheet = async (req, res = response) => {
       ok: true,
       data: {
         author: name,
-        sheet
+        cs
       }
     })
   } catch (error) {

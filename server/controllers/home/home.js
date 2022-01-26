@@ -1,9 +1,9 @@
 const { response } = require('express')
-const Sheet = require('../../models/Sheet')
+const Cheatsheet = require('../../models/Cheatsheet')
 
 const home = async (req, res = response) => {
   try {
-    const allCheatSheets = await Sheet.find({
+    const allCheatSheets = await Cheatsheet.find({
       $or: [{
         $and: [
           { author: req.id },

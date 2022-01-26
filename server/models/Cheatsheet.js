@@ -1,18 +1,15 @@
 const { Schema, model } = require('mongoose')
 
-const SheetSchema = Schema({
+const CheatSheetSchema = Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
+  favorite: { type: Boolean, required: true, default: false },
+  section: { type: Object, required: true },
+  private: { type: String, required: true, default: true },
+  tags: { type: Array, required: true },
   author: { type: Schema.ObjectId, ref: 'User' },
-  favorites: { type: Boolean, required: true, default: false },
-  section: { type: Object },
-  tags: { type: Array },
-  published: { type: Boolean, required: true, default: false },
   created: { type: Date, default: Date.now },
-  publishedAt: { type: Date },
-  rows: { type: Array },
-  config: { type: Object },
-  permissions: { type: String, required: true }
+  content: { type: Array }
 }, {
   toObject: {
     transform: function (doc, ret) {
@@ -32,4 +29,4 @@ const SheetSchema = Schema({
   }
 })
 
-module.exports = model('Sheet', SheetSchema)
+module.exports = model('Cheatsheet', CheatSheetSchema)
