@@ -11,12 +11,12 @@ app.use(cors())
 app.use(express.json())
 
 const authRouters = require('./routers/auth')
-const sheetRouters = require('./routers/sheet')
+const cheatsheetRouters = require('./routers/cheatsheet')
 const homeRouters = require('./routers/home')
 
 const apiRoute = (routeName) => `/api/${routeName}`
 app.use(apiRoute('auth'), authRouters)
-app.use(apiRoute('sheet'), sheetRouters)
+app.use(apiRoute('cheatsheet'), cheatsheetRouters)
 app.use(apiRoute('home'), homeRouters)
 
 const port = process.env.PORT || 9000

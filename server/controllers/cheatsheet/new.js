@@ -2,7 +2,7 @@ const { response } = require('express')
 const Cheatsheet = require('../../models/Cheatsheet')
 const User = require('../../models/User')
 
-const newSheet = async (req, res = response) => {
+const newCheatsheet = async (req, res = response) => {
   const { id: userId, name, body } = req
 
   try {
@@ -38,4 +38,4 @@ const newSheet = async (req, res = response) => {
   }
 }
 
-module.exports = newSheet
+module.exports = newCheatsheet
