@@ -6,10 +6,12 @@ import Controls from '../sheet/Controls'
 import { useDispatch, useSelector } from 'react-redux'
 import toast, { Toaster } from 'react-hot-toast'
 import { Warning } from 'phosphor-react'
-import { createCheatsheet } from '../../actions/sheet'
+import { saveCheatsheet } from '../../actions/sheet'
 
 import '../../styles/pages/cheatsheet.scss'
 import '../../styles/ui/elements.scss'
+import { useHistory } from 'react-router-dom'
+import { fetchWithToken } from '../../helpers/fetch'
 
 const breadcrumbContent = [
   {
@@ -23,6 +25,7 @@ const breadcrumbContent = [
 
 function ConfigCheatsheet () {
   const dispatch = useDispatch()
+  const history = useHistory()
   const { currentCheatSheet, loadingEvent } = useSelector(state => state.sheet)
   const { title, description, section, tags } = currentCheatSheet
 
@@ -41,7 +44,25 @@ function ConfigCheatsheet () {
         </div>
       ))
     } else {
-      dispatch(createCheatsheet(currentCheatSheet))
+      const myPromise = fetchCreateCheatsheet()
+      toast.promise(myPromise, {
+        loading: 'Cargando',
+        success: 'Cheatsheet creado',
+        error: 'Error al crear tu cheatsheet'
+      })
+    }
+  }
+
+  const fetchCreateCheatsheet = async () => {
+    const resp = await fetchWithToken('cheatsheet/new', currentCheatSheet, 'POST')
+    const respJson = await resp.json()
+    const { ok, data } = respJson
+    if (ok) {
+      const { cs } = data
+      dispatch(saveCheatsheet(cs))
+      setTimeout(() => {
+        history.push(`/cheatsheet/${cs.id}`)
+      }, 3000)
     }
   }
 

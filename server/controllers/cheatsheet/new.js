@@ -4,21 +4,19 @@ const User = require('../../models/User')
 
 const newCheatsheet = async (req, res = response) => {
   const { id: userId, name, body } = req
-
   try {
     const user = await User.findById(userId)
     if (!user) {
       res.status(400).json({ ok: false, data: 'User not found' })
     }
-
     const cs = await Cheatsheet.create({
-      title: body.cheatsheet.title,
-      description: body.cheatsheet.description,
-      section: body.cheatsheet.section,
-      tags: body.cheatsheet.tags,
-      private: body.cheatsheet.private,
-      favorite: body.cheatsheet.favorite,
-      content: body.cheatsheet.content,
+      title: body.title,
+      description: body.description,
+      section: body.section,
+      tags: body.tags,
+      private: body.private,
+      favorite: body.favorite,
+      content: body.content,
       author: userId
     })
 

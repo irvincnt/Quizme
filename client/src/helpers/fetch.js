@@ -39,4 +39,5 @@ const fetchWithToken = (endpoint, data, method = 'GET') => {
     })
   }
 }
+
 export { fetchWithoutToken, fetchWithToken }
