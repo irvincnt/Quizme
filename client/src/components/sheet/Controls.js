@@ -1,28 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CreatableSelect from 'react-select/creatable'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { LockKey, LockKeyOpen, Star, Tag, Atom } from 'phosphor-react'
 import Dropdown from '../ui/Dropdown'
-
-import {
-  selectChartsheetPermissions,
-  updateChartsheetFavorite,
-  updateChartsheetSection,
-  updateChartsheetTags
-} from '../../actions/sheet'
 
 import '../../styles/pages/cheatsheet.scss'
 
 const options = [
+  { value: 'software', label: 'Software', key: 'section' },
+  { value: 'programation', label: 'Programación', key: 'section' },
+  { value: 'english', label: 'Inglés', key: 'section' },
+  { value: 'biblie', label: 'Biblia', key: 'section' }
+]
+
+const optionsTags = [
   { value: 'software', label: 'Software' },
   { value: 'programation', label: 'Programación' },
   { value: 'english', label: 'Inglés' },
   { value: 'biblie', label: 'Biblia' }
 ]
-function Controls () {
-  const dispatch = useDispatch()
+
+function Controls ({ handlerConfigControls }) {
+  const [favoriteControl, setFavoriteControl] = useState(false)
   const { currentCheatSheet } = useSelector(state => state.sheet)
   const { permissions, favorite, section, tags } = currentCheatSheet
+
+  const handlerControls = (controls) => {
+    if (controls.key === 'favorite') {
+      setFavoriteControl(!favoriteControl)
+      controls = { key: 'favorite', value: favoriteControl }
+    }
+    handlerConfigControls(controls)
+  }
 
   function headDropdownPermissions () {
     return (
@@ -38,7 +47,7 @@ function Controls () {
   function contentDropdownPermissions () {
     return (
       <>
-        <li onClick={() => handlerPermissions('private')}>
+        <li onClick={() => handlerControls({ key: 'permissions', value: 'private' })}>
           <div className='item'>
             <div className='permision'>
               <LockKey size={22} />
@@ -47,7 +56,7 @@ function Controls () {
             <span className='instruction'>Sólo tú puede ver este Cheatsheet.</span>
           </div>
         </li>
-        <li onClick={() => handlerPermissions('public')}>
+        <li onClick={() => handlerControls({ key: 'permissions', value: 'public' })}>
           <div className='item'>
             <div className='permision'>
               <LockKeyOpen size={22} />
@@ -76,7 +85,7 @@ function Controls () {
             <CreatableSelect
               placeholder='Selecciona un elemento'
               options={options}
-              onChange={handleChangeSection}
+              onChange={handlerControls}
             />
           </div>
         </li>
@@ -106,8 +115,8 @@ function Controls () {
           <CreatableSelect
             isMulti
             placeholder='Selecciona un elemento'
-            options={options}
-            onChange={handleChangeTags}
+            options={optionsTags}
+            onChange={(tag) => handlerControls({ value: [...tag], key: 'tags' })}
           />
 
         </li>
@@ -116,29 +125,13 @@ function Controls () {
     )
   }
 
-  const handlerPermissions = (value) => {
-    dispatch(selectChartsheetPermissions(value))
-  }
-
-  const handlerFavorite = () => {
-    dispatch(updateChartsheetFavorite(!favorite))
-  }
-
-  const handleChangeSection = (sectionType) => {
-    dispatch(updateChartsheetSection(sectionType))
-  }
-
-  const handleChangeTags = (tags) => {
-    dispatch(updateChartsheetTags(tags))
-  }
-
   return (
     <div className='elements_controlls'>
       <div className='controll'>
-        <div className='flex' onClick={() => handlerFavorite()}>
+        <div className='flex' onClick={() => handlerControls({ key: 'favorite' })}>
           {
-                  favorite ? <Star size={22} color='#f9c10b' weight='fill' /> : <Star size={22} />
-                }
+            favoriteControl ? <Star size={22} color='#f9c10b' weight='fill' /> : <Star size={22} />
+          }
         </div>
       </div>
       <Dropdown

@@ -87,6 +87,10 @@ function ConfigCheatsheet () {
     return errors
   }
 
+  const getConfigControls = (configControls) => {
+    console.log('Config Control', configControls)
+  }
+
   return (
     <div className='cheatsheet container-fluid'>
       <div className='head'>
@@ -95,7 +99,9 @@ function ConfigCheatsheet () {
       </div>
       <div className='wrapper'>
         <div className='elements'>
-          <Controls />
+          <Controls
+            handlerConfigControls={getConfigControls}
+          />
           <button
             className='btn btn-primary'
             onClick={handlerCreateCheatsheet}
