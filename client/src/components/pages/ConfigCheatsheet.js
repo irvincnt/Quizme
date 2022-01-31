@@ -97,14 +97,14 @@ function ConfigCheatsheet () {
     return errors
   }
 
-  const getConfigControls = (configControls) => {
-    if (configControls.key === 'section') {
-      configControls.value = sectionsType.find(type => type.value === configControls.value)
+  const getCheatsheetConfig = (config) => {
+    if (config.key === 'section') {
+      config.value = sectionsType.find(type => type.value === config.value)
     }
 
     setCheatsheetConfig({
       ...cheatsheetConfig,
-      [configControls.key]: configControls.value
+      [config.key]: config.value
     })
   }
 
@@ -118,7 +118,7 @@ function ConfigCheatsheet () {
         <div className='elements'>
           <Controls
             cheatsheetConfig={cheatsheetConfig}
-            configControls={getConfigControls}
+            getCheatsheetConfig={getCheatsheetConfig}
           />
           <button
             className='btn btn-primary'
@@ -126,7 +126,10 @@ function ConfigCheatsheet () {
           >{loadingEvent ? <Spinner height={14} width={14} /> : 'Crear cheatsheet'}
           </button>
         </div>
-        <Sheet />
+        <Sheet
+          cheatsheetConfig={cheatsheetConfig}
+          getCheatsheetConfig={getCheatsheetConfig}
+        />
       </div>
       <Toaster />
     </div>

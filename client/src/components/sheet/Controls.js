@@ -19,7 +19,7 @@ const optionsTags = [
   { value: 'biblie', label: 'Biblia' }
 ]
 
-function Controls ({ configControls, cheatsheetConfig }) {
+function Controls ({ getCheatsheetConfig, cheatsheetConfig }) {
   const [favoriteControl, setFavoriteControl] = useState(false)
   const { permissions, section, tags } = cheatsheetConfig
 
@@ -28,7 +28,7 @@ function Controls ({ configControls, cheatsheetConfig }) {
       setFavoriteControl(!favoriteControl)
       controls = { key: 'favorite', value: favoriteControl }
     }
-    configControls(controls)
+    getCheatsheetConfig(controls)
   }
 
   function headDropdownPermissions () {

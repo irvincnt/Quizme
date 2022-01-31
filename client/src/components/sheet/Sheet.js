@@ -1,21 +1,13 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { setChartsheetTitle, updateCheatsheetDescription } from '../../actions/sheet'
 import ContentEditable from '../helpers/ContentEditable'
 
 import '../../styles/pages/cheatsheet.scss'
 
-function Sheet () {
-  const dispatch = useDispatch()
-  const { currentCheatSheet: { title, description } } = useSelector(state => state.sheet)
+function Sheet ({ getCheatsheetConfig, cheatsheetConfig }) {
+  const { title, description } = cheatsheetConfig
 
-  const handlerChangeTitle = (evt) => {
-    dispatch(setChartsheetTitle(evt.target.value))
-  }
-
-  const handlerDescriptionUpdate = (evt) => {
-    const { target: { value } } = evt
-    dispatch(updateCheatsheetDescription(value))
+  const handlerCheatsheetConfig = (config) => {
+    getCheatsheetConfig(config)
   }
 
   const highlightAll = () => {
@@ -26,8 +18,7 @@ function Sheet () {
 
   const handlerResetTitle = () => {
     if (title.length <= 0) {
-      const evt = { target: { value: 'Documento sin título' } }
-      handlerChangeTitle(evt)
+      handlerCheatsheetConfig({ key: 'title', value: 'Documento sin título' })
     }
   }
 
@@ -39,7 +30,7 @@ function Sheet () {
             className='label'
             html={title}
             tagName='h1'
-            onChange={handlerChangeTitle}
+            onChange={(el) => handlerCheatsheetConfig({ key: 'title', value: el.target.value })}
             onFocus={highlightAll}
             onBlur={handlerResetTitle}
           />
@@ -49,7 +40,7 @@ function Sheet () {
           className='description'
           html={description}
           tagName='h2'
-          onChange={handlerDescriptionUpdate}
+          onChange={(el) => handlerCheatsheetConfig({ key: 'description', value: el.target.value })}
           onFocus={highlightAll}
         />
         <hr className='divider' />
