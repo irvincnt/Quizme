@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Breadcrumb from '../ui/Breadcrumb'
 
 import '../../styles/pages/cheatsheet.scss'
 import Controls from '../sheet/Controls'
 import Sheet from '../sheet/Sheet'
+import { fetchWithToken } from '../../helpers/fetch'
 
 const breadcrumbContent = [
   {
@@ -18,6 +19,26 @@ const breadcrumbContent = [
 
 function Cheatsheet () {
   const { cheatsheetId } = useParams()
+  const [cheatsheetConfig, setCheatsheetConfig] = useState({
+    title: 'Documento sin título',
+    description: 'Descripción',
+    favorite: false,
+    permissions: 'private',
+    section: {},
+    tags: []
+  })
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const resp = await fetchWithToken(`cheatsheet/${cheatsheetId}`)
+      const body = await resp.json()
+      const { data, ok } = body
+      if (ok) { setCheatsheetConfig(data.cheatsheet) }
+      console.log('Body', body)
+    }
+    fetchData()
+  }, [cheatsheetId])
+
   console.log('PARAMS', cheatsheetId)
   return (
     <div className='cheatsheet container-fluid'>
@@ -27,14 +48,18 @@ function Cheatsheet () {
       </div>
       <div className='wrapper'>
         <div className='elements'>
-          <Controls />
+          <Controls
+            cheatsheetConfig={cheatsheetConfig}
+          />
           {/* <button
             className='btn btn-primary'
             onClick={handlerCreateCheatsheet}
           >{loadingEvent ? <Spinner height={14} width={14} /> : 'Crear cheatsheet'}
           </button> */}
         </div>
-        <Sheet />
+        <Sheet
+          cheatsheetConfig={cheatsheetConfig}
+        />
       </div>
       Cheatsheet
     </div>
