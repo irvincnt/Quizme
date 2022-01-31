@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Breadcrumb from '../ui/Breadcrumb'
 import Sheet from '../sheet/Sheet'
 import Spinner from '../ui/spinner'
@@ -23,13 +23,28 @@ const breadcrumbContent = [
   }
 ]
 
+const sectionsType = [
+  { value: 'software', label: 'Software', key: 'section' },
+  { value: 'programation', label: 'Programación', key: 'section' },
+  { value: 'english', label: 'Inglés', key: 'section' },
+  { value: 'biblie', label: 'Biblia', key: 'section' }
+]
 function ConfigCheatsheet () {
+  const [cheatsheetConfig, setCheatsheetConfig] = useState({
+    title: 'Documento sin título',
+    description: 'Descripción',
+    favorite: false,
+    permissions: 'private',
+    section: {},
+    tags: []
+  })
   const dispatch = useDispatch()
   const history = useHistory()
-  const { currentCheatSheet, loadingEvent } = useSelector(state => state.sheet)
-  const { title, description, section, tags } = currentCheatSheet
+  const { loadingEvent } = useSelector(state => state.sheet)
+  const { title, description, section, tags } = cheatsheetConfig
 
   const handlerCreateCheatsheet = () => {
+    console.log('cheatsheetConfig', cheatsheetConfig)
     const { ok, msg } = validateConfig()
     if (ok) {
       toast((t) => (
@@ -54,7 +69,7 @@ function ConfigCheatsheet () {
   }
 
   const fetchCreateCheatsheet = async () => {
-    const resp = await fetchWithToken('cheatsheet/new', currentCheatSheet, 'POST')
+    const resp = await fetchWithToken('cheatsheet/new', cheatsheetConfig, 'POST')
     const respJson = await resp.json()
     const { ok, data } = respJson
     if (ok) {
@@ -89,6 +104,14 @@ function ConfigCheatsheet () {
 
   const getConfigControls = (configControls) => {
     console.log('Config Control', configControls)
+    if (configControls.key === 'section') {
+      configControls.value = sectionsType.find(type => type.value === configControls.value)
+    }
+
+    setCheatsheetConfig({
+      ...cheatsheetConfig,
+      [configControls.key]: configControls.value
+    })
   }
 
   return (
@@ -100,7 +123,8 @@ function ConfigCheatsheet () {
       <div className='wrapper'>
         <div className='elements'>
           <Controls
-            handlerConfigControls={getConfigControls}
+            cheatsheetConfig={cheatsheetConfig}
+            configControls={getConfigControls}
           />
           <button
             className='btn btn-primary'

@@ -139,38 +139,6 @@ export const sheetReducer = (state = initialStateNew, action) => {
           description: action.payload
         }
       }
-    case types.updateChartsheetSection:
-      return {
-        ...state,
-        currentCheatSheet: {
-          ...state.currentCheatSheet,
-          section: action.payload
-        }
-      }
-    case types.updateChartsheetTags:
-      return {
-        ...state,
-        currentCheatSheet: {
-          ...state.currentCheatSheet,
-          tags: [...action.payload]
-        }
-      }
-    case types.selectChartsheetPermissions:
-      return {
-        ...state,
-        currentCheatSheet: {
-          ...state.currentCheatSheet,
-          permissions: action.payload
-        }
-      }
-    case types.updateChartsheetFavorite:
-      return {
-        ...state,
-        currentCheatSheet: {
-          ...state.currentCheatSheet,
-          favorite: action.payload
-        }
-      }
     case types.saveCheatsheet:
       return {
         ...state,

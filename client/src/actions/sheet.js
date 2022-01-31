@@ -22,42 +22,6 @@ export const updateCheatsheetDescription = (content) => {
   }
 }
 
-export const updateChartsheetSection = (section) => {
-  return (dispatch) => {
-    dispatch({
-      type: types.updateChartsheetSection,
-      payload: section
-    })
-  }
-}
-
-export const updateChartsheetTags = (tags) => {
-  return (dispatch) => {
-    dispatch({
-      type: types.updateChartsheetTags,
-      payload: tags
-    })
-  }
-}
-
-export const selectChartsheetPermissions = (permission) => {
-  return (dispatch) => {
-    dispatch({
-      type: types.selectChartsheetPermissions,
-      payload: permission
-    })
-  }
-}
-
-export const updateChartsheetFavorite = (favorire) => {
-  return (dispatch) => {
-    dispatch({
-      type: types.updateChartsheetFavorite,
-      payload: favorire
-    })
-  }
-}
-
 export const saveCheatsheet = (data) => (
   {
     type: types.saveCheatsheet,

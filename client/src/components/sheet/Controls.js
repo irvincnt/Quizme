@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import CreatableSelect from 'react-select/creatable'
-import { useSelector } from 'react-redux'
 import { LockKey, LockKeyOpen, Star, Tag, Atom } from 'phosphor-react'
 import Dropdown from '../ui/Dropdown'
 
@@ -20,17 +19,16 @@ const optionsTags = [
   { value: 'biblie', label: 'Biblia' }
 ]
 
-function Controls ({ handlerConfigControls }) {
+function Controls ({ configControls, cheatsheetConfig }) {
   const [favoriteControl, setFavoriteControl] = useState(false)
-  const { currentCheatSheet } = useSelector(state => state.sheet)
-  const { permissions, favorite, section, tags } = currentCheatSheet
+  const { permissions, section, tags } = cheatsheetConfig
 
   const handlerControls = (controls) => {
     if (controls.key === 'favorite') {
       setFavoriteControl(!favoriteControl)
       controls = { key: 'favorite', value: favoriteControl }
     }
-    handlerConfigControls(controls)
+    configControls(controls)
   }
 
   function headDropdownPermissions () {
