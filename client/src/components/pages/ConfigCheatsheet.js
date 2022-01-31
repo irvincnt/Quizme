@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import toast, { Toaster } from 'react-hot-toast'
+import { Warning } from 'phosphor-react'
+
+import { fetchWithToken } from '../../helpers/fetch'
 import Breadcrumb from '../ui/Breadcrumb'
 import Sheet from '../sheet/Sheet'
 import Spinner from '../ui/spinner'
 import Controls from '../sheet/Controls'
-import { useDispatch, useSelector } from 'react-redux'
-import toast, { Toaster } from 'react-hot-toast'
-import { Warning } from 'phosphor-react'
 import { saveCheatsheet } from '../../actions/sheet'
+import { sectionsType } from '../../dictionary/baseConfig'
 
 import '../../styles/pages/cheatsheet.scss'
 import '../../styles/ui/elements.scss'
-import { useHistory } from 'react-router-dom'
-import { fetchWithToken } from '../../helpers/fetch'
 
 const breadcrumbContent = [
   {
@@ -23,12 +25,6 @@ const breadcrumbContent = [
   }
 ]
 
-const sectionsType = [
-  { value: 'software', label: 'Software', key: 'section' },
-  { value: 'programation', label: 'Programación', key: 'section' },
-  { value: 'english', label: 'Inglés', key: 'section' },
-  { value: 'biblie', label: 'Biblia', key: 'section' }
-]
 function ConfigCheatsheet () {
   const [cheatsheetConfig, setCheatsheetConfig] = useState({
     title: 'Documento sin título',
@@ -44,7 +40,6 @@ function ConfigCheatsheet () {
   const { title, description, section, tags } = cheatsheetConfig
 
   const handlerCreateCheatsheet = () => {
-    console.log('cheatsheetConfig', cheatsheetConfig)
     const { ok, msg } = validateConfig()
     if (ok) {
       toast((t) => (
@@ -103,7 +98,6 @@ function ConfigCheatsheet () {
   }
 
   const getConfigControls = (configControls) => {
-    console.log('Config Control', configControls)
     if (configControls.key === 'section') {
       configControls.value = sectionsType.find(type => type.value === configControls.value)
     }
