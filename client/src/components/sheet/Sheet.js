@@ -3,7 +3,7 @@ import ContentEditable from '../helpers/ContentEditable'
 
 import '../../styles/pages/cheatsheet.scss'
 
-function Sheet ({ getCheatsheetConfig, cheatsheetConfig }) {
+function Sheet ({ getCheatsheetConfig, cheatsheetConfig, disabledSheet }) {
   const { title, description } = cheatsheetConfig
 
   const handlerCheatsheetConfig = (config) => {
@@ -27,6 +27,7 @@ function Sheet ({ getCheatsheetConfig, cheatsheetConfig }) {
       <div className='content'>
         <div className='title'>
           <ContentEditable
+            disabled={!disabledSheet}
             className='label'
             html={title}
             tagName='h1'
@@ -37,6 +38,7 @@ function Sheet ({ getCheatsheetConfig, cheatsheetConfig }) {
           {title !== 'Documento sin título' && <em>cheatsheet</em>}
         </div>
         <ContentEditable
+          disabled={!disabledSheet}
           className='description'
           html={description}
           tagName='h2'

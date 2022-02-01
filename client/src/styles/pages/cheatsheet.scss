@@ -32,10 +32,12 @@
           align-items: center;
           gap: 3px;
           padding: 0.25rem 0.375rem;
-          cursor: pointer;
-          &:hover, &:focus{
-            background-color: #f1f1f1;
-            border-radius: 0.25rem;
+          &.isEditable {
+            cursor: pointer;
+            &:hover, &:focus{
+              background-color: #f1f1f1;
+              border-radius: 0.25rem;
+            }
           }
         }
         .content {
@@ -59,6 +61,12 @@
       button {
         flex: 20%;
       }
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
     }
     .sheet {
       background: $c-white;

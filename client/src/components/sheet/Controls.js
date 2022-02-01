@@ -27,7 +27,7 @@ function Controls ({ getCheatsheetConfig, cheatsheetConfig, isEditionMode = true
 
   function headDropdownPermissions () {
     return (
-      <div className='controll'>
+      <div className={`controll ${isEditionMode ? 'isEditable' : ''}`}>
         {
           cheatsheetPrivate
             ? (<><LockKey size={22} /> <span>Privado</span></>)
@@ -62,7 +62,7 @@ function Controls ({ getCheatsheetConfig, cheatsheetConfig, isEditionMode = true
   }
   function headDropdownSection () {
     return (
-      <div className='controll'>
+      <div className={`controll ${isEditionMode ? 'isEditable' : ''}`}>
         <Atom size={22} />
         <span>Sección: </span>
         {section && <span>{section.label}</span>}
@@ -86,7 +86,7 @@ function Controls ({ getCheatsheetConfig, cheatsheetConfig, isEditionMode = true
   }
   function headDropdownTags () {
     return (
-      <div className='controll'>
+      <div className={`controll ${isEditionMode ? 'isEditable' : ''}`}>
         <Tag size={22} />
         <span>Tags:</span>
         {
@@ -117,15 +117,15 @@ function Controls ({ getCheatsheetConfig, cheatsheetConfig, isEditionMode = true
 
   return (
     <div className='elements_controlls'>
-      <div className='controll'>
+      <div className={`controll ${isEditionMode ? 'isEditable' : ''}`}>
         {
           isEditionMode
             ? <div className='flex' onClick={() => handlerControls({ key: 'favorite' })}>
               {favoriteControl ? <Star size={22} color='#f9c10b' weight='fill' /> : <Star size={22} />}
-            </div>
+              </div>
             : <div className='flex'>
               {favoriteControl ? <Star size={22} color='#f9c10b' weight='fill' /> : <Star size={22} />}
-            </div>
+              </div>
         }
       </div>
       <Dropdown

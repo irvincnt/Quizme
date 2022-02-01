@@ -19,6 +19,7 @@ const breadcrumbContent = [
 
 function Cheatsheet () {
   const { cheatsheetId } = useParams()
+  const [isEditionMode, setIsEditionMode] = useState(false)
   const [cheatsheetConfig, setCheatsheetConfig] = useState({
     title: 'Documento sin título',
     description: 'Descripción',
@@ -33,14 +34,15 @@ function Cheatsheet () {
       const resp = await fetchWithToken(`cheatsheet/${cheatsheetId}`)
       const body = await resp.json()
       const { data, ok } = body
-      console.log('cs effect', data.cheatsheet)
       if (ok) { setCheatsheetConfig(data.cheatsheet) }
-      console.log('Body', body)
     }
     fetchData()
   }, [cheatsheetId])
 
-  console.log('PARAMS', cheatsheetId)
+  const handlerEditCheatsheet = () => {
+    setIsEditionMode(!isEditionMode)
+  }
+
   return (
     <div className='cheatsheet container-fluid'>
       <div className='head'>
@@ -50,17 +52,21 @@ function Cheatsheet () {
       <div className='wrapper'>
         <div className='elements'>
           <Controls
-            isEditionMode={false}
+            isEditionMode={isEditionMode}
             cheatsheetConfig={cheatsheetConfig}
           />
-          {/* <button
-            className='btn btn-primary'
-            onClick={handlerCreateCheatsheet}
-          >{loadingEvent ? <Spinner height={14} width={14} /> : 'Crear cheatsheet'}
-          </button> */}
+          {
+            !isEditionMode
+              ? <button className='btn' onClick={handlerEditCheatsheet}>Editar</button>
+              : <div className='buttons'>
+                <button className='btn'>Guardar</button>
+                <button className='btn' onClick={handlerEditCheatsheet}>Cancelar</button>
+                </div>
+          }
         </div>
         <Sheet
           cheatsheetConfig={cheatsheetConfig}
+          disabledSheet={isEditionMode}
         />
       </div>
       Cheatsheet

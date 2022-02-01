@@ -10,7 +10,7 @@ function Dropdown (props) {
   const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false, isBlocked, content)
 
   function handlerClickDropdown (isActive) {
-    setIsActive(!isActive)
+    if (isEditionMode) setIsActive(!isActive)
   }
 
   return (

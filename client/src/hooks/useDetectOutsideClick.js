@@ -13,7 +13,6 @@ export const useDetectOutsideClick = (el, initialState, isBlocked = true, conten
     const onClick = e => {
       // If the active element exists and is clicked outside of
       if (isBlocked && el.current !== null && !el.current.contains(e.target)) {
-        console.log('No bloqueado, Existe y click fuera de el')
         setIsActive(!isActive)
       }
 
