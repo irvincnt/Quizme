@@ -4,13 +4,7 @@ import { LockKey, LockKeyOpen, Star, Tag, Atom } from 'phosphor-react'
 import Dropdown from '../ui/Dropdown'
 
 import '../../styles/pages/cheatsheet.scss'
-
-const options = [
-  { value: 'software', label: 'Software', key: 'section' },
-  { value: 'programation', label: 'Programación', key: 'section' },
-  { value: 'english', label: 'Inglés', key: 'section' },
-  { value: 'biblie', label: 'Biblia', key: 'section' }
-]
+import { sectionsType } from '../../dictionary/baseConfig'
 
 const optionsTags = [
   { value: 'software', label: 'Software' },
@@ -19,9 +13,9 @@ const optionsTags = [
   { value: 'biblie', label: 'Biblia' }
 ]
 
-function Controls ({ getCheatsheetConfig, cheatsheetConfig }) {
+function Controls ({ getCheatsheetConfig, cheatsheetConfig, isEditionMode = true }) {
+  const { private: cheatsheetPrivate, section, tags } = cheatsheetConfig
   const [favoriteControl, setFavoriteControl] = useState(false)
-  const { permissions, section, tags } = cheatsheetConfig
 
   const handlerControls = (controls) => {
     if (controls.key === 'favorite') {
@@ -35,9 +29,9 @@ function Controls ({ getCheatsheetConfig, cheatsheetConfig }) {
     return (
       <div className='controll'>
         {
-          permissions === 'public'
-            ? (<><LockKeyOpen size={22} /> <span>Público</span></>)
-            : (<><LockKey size={22} /> <span>Privado</span></>)
+          cheatsheetPrivate
+            ? (<><LockKey size={22} /> <span>Privado</span></>)
+            : (<><LockKeyOpen size={22} /> <span>Público</span></>)
         }
       </div>
     )
@@ -45,7 +39,7 @@ function Controls ({ getCheatsheetConfig, cheatsheetConfig }) {
   function contentDropdownPermissions () {
     return (
       <>
-        <li onClick={() => handlerControls({ key: 'permissions', value: 'private' })}>
+        <li onClick={() => handlerControls({ key: 'private', value: true })}>
           <div className='item'>
             <div className='permision'>
               <LockKey size={22} />
@@ -54,7 +48,7 @@ function Controls ({ getCheatsheetConfig, cheatsheetConfig }) {
             <span className='instruction'>Sólo tú puede ver este Cheatsheet.</span>
           </div>
         </li>
-        <li onClick={() => handlerControls({ key: 'permissions', value: 'public' })}>
+        <li onClick={() => handlerControls({ key: 'private', value: false })}>
           <div className='item'>
             <div className='permision'>
               <LockKeyOpen size={22} />
@@ -82,7 +76,7 @@ function Controls ({ getCheatsheetConfig, cheatsheetConfig }) {
           <div className='card'>
             <CreatableSelect
               placeholder='Selecciona un elemento'
-              options={options}
+              options={sectionsType}
               onChange={handlerControls}
             />
           </div>
@@ -107,7 +101,6 @@ function Controls ({ getCheatsheetConfig, cheatsheetConfig }) {
   }
   function contentDropdownTags () {
     return (
-    // <div className='card'>
       <>
         <li>
           <CreatableSelect
@@ -119,31 +112,37 @@ function Controls ({ getCheatsheetConfig, cheatsheetConfig }) {
 
         </li>
       </>
-    // </div>
     )
   }
 
   return (
     <div className='elements_controlls'>
       <div className='controll'>
-        <div className='flex' onClick={() => handlerControls({ key: 'favorite' })}>
-          {
-            favoriteControl ? <Star size={22} color='#f9c10b' weight='fill' /> : <Star size={22} />
-          }
-        </div>
+        {
+          isEditionMode
+            ? <div className='flex' onClick={() => handlerControls({ key: 'favorite' })}>
+              {favoriteControl ? <Star size={22} color='#f9c10b' weight='fill' /> : <Star size={22} />}
+            </div>
+            : <div className='flex'>
+              {favoriteControl ? <Star size={22} color='#f9c10b' weight='fill' /> : <Star size={22} />}
+            </div>
+        }
       </div>
       <Dropdown
+        isEditionMode={isEditionMode}
         head={headDropdownPermissions()}
         content={contentDropdownPermissions()}
         aligned='is-left'
       />
       <Dropdown
+        isEditionMode={isEditionMode}
         head={headDropdownSection()}
         content={contentDropdownSection()}
         aligned='is-left'
         isBlocked={false}
       />
       <Dropdown
+        isEditionMode={isEditionMode}
         head={headDropdownTags()}
         content={contentDropdownTags()}
         aligned='is-left'

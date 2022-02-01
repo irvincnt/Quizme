@@ -5,7 +5,7 @@ const CheatSheetSchema = Schema({
   description: { type: String, required: true },
   favorite: { type: Boolean, required: true, default: false },
   section: { type: Object, required: true },
-  private: { type: String, required: true, default: true },
+  private: { type: Boolean, required: true, default: true },
   tags: { type: Array, required: true },
   author: { type: Schema.ObjectId, ref: 'User' },
   created: { type: Date, default: Date.now },

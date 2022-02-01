@@ -30,7 +30,7 @@ function ConfigCheatsheet () {
     title: 'Documento sin título',
     description: 'Descripción',
     favorite: false,
-    permissions: 'private',
+    private: true,
     section: {},
     tags: []
   })

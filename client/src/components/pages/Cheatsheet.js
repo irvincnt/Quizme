@@ -23,7 +23,7 @@ function Cheatsheet () {
     title: 'Documento sin título',
     description: 'Descripción',
     favorite: false,
-    permissions: 'private',
+    private: true,
     section: {},
     tags: []
   })
@@ -33,6 +33,7 @@ function Cheatsheet () {
       const resp = await fetchWithToken(`cheatsheet/${cheatsheetId}`)
       const body = await resp.json()
       const { data, ok } = body
+      console.log('cs effect', data.cheatsheet)
       if (ok) { setCheatsheetConfig(data.cheatsheet) }
       console.log('Body', body)
     }
@@ -49,6 +50,7 @@ function Cheatsheet () {
       <div className='wrapper'>
         <div className='elements'>
           <Controls
+            isEditionMode={false}
             cheatsheetConfig={cheatsheetConfig}
           />
           {/* <button
