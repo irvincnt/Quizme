@@ -99,7 +99,8 @@ function ConfigCheatsheet () {
 
   const getCheatsheetConfig = (config) => {
     if (config.key === 'section') {
-      config.value = sectionsType.find(type => type.value === config.value)
+      const sectionType = sectionsType.find(type => type.value === config.value)
+      config = { value: sectionType, key: 'section' }
     }
 
     setCheatsheetConfig({

@@ -14,8 +14,8 @@ const optionsTags = [
 ]
 
 function Controls ({ getCheatsheetConfig, cheatsheetConfig, isEditionMode = true }) {
-  const { private: cheatsheetPrivate, section, tags } = cheatsheetConfig
-  const [favoriteControl, setFavoriteControl] = useState(false)
+  const { private: cheatsheetPrivate, section, tags, favorite } = cheatsheetConfig
+  const [favoriteControl, setFavoriteControl] = useState(favorite)
 
   const handlerControls = (controls) => {
     if (controls.key === 'favorite') {
@@ -105,6 +105,7 @@ function Controls ({ getCheatsheetConfig, cheatsheetConfig, isEditionMode = true
         <li>
           <CreatableSelect
             isMulti
+            value={tags}
             placeholder='Selecciona un elemento'
             options={optionsTags}
             onChange={(tag) => handlerControls({ value: [...tag], key: 'tags' })}

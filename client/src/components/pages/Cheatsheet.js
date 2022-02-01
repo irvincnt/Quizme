@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Breadcrumb from '../ui/Breadcrumb'
-
-import '../../styles/pages/cheatsheet.scss'
 import Controls from '../sheet/Controls'
 import Sheet from '../sheet/Sheet'
+
 import { fetchWithToken } from '../../helpers/fetch'
+import { sectionsType } from '../../dictionary/baseConfig'
+import '../../styles/pages/cheatsheet.scss'
 
 const breadcrumbContent = [
   {
@@ -28,19 +29,45 @@ function Cheatsheet () {
     section: {},
     tags: []
   })
+  const [initialConfig, setInitialConfig] = useState(cheatsheetConfig)
 
   useEffect(() => {
     const fetchData = async () => {
       const resp = await fetchWithToken(`cheatsheet/${cheatsheetId}`)
       const body = await resp.json()
       const { data, ok } = body
-      if (ok) { setCheatsheetConfig(data.cheatsheet) }
+      if (ok) {
+        setCheatsheetConfig(data.cheatsheet)
+        setInitialConfig(data.cheatsheet)
+      }
     }
     fetchData()
   }, [cheatsheetId])
 
+  useEffect(() => {
+    if (!isEditionMode) {
+      setCheatsheetConfig(initialConfig)
+    }
+  }, [isEditionMode])
+
   const handlerEditCheatsheet = () => {
     setIsEditionMode(!isEditionMode)
+  }
+
+  const getCheatsheetConfig = (config) => {
+    if (config.key === 'section') {
+      const sectionType = sectionsType.find(type => type.value === config.value)
+      config = { value: sectionType, key: 'section' }
+    }
+
+    setCheatsheetConfig({
+      ...cheatsheetConfig,
+      [config.key]: config.value
+    })
+  }
+
+  const handlerCreateCheatsheet = () => {
+    console.log('Create', cheatsheetConfig)
   }
 
   return (
@@ -54,19 +81,21 @@ function Cheatsheet () {
           <Controls
             isEditionMode={isEditionMode}
             cheatsheetConfig={cheatsheetConfig}
+            getCheatsheetConfig={getCheatsheetConfig}
           />
           {
             !isEditionMode
               ? <button className='btn' onClick={handlerEditCheatsheet}>Editar</button>
               : <div className='buttons'>
-                <button className='btn'>Guardar</button>
+                <button className='btn' onClick={handlerCreateCheatsheet}>Guardar</button>
                 <button className='btn' onClick={handlerEditCheatsheet}>Cancelar</button>
-                </div>
+              </div>
           }
         </div>
         <Sheet
-          cheatsheetConfig={cheatsheetConfig}
           disabledSheet={isEditionMode}
+          cheatsheetConfig={cheatsheetConfig}
+          getCheatsheetConfig={getCheatsheetConfig}
         />
       </div>
       Cheatsheet
