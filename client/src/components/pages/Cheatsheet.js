@@ -7,6 +7,8 @@ import Sheet from '../sheet/Sheet'
 import { fetchWithToken } from '../../helpers/fetch'
 import { sectionsType } from '../../dictionary/baseConfig'
 import '../../styles/pages/cheatsheet.scss'
+import toast, { Toaster } from 'react-hot-toast'
+import { Warning } from 'phosphor-react'
 
 const breadcrumbContent = [
   {
@@ -67,7 +69,61 @@ function Cheatsheet () {
   }
 
   const handlerCreateCheatsheet = () => {
-    console.log('Create', cheatsheetConfig)
+    const { ok, msg } = validateConfig()
+    if (ok) {
+      toast((t) => (
+        <div>
+          <Warning size={24} color='#ffcc2e' weight='fill' />
+          {msg.length === 1 ? 'El siguiente campo es requerido' : 'Los siguientes campos son requeridos'}
+          <ul>
+            {msg.map((e, i) => {
+              return <li key={i}>{e}</li>
+            })}
+          </ul>
+        </div>
+      ))
+    } else {
+      const myPromise = fetchUpdateCheatsheet()
+      toast.promise(myPromise, {
+        loading: 'Actualizando',
+        success: 'Cheatsheet actualizado',
+        error: 'Error al actualizar'
+      })
+    }
+  }
+
+  const validateConfig = () => {
+    let errors = { ok: false, msg: [] }
+    const { title, description, section, tags } = cheatsheetConfig
+
+    if (title === 'Documento sin título' || title === '') {
+      errors = { ok: true, msg: [...errors.msg, 'Titulo'] }
+    }
+
+    if (description === 'Descripción' || description === '') {
+      errors = { ok: true, msg: [...errors.msg, 'Descripción'] }
+    }
+
+    if (Object.keys(section).length === 0) {
+      errors = { ok: true, msg: [...errors.msg, 'Sección'] }
+    }
+
+    if (tags.length === 0) {
+      errors = { ok: true, msg: [...errors.msg, 'Tags'] }
+    }
+    return errors
+  }
+
+  const fetchUpdateCheatsheet = async () => {
+    const resp = await fetchWithToken('cheatsheet/update', cheatsheetConfig, 'PUT')
+    const respJson = await resp.json()
+    const { ok, data } = respJson
+
+    if (ok) {
+      setCheatsheetConfig(data)
+      setInitialConfig(data)
+      handlerEditCheatsheet(!isEditionMode)
+    }
   }
 
   return (
@@ -89,7 +145,7 @@ function Cheatsheet () {
               : <div className='buttons'>
                 <button className='btn' onClick={handlerCreateCheatsheet}>Guardar</button>
                 <button className='btn' onClick={handlerEditCheatsheet}>Cancelar</button>
-              </div>
+                </div>
           }
         </div>
         <Sheet
@@ -99,6 +155,7 @@ function Cheatsheet () {
         />
       </div>
       Cheatsheet
+      <Toaster />
     </div>
   )
 }
