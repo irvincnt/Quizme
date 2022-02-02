@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import toast, { Toaster } from 'react-hot-toast'
 import { Warning } from 'phosphor-react'
 
-import { fetchWithToken } from '../../helpers/fetch'
 import Breadcrumb from '../ui/Breadcrumb'
 import Sheet from '../sheet/Sheet'
 import Spinner from '../ui/spinner'
 import Controls from '../sheet/Controls'
+import { fetchWithToken } from '../../helpers/fetch'
 import { saveCheatsheet } from '../../actions/sheet'
 import { sectionsType } from '../../dictionary/baseConfig'
+import { validateCheatsheetConfig } from '../../helpers/validator'
 
 import '../../styles/pages/cheatsheet.scss'
 import '../../styles/ui/elements.scss'
@@ -37,10 +38,9 @@ function ConfigCheatsheet () {
   const dispatch = useDispatch()
   const history = useHistory()
   const { loadingEvent } = useSelector(state => state.sheet)
-  const { title, description, section, tags } = cheatsheetConfig
 
   const handlerCreateCheatsheet = () => {
-    const { ok, msg } = validateConfig()
+    const { ok, msg } = validateCheatsheetConfig(cheatsheetConfig)
     if (ok) {
       toast((t) => (
         <div>
@@ -74,27 +74,6 @@ function ConfigCheatsheet () {
         history.push(`/cheatsheet/${cs.id}`)
       }, 3000)
     }
-  }
-
-  const validateConfig = () => {
-    let errors = { ok: false, msg: [] }
-
-    if (title === 'Documento sin título' || title === '') {
-      errors = { ok: true, msg: [...errors.msg, 'Titulo'] }
-    }
-
-    if (description === 'Descripción' || description === '') {
-      errors = { ok: true, msg: [...errors.msg, 'Descripción'] }
-    }
-
-    if (Object.keys(section).length === 0) {
-      errors = { ok: true, msg: [...errors.msg, 'Sección'] }
-    }
-
-    if (tags.length === 0) {
-      errors = { ok: true, msg: [...errors.msg, 'Tags'] }
-    }
-    return errors
   }
 
   const getCheatsheetConfig = (config) => {

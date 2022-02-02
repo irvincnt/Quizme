@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-indent */
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Breadcrumb from '../ui/Breadcrumb'
@@ -9,6 +10,7 @@ import { sectionsType } from '../../dictionary/baseConfig'
 import '../../styles/pages/cheatsheet.scss'
 import toast, { Toaster } from 'react-hot-toast'
 import { Warning } from 'phosphor-react'
+import { validateCheatsheetConfig } from '../../helpers/validator'
 
 const breadcrumbContent = [
   {
@@ -69,7 +71,7 @@ function Cheatsheet () {
   }
 
   const handlerCreateCheatsheet = () => {
-    const { ok, msg } = validateConfig()
+    const { ok, msg } = validateCheatsheetConfig(cheatsheetConfig)
     if (ok) {
       toast((t) => (
         <div>
@@ -90,28 +92,6 @@ function Cheatsheet () {
         error: 'Error al actualizar'
       })
     }
-  }
-
-  const validateConfig = () => {
-    let errors = { ok: false, msg: [] }
-    const { title, description, section, tags } = cheatsheetConfig
-
-    if (title === 'Documento sin título' || title === '') {
-      errors = { ok: true, msg: [...errors.msg, 'Titulo'] }
-    }
-
-    if (description === 'Descripción' || description === '') {
-      errors = { ok: true, msg: [...errors.msg, 'Descripción'] }
-    }
-
-    if (Object.keys(section).length === 0) {
-      errors = { ok: true, msg: [...errors.msg, 'Sección'] }
-    }
-
-    if (tags.length === 0) {
-      errors = { ok: true, msg: [...errors.msg, 'Tags'] }
-    }
-    return errors
   }
 
   const fetchUpdateCheatsheet = async () => {

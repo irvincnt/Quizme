@@ -3,7 +3,7 @@ import ContentEditable from '../helpers/ContentEditable'
 
 import '../../styles/pages/cheatsheet.scss'
 
-function Sheet ({ getCheatsheetConfig, cheatsheetConfig, disabledSheet }) {
+function Sheet ({ getCheatsheetConfig, cheatsheetConfig, disabledSheet = true }) {
   const { title, description } = cheatsheetConfig
 
   const handlerCheatsheetConfig = (config) => {

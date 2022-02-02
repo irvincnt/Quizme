@@ -9,6 +9,7 @@ const CheatSheetSchema = Schema({
   tags: { type: Array, required: true },
   author: { type: Schema.ObjectId, ref: 'User' },
   created: { type: Date, default: Date.now },
+  updated: { type: Date, default: Date.now },
   content: { type: Array }
 }, {
   toObject: {

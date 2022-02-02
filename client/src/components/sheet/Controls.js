@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-indent */
 import React, { useState } from 'react'
 import CreatableSelect from 'react-select/creatable'
 import { LockKey, LockKeyOpen, Star, Tag, Atom } from 'phosphor-react'
