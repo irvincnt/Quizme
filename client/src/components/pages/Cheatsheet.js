@@ -95,7 +95,7 @@ function Cheatsheet () {
   }
 
   const fetchUpdateCheatsheet = async () => {
-    const resp = await fetchWithToken('cheatsheet/update', cheatsheetConfig, 'PUT')
+    const resp = await promiseCheatsheetCreate()
     const respJson = await resp.json()
     const { ok, data } = respJson
 
@@ -104,6 +104,22 @@ function Cheatsheet () {
       setInitialConfig(data)
       handlerEditCheatsheet(!isEditionMode)
     }
+  }
+
+  const promiseCheatsheetCreate = () => {
+    return new Promise((resolve, reject) => {
+      return fetchWithToken('cheatsheet/update', cheatsheetConfig, 'PUT')
+        .then(response => {
+          if (response.ok) {
+            resolve(response)
+          } else {
+            reject(new Error('Error'))
+          }
+        })
+        .catch(error => {
+          reject(new Error(error))
+        })
+    })
   }
 
   return (
