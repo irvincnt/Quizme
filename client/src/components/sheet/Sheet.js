@@ -2,8 +2,14 @@ import React from 'react'
 import ContentEditable from '../helpers/ContentEditable'
 
 import '../../styles/pages/cheatsheet.scss'
+import CreateContent from './CreateContent'
 
-function Sheet ({ getCheatsheetConfig, cheatsheetConfig, disabledSheet = true }) {
+function Sheet ({
+  getCheatsheetConfig,
+  cheatsheetConfig,
+  disabledSheet = true,
+  isCreateContent = true
+}) {
   const { title, description } = cheatsheetConfig
 
   const handlerCheatsheetConfig = (config) => {
@@ -46,7 +52,8 @@ function Sheet ({ getCheatsheetConfig, cheatsheetConfig, disabledSheet = true })
           onFocus={highlightAll}
         />
         <hr className='divider' />
-        <span className='instruction'>Podrás agregar contenido después de agregar la configuración y crear el CheatSheet</span>
+        {!isCreateContent && <span className='instruction'>Podrás agregar contenido después de agregar la configuración y crear el CheatSheet</span>}
+        {isCreateContent && <CreateContent />}
       </div>
     </div>
   )

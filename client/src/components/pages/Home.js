@@ -3,6 +3,7 @@ import { fetchWithToken } from '../../helpers/fetch'
 import PerfilCard from '../ui/Perfil-card'
 
 import '../../styles/pages/home.scss'
+import { Link } from 'react-router-dom'
 
 function Home () {
   const [stateHome, setHome] = useState({ ok: false, allCheatSheets: [] })
@@ -26,11 +27,11 @@ function Home () {
         {
           stateHome.allCheatSheets.map(item => {
             return (
-              <div key={item.id} className='card cheatsheet'>
+              <Link key={item.id} className='card cheatsheet' to={`/cheatsheet/${item.id}`}>
                 <span>{item.title}</span>
                 <p>{item.permissions}</p>
                 <p>{item.author.name}</p>
-              </div>
+              </Link>
             )
           })
         }

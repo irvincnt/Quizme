@@ -7,14 +7,14 @@ const home = async (req, res = response) => {
       $or: [{
         $and: [
           { author: req.id },
-          { permissions: 'public' }
+          { private: true }
         ]
       }, {
         $and: [
           { author: req.id },
-          { permissions: 'private' }
+          { private: false }
         ]
-      }, { permissions: 'public' }]
+      }, { private: false }]
     }).populate('author', 'name picture')
 
     res.status(200).json({

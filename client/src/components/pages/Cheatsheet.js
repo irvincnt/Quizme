@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-indent */
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import Breadcrumb from '../ui/Breadcrumb'
 import Controls from '../sheet/Controls'
 import Sheet from '../sheet/Sheet'
@@ -24,6 +24,7 @@ const breadcrumbContent = [
 
 function Cheatsheet () {
   const { cheatsheetId } = useParams()
+  const history = useHistory()
   const [isEditionMode, setIsEditionMode] = useState(false)
   const [cheatsheetConfig, setCheatsheetConfig] = useState({
     title: 'Documento sin título',
@@ -43,6 +44,8 @@ function Cheatsheet () {
       if (ok) {
         setCheatsheetConfig(data.cheatsheet)
         setInitialConfig(data.cheatsheet)
+      } else {
+        history.push('/home')
       }
     }
     fetchData()

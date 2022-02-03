@@ -72,7 +72,7 @@ function ConfigCheatsheet () {
       dispatch(saveCheatsheet(cs))
       setTimeout(() => {
         history.push(`/cheatsheet/${cs.id}`)
-      }, 3000)
+      }, 2000)
     }
   }
 
@@ -107,6 +107,7 @@ function ConfigCheatsheet () {
           </button>
         </div>
         <Sheet
+          isCreateContent={false}
           cheatsheetConfig={cheatsheetConfig}
           getCheatsheetConfig={getCheatsheetConfig}
         />
