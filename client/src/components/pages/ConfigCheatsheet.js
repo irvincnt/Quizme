@@ -8,7 +8,7 @@ import Breadcrumb from '../ui/Breadcrumb'
 import Sheet from '../sheet/Sheet'
 import Spinner from '../ui/spinner'
 import Controls from '../sheet/Controls'
-import { fetchWithToken } from '../../helpers/fetch'
+import { fetchPromises, fetchWithToken } from '../../helpers/fetch'
 import { saveCheatsheet } from '../../actions/sheet'
 import { sectionsType } from '../../dictionary/baseConfig'
 import { validateCheatsheetConfig } from '../../helpers/validator'
@@ -64,7 +64,7 @@ function ConfigCheatsheet () {
   }
 
   const fetchCreateCheatsheet = async () => {
-    const resp = await promiseCheatsheetCreate()
+    const resp = await fetchPromises('cheatsheet/new', cheatsheetConfig, 'POST')
     const respJson = await resp.json()
     const { ok, data } = respJson
     if (ok) {
@@ -74,22 +74,6 @@ function ConfigCheatsheet () {
         history.push(`/cheatsheet/${cs.id}`)
       }, 3000)
     }
-  }
-
-  const promiseCheatsheetCreate = () => {
-    return new Promise((resolve, reject) => {
-      return fetchWithToken('cheatsheet/new', cheatsheetConfig, 'POST')
-        .then(response => {
-          if (response.ok) {
-            resolve(response)
-          } else {
-            reject(new Error('Error'))
-          }
-        })
-        .catch(error => {
-          reject(new Error(error))
-        })
-    })
   }
 
   const getCheatsheetConfig = (config) => {

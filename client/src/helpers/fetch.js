@@ -40,4 +40,20 @@ const fetchWithToken = (endpoint, data, method = 'GET') => {
   }
 }
 
-export { fetchWithoutToken, fetchWithToken }
+const fetchPromises = (endpoint, data, method) => {
+  return new Promise((resolve, reject) => {
+    return fetchWithToken(endpoint, data, method)
+      .then(response => {
+        if (response.ok) {
+          resolve(response)
+        } else {
+          reject(new Error('Error'))
+        }
+      })
+      .catch(error => {
+        reject(new Error(error))
+      })
+  })
+}
+
+export { fetchWithoutToken, fetchWithToken, fetchPromises }
