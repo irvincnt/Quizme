@@ -12,9 +12,11 @@ const cheatsheetFavorite = async (req, res = response) => {
     cheatsheet.favorite = favorite
     cheatsheet.updated = Date.now()
 
+    const cheatsheetUpdated = await cheatsheet.save()
+
     res.status(200).json({
       ok: true,
-      data: { cheatsheet }
+      data: { cheatsheetUpdated }
     })
   } catch (error) {
     console.log(error)

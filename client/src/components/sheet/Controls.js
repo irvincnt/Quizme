@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-indent */
-import React, { useState } from 'react'
+import React from 'react'
 import CreatableSelect from 'react-select/creatable'
 import { LockKey, LockKeyOpen, Star, Tag, Atom } from 'phosphor-react'
 import Dropdown from '../ui/Dropdown'
@@ -16,12 +16,10 @@ const optionsTags = [
 
 function Controls ({ getCheatsheetConfig, cheatsheetConfig, isEditionMode = true }) {
   const { private: cheatsheetPrivate, section, tags, favorite } = cheatsheetConfig
-  const [favoriteControl, setFavoriteControl] = useState(favorite)
 
   const handlerControls = (controls) => {
     if (controls.key === 'favorite') {
-      setFavoriteControl(!favoriteControl)
-      controls = { key: 'favorite', value: favoriteControl }
+      controls = { key: 'favorite', value: !favorite }
     }
     getCheatsheetConfig(controls)
   }
@@ -123,10 +121,10 @@ function Controls ({ getCheatsheetConfig, cheatsheetConfig, isEditionMode = true
         {
           isEditionMode
             ? <div className='flex' onClick={() => handlerControls({ key: 'favorite' })}>
-              {favoriteControl ? <Star size={22} color='#f9c10b' weight='fill' /> : <Star size={22} />}
+              {favorite ? <Star size={22} color='#f9c10b' weight='fill' /> : <Star size={22} />}
               </div>
             : <div className='flex'>
-              {favoriteControl ? <Star size={22} color='#f9c10b' weight='fill' /> : <Star size={22} />}
+              {favorite ? <Star size={22} color='#f9c10b' weight='fill' /> : <Star size={22} />}
               </div>
         }
       </div>
