@@ -5,13 +5,13 @@ import { PrivateRoute } from './PrivateRouter'
 import { PublicRoute } from './PublicRoute'
 import Login from '../components/auth/Login'
 import Register from '../components/auth/Register'
-import Home from '../components/pages/Home'
 import { startChecking } from '../actions/auth'
 import Navbar from '../components/ui/Navbar'
-import ConfigCheatsheet from '../components/pages/ConfigCheatsheet'
+import Home from '../pages/Home'
+import CheatsheetConfig from '../pages/CheatsheetConfig'
+import CheatsheetContent from '../pages/CheatsheetContent'
+import Cheatsheet from '../pages/Cheatsheet'
 // import ContentSheet from '../components/pages/contentSheet'
-import Cheatsheet from '../components/pages/Cheatsheet'
-import CheatsheetContent from '../components/pages/CheatsheetContent'
 
 export const AppRouter = () => {
   const dispatch = useDispatch()
@@ -37,7 +37,7 @@ export const AppRouter = () => {
         <PublicRoute exact path='/register' component={Register} isAuthenticated={!!id} />
 
         <PrivateRoute exact path='/home' component={Home} isAuthenticated={!!id} />
-        <PrivateRoute exact path='/cheatsheet/config' component={ConfigCheatsheet} isAuthenticated={!!id} />
+        <PrivateRoute exact path='/cheatsheet/config' component={CheatsheetConfig} isAuthenticated={!!id} />
         <PrivateRoute exact path='/cheatsheet/:cheatsheetId' component={Cheatsheet} isAuthenticated={!!id} />
         <PrivateRoute exact path='/cheatsheet/:cheatsheetId/content' component={CheatsheetContent} isAuthenticated={!!id} />
 

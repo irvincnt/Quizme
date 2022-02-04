@@ -1,16 +1,17 @@
 /* eslint-disable react/jsx-indent */
 import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
-import Breadcrumb from '../ui/Breadcrumb'
-import Controls from '../sheet/Controls'
-import Content from '../sheet/Content'
+import Breadcrumb from '../components/ui/Breadcrumb'
+import Controls from '../components/cheatsheet/Controls'
+import Content from '../components/cheatsheet/Content'
 
-import { fetchPromises, fetchWithToken } from '../../helpers/fetch'
-import { sectionsType } from '../../dictionary/baseConfig'
-import '../../styles/pages/cheatsheet.scss'
+import { fetchPromises, fetchWithToken } from '../helpers/fetch'
+import { sectionsType } from '../dictionary/baseConfig'
 import toast, { Toaster } from 'react-hot-toast'
 import { Warning } from 'phosphor-react'
-import { validateCheatsheetConfig } from '../../helpers/validator'
+import { validateCheatsheetConfig } from '../helpers/validator'
+
+import '../styles/pages/cheatsheet.scss'
 
 const breadcrumbContent = [
   {

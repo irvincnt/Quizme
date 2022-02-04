@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { fetchWithToken } from '../../helpers/fetch'
-import PerfilCard from '../ui/Perfil-card'
+import { fetchWithToken } from '../helpers/fetch'
+import PerfilCard from '../components/ui/Perfil-card'
 
-import '../../styles/pages/home.scss'
+import '../styles/pages/home.scss'
 import { Link } from 'react-router-dom'
 
 function Home () {

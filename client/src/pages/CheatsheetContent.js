@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
-import { fetchWithToken } from '../../helpers/fetch'
+import { fetchWithToken } from '../helpers/fetch'
 
 function CheatsheetContent () {
   const history = useHistory()

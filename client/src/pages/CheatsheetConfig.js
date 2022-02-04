@@ -4,17 +4,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import toast, { Toaster } from 'react-hot-toast'
 import { Warning } from 'phosphor-react'
 
-import Breadcrumb from '../ui/Breadcrumb'
-import Content from '../sheet/Content'
-import Spinner from '../ui/spinner'
-import Controls from '../sheet/Controls'
-import { fetchPromises } from '../../helpers/fetch'
-import { saveCheatsheet } from '../../actions/sheet'
-import { sectionsType } from '../../dictionary/baseConfig'
-import { validateCheatsheetConfig } from '../../helpers/validator'
+import Breadcrumb from '../components/ui/Breadcrumb'
+import Content from '../components/cheatsheet/Content'
+import Spinner from '../components/ui/spinner'
+import Controls from '../components/cheatsheet/Controls'
+import { fetchPromises } from '../helpers/fetch'
+import { saveCheatsheet } from '../actions/sheet'
+import { sectionsType } from '../dictionary/baseConfig'
+import { validateCheatsheetConfig } from '../helpers/validator'
 
-import '../../styles/pages/cheatsheet.scss'
-import '../../styles/ui/elements.scss'
+import '../styles/pages/cheatsheet.scss'
+import '../styles/ui/elements.scss'
 
 const breadcrumbContent = [
   {
@@ -26,7 +26,7 @@ const breadcrumbContent = [
   }
 ]
 
-function ConfigCheatsheet () {
+function CheatsheetConfig () {
   const [cheatsheetConfig, setCheatsheetConfig] = useState({
     title: 'Documento sin título',
     description: 'Descripción',
@@ -117,4 +117,4 @@ function ConfigCheatsheet () {
   )
 }
 
-export default ConfigCheatsheet
+export default CheatsheetConfig
