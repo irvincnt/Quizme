@@ -10,14 +10,16 @@ dbConnection()
 app.use(cors())
 app.use(express.json())
 
+const homeRouters = require('./routers/home')
 const authRouters = require('./routers/auth')
 const cheatsheetRouters = require('./routers/cheatsheet')
-const homeRouters = require('./routers/home')
+const sheetRouters = require('./routers/sheet')
 
 const apiRoute = (routeName) => `/api/${routeName}`
 app.use(apiRoute('auth'), authRouters)
-app.use(apiRoute('cheatsheet'), cheatsheetRouters)
 app.use(apiRoute('home'), homeRouters)
+app.use(apiRoute('cheatsheet'), cheatsheetRouters)
+app.use(apiRoute('sheet'), sheetRouters)
 
 const port = process.env.PORT || 9000
 app.listen(port, () => {

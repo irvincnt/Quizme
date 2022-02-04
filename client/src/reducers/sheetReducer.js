@@ -7,6 +7,13 @@ const { configInitial } = baseConfig
 const initialStateNew = {
   cheatsheets: [],
   loadingEvent: false,
+  currentCheatsheetContentSettings: {
+    style: '',
+    type: '',
+    columns: '',
+    color: '',
+    size: ''
+  },
   currentCheatSheet: {
     title: 'Documento sin título',
     description: 'Descripción',

@@ -11,8 +11,6 @@ export const types = {
 
   // cheatsheets
   newChartSheet: '[CheatSheet] New chaetsheet',
-  setChartsheetTitle: '[CheatSheet] Set cheatsheet title',
-  updateCheatsheetDescription: '[CheatSheet] Update cheatsheet description',
   createCheatsheet: '[CheatSheet] Create cheatsheet',
   saveCheatsheet: '[CheatSheet] Save cheatseet created',
   // content cheatsheet
