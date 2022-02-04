@@ -10,7 +10,7 @@ function Sheet ({
   disabledSheet = true,
   isCreateContent = true
 }) {
-  const { title, description } = cheatsheetConfig
+  const { title, description, id } = cheatsheetConfig
 
   const handlerCheatsheetConfig = (config) => {
     getCheatsheetConfig(config)
@@ -53,7 +53,7 @@ function Sheet ({
         />
         <hr className='divider' />
         {!isCreateContent && <span className='instruction'>Podrás agregar contenido después de agregar la configuración y crear el CheatSheet</span>}
-        {isCreateContent && <CreateContent />}
+        {isCreateContent && <CreateContent idCheatsheet={id} />}
       </div>
     </div>
   )

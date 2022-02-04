@@ -54,6 +54,30 @@ export const baseConfig = {
   }
 }
 
+export const initialSheetSetting = {
+  styleOne: {
+    style: 'cardS1',
+    type: 'cardS1C1a',
+    columns: 'cardC1',
+    color: 'orange',
+    size: 'x'
+  },
+  styleTwo: {
+    style: 'cardS2',
+    type: 'cardS2C1a',
+    columns: 'cardC1',
+    color: 'blue',
+    size: 'x'
+  },
+  styleThree: {
+    style: 'cardS3',
+    type: 'cardS3C1a',
+    columns: 'cardC1',
+    color: 'grey',
+    size: 'x'
+  }
+}
+
 export const sectionsType = [
   { value: 'software', label: 'Software', key: 'section' },
   { value: 'programation', label: 'Programación', key: 'section' },

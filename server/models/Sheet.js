@@ -5,7 +5,7 @@ const SheetSchema = Schema({
   favorite: { type: Boolean, default: false },
   config: { type: Object, required: true },
   rows: { type: Array },
-  cheatsheet: { type: Schema.ObjectId, ref: 'Cheatsheet' },
+  cheatsheet: { type: Schema.ObjectId, ref: 'Cheatsheet', required: true },
   created: { type: Date, default: Date.now },
   updated: { type: Date, default: Date.now }
 }, {
