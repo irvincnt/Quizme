@@ -4,52 +4,6 @@ import { types } from '../types/types'
 
 const { configInitial } = baseConfig
 
-const initialState = {
-  sheets: [],
-  loadingEvent: false,
-  currentSheet: {
-    title: 'To write title',
-    description: '',
-    section: {},
-    tags: [],
-    permissions: 'public',
-    config: {
-      columns: 'cardC2',
-      styles: 'cardS2',
-      types: configInitial.cardC2.cardS2,
-      modifiedType: false,
-      colors: 'gray',
-      sizes: 'x'
-    },
-    rows: [
-      {
-        id: Math.floor(Math.random() * Date.now()),
-        columnOne: '',
-        columnTwo: '',
-        columnThree: ''
-      },
-      {
-        id: Math.floor(Math.random() * Date.now()),
-        columnOne: '',
-        columnTwo: '',
-        columnThree: ''
-      },
-      {
-        id: Math.floor(Math.random() * Date.now()),
-        columnOne: '',
-        columnTwo: '',
-        columnThree: ''
-      }
-    ],
-    row: {
-      id: '',
-      columnOne: '',
-      columnTwo: '',
-      columnThree: ''
-    }
-  }
-}
-
 const initialStateNew = {
   cheatsheets: [],
   loadingEvent: false,
@@ -123,22 +77,6 @@ const clearData = {
 export const sheetReducer = (state = initialStateNew, action) => {
   switch (action.type) {
     // CheatSheet
-    case types.setChartsheetTitle:
-      return {
-        ...state,
-        currentCheatSheet: {
-          ...state.currentCheatSheet,
-          title: action.payload
-        }
-      }
-    case types.updateCheatsheetDescription:
-      return {
-        ...state,
-        currentCheatSheet: {
-          ...state.currentCheatSheet,
-          description: action.payload
-        }
-      }
     case types.saveCheatsheet:
       return {
         ...state,
@@ -148,16 +86,16 @@ export const sheetReducer = (state = initialStateNew, action) => {
     case types.updateContentSheet:
       return {
         ...state,
-        currentSheet: {
-          ...state.currentSheet,
-          rows: state.currentSheet.rows.map(item => item.id === action.payload.row ? action.payload.updatedRow : item)
+        currentCheatSheet: {
+          ...state.currentCheatSheet,
+          rows: state.currentCheatSheet.rows.map(item => item.id === action.payload.row ? action.payload.updatedRow : item)
         }
       }
     case types.setConfigSheet:
       return {
         ...state,
-        currentSheet: {
-          ...state.currentSheet,
+        currentCheatSheet: {
+          ...state.currentCheatSheet,
           config: action.payload
         }
       }
@@ -165,26 +103,26 @@ export const sheetReducer = (state = initialStateNew, action) => {
       const idRow = Math.floor(Math.random() * Date.now())
       return {
         ...state,
-        currentSheet: {
-          ...state.currentSheet,
-          rows: [...state.currentSheet.rows, { ...state.currentSheet.row, id: idRow }]
+        currentCheatSheet: {
+          ...state.currentCheatSheet,
+          rows: [...state.currentCheatSheet.rows, { ...state.currentCheatSheet.row, id: idRow }]
         }
       }
     }
     case types.deleteRow:
       return {
         ...state,
-        currentSheet: {
-          ...state.currentSheet,
-          rows: state.currentSheet.rows.filter((item) => action.payload !== item.id)
+        currentCheatSheet: {
+          ...state.currentCheatSheet,
+          rows: state.currentCheatSheet.rows.filter((item) => action.payload !== item.id)
         }
       }
     case types.reOrder:
       return {
         ...state,
-        currentSheet: {
-          ...state.currentSheet,
-          rows: reorder(state.currentSheet.rows, action.payload.sourceIndex, action.payload.destinationIndex)
+        currentCheatSheet: {
+          ...state.currentCheatSheet,
+          rows: reorder(state.currentCheatSheet.rows, action.payload.sourceIndex, action.payload.destinationIndex)
         }
       }
     case types.loadingEvent:
@@ -197,8 +135,8 @@ export const sheetReducer = (state = initialStateNew, action) => {
         loadingEvent: false,
         successEvent: true,
         sheets: [...state.sheets, action.payload],
-        currentSheet: {
-          ...state.currentSheet,
+        currentCheatSheet: {
+          ...state.currentCheatSheet,
           rows: clearData.rows
         }
       }

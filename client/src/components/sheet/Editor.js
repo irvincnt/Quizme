@@ -11,7 +11,7 @@ import '../../styles/ui/elements.scss'
 import '../../styles/pages/designSheet.scss'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { updateContentSheet, addRow, deleteRow, reOrder, setChartsheetTitle } from '../../actions/sheet'
+import { updateContentSheet, addRow, deleteRow, reOrder } from '../../actions/sheet'
 
 export const Editor = () => {
   const dispatch = useDispatch()
@@ -102,7 +102,7 @@ export const Editor = () => {
   }
 
   const handlerChangeTitle = (evt) => {
-    dispatch(setChartsheetTitle(evt.target.value))
+    console.log(evt.target.value)
   }
 
   return (

@@ -4,24 +4,6 @@ import { types } from '../types/types'
 import toast from 'react-hot-toast'
 
 // CheatSheet actions
-export const setChartsheetTitle = (title) => {
-  return (dispatch) => {
-    dispatch({
-      type: types.setChartsheetTitle,
-      payload: title
-    })
-  }
-}
-
-export const updateCheatsheetDescription = (content) => {
-  return (dispatch) => {
-    dispatch({
-      type: types.updateCheatsheetDescription,
-      payload: content
-    })
-  }
-}
-
 export const saveCheatsheet = (data) => (
   {
     type: types.saveCheatsheet,
