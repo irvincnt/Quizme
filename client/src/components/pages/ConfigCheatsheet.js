@@ -5,7 +5,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import { Warning } from 'phosphor-react'
 
 import Breadcrumb from '../ui/Breadcrumb'
-import Sheet from '../sheet/Sheet'
+import Content from '../sheet/Content'
 import Spinner from '../ui/spinner'
 import Controls from '../sheet/Controls'
 import { fetchPromises } from '../../helpers/fetch'
@@ -106,7 +106,7 @@ function ConfigCheatsheet () {
           >{loadingEvent ? <Spinner height={14} width={14} /> : 'Crear cheatsheet'}
           </button>
         </div>
-        <Sheet
+        <Content
           isCreateContent={false}
           cheatsheetConfig={cheatsheetConfig}
           getCheatsheetConfig={getCheatsheetConfig}

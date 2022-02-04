@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import Breadcrumb from '../ui/Breadcrumb'
 import Controls from '../sheet/Controls'
-import Sheet from '../sheet/Sheet'
+import Content from '../sheet/Content'
 
 import { fetchPromises, fetchWithToken } from '../../helpers/fetch'
 import { sectionsType } from '../../dictionary/baseConfig'
@@ -131,7 +131,7 @@ function Cheatsheet () {
                 </div>
           }
         </div>
-        <Sheet
+        <Content
           disabledSheet={isEditionMode}
           cheatsheetConfig={cheatsheetConfig}
           getCheatsheetConfig={getCheatsheetConfig}

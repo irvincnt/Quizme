@@ -4,7 +4,6 @@ const Sheet = require('../../models/Sheet')
 
 const createSheet = async (req, res = response) => {
   const { idCheatsheet, title, favorite, config } = req.body
-  console.log('DATA', idCheatsheet)
   try {
     const cheatsheet = await Cheatsheet.findById(idCheatsheet)
     console.log(cheatsheet)

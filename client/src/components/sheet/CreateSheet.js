@@ -1,18 +1,27 @@
 import React from 'react'
+import toast from 'react-hot-toast'
+import { useHistory } from 'react-router-dom'
 import { initialSheetSetting } from '../../dictionary/baseConfig'
+import { fetchPromises } from '../../helpers/fetch'
 
 import S1 from '../../asset/images/config/card-style1.png'
 import S2 from '../../asset/images/config/card-style2.png'
 import S3 from '../../asset/images/config/card-style3.png'
 
 import '../../styles/cheatsheet/create-content.scss'
-import { fetchPromises } from '../../helpers/fetch'
 
-function CreateContent ({ idCheatsheet }) {
+function CreateSheet ({ idCheatsheet }) {
+  const history = useHistory()
   const createSheet = (initialSetting) => {
-    fetchCreateSheet({
+    const myPromise = fetchCreateSheet({
       idCheatsheet: idCheatsheet,
       config: initialSetting
+    })
+
+    toast.promise(myPromise, {
+      loading: 'Creando contenido',
+      success: 'Contenido creado correctamente',
+      error: 'Error al crear contenido'
     })
   }
 
@@ -23,7 +32,9 @@ function CreateContent ({ idCheatsheet }) {
     const { ok, data } = respJson
 
     if (ok) {
-      console.log('Sheet creado', data)
+      // const {id} = data.sheet
+      console.log('Sheet creado', data.sheet)
+      // history.push(`/cheatsheet/${cs.id}`)
     }
   }
 
@@ -45,4 +56,4 @@ function CreateContent ({ idCheatsheet }) {
   )
 }
 
-export default CreateContent
+export default CreateSheet

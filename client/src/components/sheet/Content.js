@@ -2,9 +2,9 @@ import React from 'react'
 import ContentEditable from '../helpers/ContentEditable'
 
 import '../../styles/pages/cheatsheet.scss'
-import CreateContent from './CreateContent'
+import CreateSheet from './CreateSheet'
 
-function Sheet ({
+function Content ({
   getCheatsheetConfig,
   cheatsheetConfig,
   disabledSheet = true,
@@ -53,10 +53,10 @@ function Sheet ({
         />
         <hr className='divider' />
         {!isCreateContent && <span className='instruction'>Podrás agregar contenido después de agregar la configuración y crear el CheatSheet</span>}
-        {isCreateContent && <CreateContent idCheatsheet={id} />}
+        {isCreateContent && <CreateSheet idCheatsheet={id} />}
       </div>
     </div>
   )
 }
 
-export default Sheet
+export default Content
