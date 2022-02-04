@@ -1,9 +1,10 @@
 const { Schema, model } = require('mongoose')
 
 const SheetSchema = Schema({
-  title: { type: String, required: true },
-  favorite: { type: Boolean, required: true, default: false },
+  title: { type: String },
+  favorite: { type: Boolean, default: false },
   config: { type: Object, required: true },
+  rows: { type: Array },
   cheatsheet: { type: Schema.ObjectId, ref: 'Cheatsheet' },
   created: { type: Date, default: Date.now },
   updated: { type: Date, default: Date.now }

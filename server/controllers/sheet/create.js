@@ -1,19 +1,21 @@
 const { response } = require('express')
 const Cheatsheet = require('../../models/Cheatsheet')
-const Sheet = require('../../models/Cheatsheet')
+const Sheet = require('../../models/Sheet')
 
 const createSheet = async (req, res = response) => {
-  const { id, body } = req
+  const { idCheatsheet, title, favorite, config } = req.body
+  console.log('DATA', idCheatsheet)
   try {
-    const cheatsheet = await Cheatsheet.findById(id)
+    const cheatsheet = await Cheatsheet.findById(idCheatsheet)
+    console.log(cheatsheet)
     if (!cheatsheet) {
       res.status(400).json({ ok: false, data: 'Cheatsheet not found' })
     }
 
     const sheet = await Sheet.create({
-      title: body.title,
-      favorite: body.favorite,
-      config: body.config,
+      title: title,
+      favorite: favorite,
+      config: config,
       cheatsheet: cheatsheet.id,
       created: Date.now()
     })
