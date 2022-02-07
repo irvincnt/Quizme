@@ -32,9 +32,9 @@ function CreateSheet ({ idCheatsheet }) {
     const { ok, data } = respJson
 
     if (ok) {
-      // const {id} = data.sheet
+      const { id: idSheet } = data.sheet
       console.log('Sheet creado', data.sheet)
-      // history.push(`/cheatsheet/${cs.id}`)
+      history.push(`/cheatsheet/${idCheatsheet}/content/${idSheet}`)
     }
   }
 

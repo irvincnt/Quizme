@@ -2,6 +2,7 @@ import React from 'react'
 import ContentEditable from '../helpers/ContentEditable'
 
 import '../../styles/pages/cheatsheet.scss'
+
 import CreateSheet from '../sheet/CreateSheet'
 
 function Content ({
