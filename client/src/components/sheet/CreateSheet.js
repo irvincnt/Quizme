@@ -33,7 +33,6 @@ function CreateSheet ({ idCheatsheet }) {
 
     if (ok) {
       const { id: idSheet } = data.sheet
-      console.log('Sheet creado', data.sheet)
       history.push(`/cheatsheet/${idCheatsheet}/content/${idSheet}`)
     }
   }
