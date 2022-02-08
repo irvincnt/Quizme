@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import Breadcrumb from '../components/ui/Breadcrumb'
 import Controls from '../components/cheatsheet/Controls'
-import Content from '../components/cheatsheet/Content'
+import CheatsheetHeader from '../components/cheatsheet/CheatsheetHeader'
 
 import { fetchPromises, fetchWithToken } from '../helpers/fetch'
 import { sectionsType } from '../dictionary/baseConfig'
@@ -12,6 +12,8 @@ import { Warning } from 'phosphor-react'
 import { validateCheatsheetConfig } from '../helpers/validator'
 
 import '../styles/pages/cheatsheet.scss'
+import Jottings from '../components/cheatsheet/Jottings'
+import CreateJottings from '../components/cheatsheet/CreateJottings'
 
 const breadcrumbContent = [
   {
@@ -132,11 +134,16 @@ function Cheatsheet () {
                 </div>
           }
         </div>
-        <Content
-          disabledSheet={isEditionMode}
-          cheatsheetConfig={cheatsheetConfig}
-          getCheatsheetConfig={getCheatsheetConfig}
-        />
+        <div className='ch'>
+          <CheatsheetHeader
+            disabledSheet={isEditionMode}
+            cheatsheetConfig={cheatsheetConfig}
+            getCheatsheetConfig={getCheatsheetConfig}
+          />
+          <hr className='divider' />
+          <CreateJottings idCheatsheet={cheatsheetId} />
+          <Jottings />
+        </div>
       </div>
       Cheatsheet
       <Toaster />

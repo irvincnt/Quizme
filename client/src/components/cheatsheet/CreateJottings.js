@@ -8,8 +8,6 @@ import S1 from '../../asset/images/config/card-style1.png'
 import S2 from '../../asset/images/config/card-style2.png'
 import S3 from '../../asset/images/config/card-style3.png'
 
-import '../../styles/cheatsheet/create-content.scss'
-
 function CreateSheet ({ idCheatsheet }) {
   const history = useHistory()
   const createSheet = (initialSetting) => {
@@ -38,8 +36,8 @@ function CreateSheet ({ idCheatsheet }) {
   }
 
   return (
-    <div className='create-content'>
-      <p>Crear contenido</p>
+    <div className='create-jottings'>
+      <p>Crea un apunte</p>
       <div className='templates'>
         <div className='item' onClick={() => createSheet(initialSheetSetting.styleOne)}>
           <img src={S1} alt='two column' />

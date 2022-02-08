@@ -5,7 +5,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import { Warning } from 'phosphor-react'
 
 import Breadcrumb from '../components/ui/Breadcrumb'
-import Content from '../components/cheatsheet/Content'
+import CheatsheetHeader from '../components/cheatsheet/CheatsheetHeader'
 import Spinner from '../components/ui/spinner'
 import Controls from '../components/cheatsheet/Controls'
 import { fetchPromises } from '../helpers/fetch'
@@ -106,11 +106,16 @@ function CheatsheetConfig () {
           >{loadingEvent ? <Spinner height={14} width={14} /> : 'Crear cheatsheet'}
           </button>
         </div>
-        <Content
-          isCreateContent={false}
-          cheatsheetConfig={cheatsheetConfig}
-          getCheatsheetConfig={getCheatsheetConfig}
-        />
+        <div className='ch'>
+          <CheatsheetHeader
+            isCreateContent={false}
+            cheatsheetConfig={cheatsheetConfig}
+            getCheatsheetConfig={getCheatsheetConfig}
+          />
+          <hr className='divider' />
+          <span className='instruction'>Podrás agregar contenido después de agregar la configuración y crear el CheatSheet</span>
+
+        </div>
       </div>
       <Toaster />
     </div>
