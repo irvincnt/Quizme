@@ -142,7 +142,7 @@ function Cheatsheet () {
           />
           <hr className='divider' />
           <CreateJottings idCheatsheet={cheatsheetId} />
-          <Jottings />
+          <Jottings cheatsheetId={cheatsheetId} />
         </div>
       </div>
       Cheatsheet
