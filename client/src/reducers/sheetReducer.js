@@ -98,14 +98,6 @@ export const sheetReducer = (state = initialStateNew, action) => {
           rows: state.currentCheatSheet.rows.map(item => item.id === action.payload.row ? action.payload.updatedRow : item)
         }
       }
-    case types.setConfigSheet:
-      return {
-        ...state,
-        currentCheatSheet: {
-          ...state.currentCheatSheet,
-          config: action.payload
-        }
-      }
     case types.addRow: {
       const idRow = Math.floor(Math.random() * Date.now())
       return {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import toast, { Toaster } from 'react-hot-toast'
 import { Warning } from 'phosphor-react'
 
@@ -10,7 +10,6 @@ import CheatsheetHeader from '../components/cheatsheet/CheatsheetHeader'
 import Spinner from '../components/ui/spinner'
 import Controls from '../components/cheatsheet/Controls'
 import { fetchPromises } from '../helpers/fetch'
-import { saveCheatsheet } from '../actions/sheet'
 import { sectionsType } from '../dictionary/baseConfig'
 import { validateCheatsheetConfig } from '../helpers/validator'
 
@@ -36,7 +35,6 @@ function CheatsheetConfig () {
     section: {},
     tags: []
   })
-  const dispatch = useDispatch()
   const history = useHistory()
   const { loadingEvent } = useSelector(state => state.sheet)
 
@@ -70,7 +68,6 @@ function CheatsheetConfig () {
     const { ok, data } = respJson
     if (ok) {
       const { cs } = data
-      dispatch(saveCheatsheet(cs))
       setTimeout(() => {
         history.push(`/cheatsheet/${cs.id}`)
       }, 2000)

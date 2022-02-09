@@ -13,8 +13,8 @@ export const types = {
   newChartSheet: '[CheatSheet] New chaetsheet',
   createCheatsheet: '[CheatSheet] Create cheatsheet',
   saveCheatsheet: '[CheatSheet] Save cheatseet created',
-  // content cheatsheet
-  setConfigCheatSheet: '[ChartSheet] Set config cheatsheet',
+  // jotting cheatsheet
+  addJottingSetting: '[Jotting] Add jotting setting',
   updateContentCheatSheet: '[ChartSheet] update content cheatsheet',
   addRow: '[Sheet] add Row',
   deleteRow: '[Sheet] delete Row',
