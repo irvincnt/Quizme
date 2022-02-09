@@ -14,6 +14,7 @@ import { validateCheatsheetConfig } from '../helpers/validator'
 import '../styles/pages/cheatsheet.scss'
 import Jottings from '../components/cheatsheet/Jottings'
 import CreateJottings from '../components/cheatsheet/CreateJottings'
+import Navbar from '../components/ui/Navbar'
 
 const breadcrumbContent = [
   {
@@ -113,6 +114,8 @@ function Cheatsheet () {
   }
 
   return (
+    <>
+      <Navbar />
     <div className='cheatsheet container-fluid'>
       <div className='head'>
         <h2>Cheatsheet</h2>
@@ -148,6 +151,7 @@ function Cheatsheet () {
       Cheatsheet
       <Toaster />
     </div>
+    </>
   )
 }
 

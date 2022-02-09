@@ -4,6 +4,7 @@ import PerfilCard from '../components/ui/Perfil-card'
 
 import '../styles/pages/home.scss'
 import { Link } from 'react-router-dom'
+import Navbar from '../components/ui/Navbar'
 
 function Home () {
   const [stateHome, setHome] = useState({ ok: false, allCheatSheets: [] })
@@ -19,12 +20,14 @@ function Home () {
   }, [])
 
   return (
-    <div className='container-fluid home'>
-      <h1>Home</h1>
-      <PerfilCard />
-      <hr />
-      <div className='cheatsheet-list'>
-        {
+    <>
+      <Navbar />
+      <div className='container-fluid home'>
+        <h1>Home</h1>
+        <PerfilCard />
+        <hr />
+        <div className='cheatsheet-list'>
+          {
           stateHome.allCheatSheets.map(item => {
             return (
               <Link key={item.id} className='card cheatsheet' to={`/cheatsheet/${item.id}`}>
@@ -35,8 +38,9 @@ function Home () {
             )
           })
         }
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

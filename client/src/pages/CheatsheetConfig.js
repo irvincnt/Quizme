@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import toast, { Toaster } from 'react-hot-toast'
 import { Warning } from 'phosphor-react'
 
+import Navbar from '../components/ui/Navbar'
 import Breadcrumb from '../components/ui/Breadcrumb'
 import CheatsheetHeader from '../components/cheatsheet/CheatsheetHeader'
 import Spinner from '../components/ui/spinner'
@@ -89,36 +90,39 @@ function CheatsheetConfig () {
   }
 
   return (
-    <div className='cheatsheet container-fluid'>
-      <div className='head'>
-        <h2>Configurar cheatsheet</h2>
-        <Breadcrumb content={breadcrumbContent} />
-      </div>
-      <div className='wrapper'>
-        <div className='elements'>
-          <Controls
-            cheatsheetConfig={cheatsheetConfig}
-            getCheatsheetConfig={getCheatsheetConfig}
-          />
-          <button
-            className='btn btn-primary'
-            onClick={handlerCreateCheatsheet}
-          >{loadingEvent ? <Spinner height={14} width={14} /> : 'Crear cheatsheet'}
-          </button>
+    <>
+      <Navbar />
+      <div className='cheatsheet container-fluid'>
+        <div className='head'>
+          <h2>Configurar cheatsheet</h2>
+          <Breadcrumb content={breadcrumbContent} />
         </div>
-        <div className='ch'>
-          <CheatsheetHeader
-            isCreateContent={false}
-            cheatsheetConfig={cheatsheetConfig}
-            getCheatsheetConfig={getCheatsheetConfig}
-          />
-          <hr className='divider' />
-          <span className='instruction'>Podrás agregar contenido después de agregar la configuración y crear el CheatSheet</span>
+        <div className='wrapper'>
+          <div className='elements'>
+            <Controls
+              cheatsheetConfig={cheatsheetConfig}
+              getCheatsheetConfig={getCheatsheetConfig}
+            />
+            <button
+              className='btn btn-primary'
+              onClick={handlerCreateCheatsheet}
+            >{loadingEvent ? <Spinner height={14} width={14} /> : 'Crear cheatsheet'}
+            </button>
+          </div>
+          <div className='ch'>
+            <CheatsheetHeader
+              isCreateContent={false}
+              cheatsheetConfig={cheatsheetConfig}
+              getCheatsheetConfig={getCheatsheetConfig}
+            />
+            <hr className='divider' />
+            <span className='instruction'>Podrás agregar contenido después de agregar la configuración y crear el CheatSheet</span>
 
+          </div>
         </div>
+        <Toaster />
       </div>
-      <Toaster />
-    </div>
+    </>
   )
 }
 

@@ -1,5 +1,37 @@
 @import '../variables.scss';
 
+.jotting {
+  .head {
+    margin: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e3e3e3;
+
+    .setting {
+      display: flex;
+      column-gap: 10px;
+      .item {
+        display: flex;
+        column-gap: 5px;
+        align-items: center;
+        padding: 5px;
+        img {
+          width: 40px;
+        }
+      }
+      .item:hover {
+        background-color: #e3e3e3;;
+        border: none;
+        border-radius: 0.20rem;
+        padding: 5px;
+      }
+    }
+  }
+}
+
+
 .sheet {
   .btn-custom {
     width: 140.9px;
