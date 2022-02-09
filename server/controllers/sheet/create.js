@@ -3,7 +3,7 @@ const Cheatsheet = require('../../models/Cheatsheet')
 const Sheet = require('../../models/Sheet')
 
 const createSheet = async (req, res = response) => {
-  const { idCheatsheet, title, favorite, config } = req.body
+  const { idCheatsheet, title, favorite, settings } = req.body
   try {
     const cheatsheet = await Cheatsheet.findById(idCheatsheet)
     console.log(cheatsheet)
@@ -14,7 +14,7 @@ const createSheet = async (req, res = response) => {
     const sheet = await Sheet.create({
       title: title,
       favorite: favorite,
-      config: config,
+      settings: settings,
       cheatsheet: cheatsheet.id,
       created: Date.now()
     })

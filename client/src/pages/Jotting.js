@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
+import { addSettings } from '../actions/jotting'
 import Setting from '../components/jotting/setting'
 import { fetchWithToken } from '../helpers/fetch'
 
 import '../styles/pages/sheet.scss'
 
 function Jotting () {
+  const dispatch = useDispatch()
   const { cheatsheetId, sheetId } = useParams()
   const history = useHistory()
-  const [cheatsheetConfig, setCheatsheetConfig] = useState({
-    title: 'Documento sin título',
-    description: 'Descripción',
-    favorite: false,
-    private: true,
-    section: {},
-    tags: []
-  })
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,6 +18,8 @@ function Jotting () {
       const body = await resp.json()
       const { data, ok } = body
       if (ok) {
+        const { settings } = data.sheet
+        dispatch(addSettings(settings))
         console.log('SHEET', data)
       } else {
         history.push('/home')

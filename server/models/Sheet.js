@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose')
 const SheetSchema = Schema({
   title: { type: String },
   favorite: { type: Boolean, default: false },
-  config: { type: Object, required: true },
+  settings: { type: Object, required: true },
   rows: { type: Array },
   cheatsheet: { type: Schema.ObjectId, ref: 'Cheatsheet', required: true },
   created: { type: Date, default: Date.now },

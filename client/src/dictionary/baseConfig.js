@@ -56,23 +56,23 @@ export const baseConfig = {
 
 export const initialSheetSetting = {
   styleOne: {
-    style: 'cardS1',
-    type: 'cardS1C1a',
+    design: 'cardS1',
     columns: 'cardC1',
+    columnsType: 'cardS1C1a',
     color: 'orange',
     size: 'x'
   },
   styleTwo: {
-    style: 'cardS2',
-    type: 'cardS2C1a',
+    design: 'cardS2',
     columns: 'cardC1',
+    columnsType: 'cardS2C1a',
     color: 'blue',
     size: 'x'
   },
   styleThree: {
-    style: 'cardS3',
-    type: 'cardS3C1a',
+    design: 'cardS3',
     columns: 'cardC1',
+    columnsType: 'cardS3C1a',
     color: 'grey',
     size: 'x'
   }

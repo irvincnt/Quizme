@@ -13,7 +13,7 @@ function CreateSheet ({ idCheatsheet }) {
   const createSheet = (initialSetting) => {
     const myPromise = fetchCreateSheet({
       idCheatsheet: idCheatsheet,
-      config: initialSetting
+      settings: initialSetting
     })
 
     toast.promise(myPromise, {
