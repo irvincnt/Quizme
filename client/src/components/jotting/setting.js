@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { CaretDown, CaretUp } from 'phosphor-react'
+import { CaretDown, Check } from 'phosphor-react'
 
 import Dropdown from '../ui/Dropdown'
 
@@ -40,10 +40,11 @@ import cardS3C2c from '../../asset/images/config/cardS3/card-s3-2c-c.png'
 import cardS3C3a from '../../asset/images/config/cardS3/card-s3-3c-a.png'
 import cardS3C3b from '../../asset/images/config/cardS3/card-s3-3c-b.png'
 import cardS3C3c from '../../asset/images/config/cardS3/card-s3-3c-c.png'
+import { baseConfig } from '../../dictionary/baseConfig'
 
 const ColumnTypeOne = ({ settings, selectSettings }) => {
   const { columns, design, columnsType } = settings
-
+  console.log('columnsType', columnsType)
   const handlerColumnTypes = (newSettings) => {
     selectSettings(newSettings)
   }
@@ -242,7 +243,7 @@ const ColumnTypeThree = ({ settings, selectSettings }) => {
 function Setting () {
   const dispatch = useDispatch()
   const { currentJotting: { settings } } = useSelector(state => state.jotting)
-  const { design, columns } = settings
+  const { design, columns, color, size } = settings
   function headDropdownStyle () {
     return (
       <div className='item'>
@@ -353,8 +354,27 @@ function Setting () {
 
   function contentDropdownColor () {
     return (
-      <div className=''>
-        Color
+      <div className='colors'>
+        {
+          baseConfig.colors.map((item, i) => {
+            return (
+              item.show.includes(design) &&
+                <div
+                  key={i}
+                  className='color'
+                  onClick={() => handlerSettings({ color: item.color })}
+                >
+                  <Check
+                    size={22}
+                    color='#f7f7f8'
+                    weight='bold'
+                    className={`check ${color === item.color ? 'show' : 'hide'}`}
+                  />
+                  <div className={`circle ${item.color}`} />
+                </div>
+            )
+          })
+        }
       </div>
     )
   }
@@ -374,9 +394,24 @@ function Setting () {
   function contentDropdownSize () {
     return (
       <div className='size'>
-        <img src={OneX} alt='column type' className='isActive' />
-        <img src={TwoX} alt='column type' />
-        <img src={threeX} alt='column type' />
+        <img
+          src={OneX}
+          alt='column type'
+          onClick={() => handlerSettings({ size: 'x' })}
+          className={`${size === 'x' ? 'isActive' : ''}`}
+        />
+        <img
+          src={TwoX}
+          alt='column type'
+          onClick={() => handlerSettings({ size: 'xx' })}
+          className={`${size === 'xx' ? 'isActive' : ''}`}
+        />
+        <img
+          src={threeX}
+          alt='column type'
+          onClick={() => handlerSettings({ size: 'xxx' })}
+          className={`${size === 'xxx' ? 'isActive' : ''}`}
+        />
       </div>
     )
   }
