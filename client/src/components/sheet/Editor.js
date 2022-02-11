@@ -5,10 +5,7 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
 import Dropdown from '../ui/Dropdown'
 
-import '../../styles/pages/sheet.scss'
-import '../../styles/ui/dropdown.scss'
-import '../../styles/ui/elements.scss'
-import '../../styles/pages/designSheet.scss'
+import '../../styles/ui/editor.scss'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { updateContentSheet, addRow, deleteRow, reOrder } from '../../actions/sheet'
@@ -16,14 +13,14 @@ import { updateContentSheet, addRow, deleteRow, reOrder } from '../../actions/sh
 export const Editor = () => {
   const dispatch = useDispatch()
   const {
-    currentSheet: {
+    currentJotting: {
       title,
-      config: {
-        styles, sizes, colors, types, columns
+      settings: {
+        design, size, color, columnsType, columns
       },
       rows
     }
-  } = useSelector(state => state.sheet)
+  } = useSelector(state => state.jotting)
 
   const [designConfig, setDesing] = useState({
     previousKey: null
@@ -106,46 +103,43 @@ export const Editor = () => {
   }
 
   return (
-    <div className='card preview'>
-      <h4 className='title'>Preview</h4>
-      <p className='label'>Ve los cambios en tiempo real</p>
-      <div className='content'>
-        <div className={`design ${styles} ${sizes} ${colors}`}>
-          <div className={`head ${colors}`}>
-            <ContentEditable
+    <div className='editor'>
+      <div className={`design ${design} ${size} ${color}`}>
+        <div className={`head ${color}`}>
+          <ContentEditable
               // className='title'
-              html={title}
-              onChange={handlerChangeTitle}
-              onFocus={highlightAll}
-            />
-          </div>
-          <div className={`body ${colors}`}>
-            <DragDropContext onDragEnd={onDragEnd}>
-              <Droppable droppableId='sheet'>
-                {(droppableProvided) => (
-                  <div
-                    {...droppableProvided.droppableProps}
-                    ref={droppableProvided.innerRef}
-                    className='container'
-                  >
-                    {rows.map((item, i) => (
-                      <Draggable key={`${item.id}`} draggableId={`${item.id}`} index={i}>
-                        {(draggableProvided) => (
-                          <div
-                            key={`${item.id}`}
-                            className={`row ${colors}`}
-                            {...draggableProvided.draggableProps}
-                            ref={draggableProvided.innerRef}
-                          >
-                            <div {...draggableProvided.dragHandleProps}>
-                              <DotsSixVertical size={20} weight='bold' className='drag' />
-                            </div>
-                            <Dropdown
-                              head={<DotsThreeVertical size={16} weight='bold' className='icon-menu' />}
-                              content={contentDropdown(item)}
-                            />
-                            <div className={`container-columns ${types}`}>
-                              {
+            html={title || 'To write...'}
+            onChange={handlerChangeTitle}
+            onFocus={highlightAll}
+          />
+        </div>
+        <div className={`body ${color}`}>
+          <DragDropContext onDragEnd={onDragEnd}>
+            <Droppable droppableId='sheet'>
+              {(droppableProvided) => (
+                <div
+                  {...droppableProvided.droppableProps}
+                  ref={droppableProvided.innerRef}
+                  className='container'
+                >
+                  {rows.map((item, i) => (
+                    <Draggable key={`${item.id}`} draggableId={`${item.id}`} index={i}>
+                      {(draggableProvided) => (
+                        <div
+                          key={`${item.id}`}
+                          className={`row ${color}`}
+                          {...draggableProvided.draggableProps}
+                          ref={draggableProvided.innerRef}
+                        >
+                          <div {...draggableProvided.dragHandleProps}>
+                            <DotsSixVertical size={20} weight='bold' className='drag' />
+                          </div>
+                          <Dropdown
+                            head={<DotsThreeVertical size={16} weight='bold' className='icon-menu' />}
+                            content={contentDropdown(item)}
+                          />
+                          <div className={`container-columns ${columnsType}`}>
+                            {
                                 (columns === 'cardC1' ||
                                 columns === 'cardC2' ||
                                 columns === 'cardC3') &&
@@ -161,7 +155,7 @@ export const Editor = () => {
                                     onKeyDown={handlerOnKeyDown}
                                   />
 }
-                              {(columns === 'cardC2' ||
+                            {(columns === 'cardC2' ||
                                 columns === 'cardC3') &&
                                   <ContentEditable
                                     data-column='columnTwo'
@@ -174,29 +168,28 @@ export const Editor = () => {
                                     onChange={handleContentEditableUpdate}
                                     onKeyDown={handlerOnKeyDown}
                                   />}
-                              {columns === 'cardC3' &&
-                                <ContentEditable
-                                  data-column='columnThree'
-                                  data-row={item.id}
-                                  html={item.columnThree}
-                                  className='cell'
-                                  placeholder='To write...'
-                                  onPaste={pasteAsPlainText}
-                                  onFocus={highlightAll}
-                                  onChange={handleContentEditableUpdate}
-                                  onKeyDown={handlerOnKeyDown}
-                                />}
-                            </div>
+                            {columns === 'cardC3' &&
+                              <ContentEditable
+                                data-column='columnThree'
+                                data-row={item.id}
+                                html={item.columnThree}
+                                className='cell'
+                                placeholder='To write...'
+                                onPaste={pasteAsPlainText}
+                                onFocus={highlightAll}
+                                onChange={handleContentEditableUpdate}
+                                onKeyDown={handlerOnKeyDown}
+                              />}
                           </div>
-                        )}
-                      </Draggable>
-                    ))}
-                    {droppableProvided.placeholder}
-                  </div>
-                )}
-              </Droppable>
-            </DragDropContext>
-          </div>
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {droppableProvided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
         </div>
       </div>
     </div>

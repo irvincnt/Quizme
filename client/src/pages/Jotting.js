@@ -3,9 +3,10 @@ import { useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { addSettings } from '../actions/jotting'
 import Setting from '../components/jotting/setting'
+import { Editor } from '../components/sheet/Editor'
 import { fetchWithToken } from '../helpers/fetch'
 
-import '../styles/pages/sheet.scss'
+import '../styles/pages/jotting.scss'
 
 function Jotting () {
   const dispatch = useDispatch()
@@ -30,11 +31,12 @@ function Jotting () {
 
   return (
     <div className='jotting'>
-      <div className='head'>
+      <div className='jotting-head'>
         <span>icono</span>
         <Setting />
         <div className='actions'>botones</div>
       </div>
+      <Editor />
     </div>
   )
 }
