@@ -15,3 +15,45 @@ export const addSettings = (setting) => {
     })
   }
 }
+
+export const addTitle = (title) => {
+  return ({
+    type: types.addJottingTitle,
+    payload: title
+  })
+}
+
+export const updateContent = (row, updatedRow) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.updateJottingContent,
+      payload: { row, updatedRow }
+    })
+  }
+}
+
+export const addRow = () => {
+  return (dispatch) => {
+    dispatch({
+      type: types.addJottingRow
+    })
+  }
+}
+
+export const deleteRow = (id) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.deleteJottingRow,
+      payload: id
+    })
+  }
+}
+
+export const reOrderRows = (sourceIndex, destinationIndex) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.reOrderJottingRows,
+      payload: { sourceIndex, destinationIndex }
+    })
+  }
+}

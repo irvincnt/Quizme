@@ -44,7 +44,6 @@ import { baseConfig } from '../../dictionary/baseConfig'
 
 const ColumnTypeOne = ({ settings, selectSettings }) => {
   const { columns, design, columnsType } = settings
-  console.log('columnsType', columnsType)
   const handlerColumnTypes = (newSettings) => {
     selectSettings(newSettings)
   }

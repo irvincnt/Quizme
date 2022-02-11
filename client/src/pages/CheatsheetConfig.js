@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 import toast, { Toaster } from 'react-hot-toast'
 import { Warning } from 'phosphor-react'
 
 import Navbar from '../components/ui/Navbar'
 import Breadcrumb from '../components/ui/Breadcrumb'
 import CheatsheetHeader from '../components/cheatsheet/CheatsheetHeader'
-import Spinner from '../components/ui/spinner'
 import Controls from '../components/cheatsheet/Controls'
 import { fetchPromises } from '../helpers/fetch'
 import { sectionsType } from '../dictionary/baseConfig'
@@ -36,7 +34,6 @@ function CheatsheetConfig () {
     tags: []
   })
   const history = useHistory()
-  const { loadingEvent } = useSelector(state => state.sheet)
 
   const handlerCreateCheatsheet = () => {
     const { ok, msg } = validateCheatsheetConfig(cheatsheetConfig)
@@ -103,8 +100,7 @@ function CheatsheetConfig () {
             <button
               className='btn btn-primary'
               onClick={handlerCreateCheatsheet}
-            >{loadingEvent ? <Spinner height={14} width={14} /> : 'Crear cheatsheet'}
-            </button>
+            />
           </div>
           <div className='ch'>
             <CheatsheetHeader

@@ -9,18 +9,11 @@ export const types = {
   messageError: '[Message] Error message',
   hideMessage: '[Message] Hide message',
 
-  // cheatsheets
-  newChartSheet: '[CheatSheet] New chaetsheet',
-  createCheatsheet: '[CheatSheet] Create cheatsheet',
-  saveCheatsheet: '[CheatSheet] Save cheatseet created',
   // jotting cheatsheet
   addJottingSetting: '[Jotting] Add jotting setting',
-  updateContentCheatSheet: '[ChartSheet] update content cheatsheet',
-  addRow: '[Sheet] add Row',
-  deleteRow: '[Sheet] delete Row',
-  reOrder: '[Sheet] reorder Rows',
-  saveSheet: '[Sheet] Created heatsheet',
-  eventReset: '[sheet] Event reset',
-  // Events
-  loadingEvent: '[Sheet] loading event'
+  addJottingTitle: '[Jotting] Add jotting title',
+  updateJottingContent: '[Jotting] Update jotting content',
+  addJottingRow: '[Jotting] Add jotting row',
+  deleteJottingRow: '[Jotting] Delete jotting row',
+  reOrderJottingRows: '[Jotting] reorder jotting rows'
 }

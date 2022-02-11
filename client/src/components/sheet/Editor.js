@@ -8,7 +8,7 @@ import Dropdown from '../ui/Dropdown'
 import '../../styles/ui/editor.scss'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { updateContentSheet, addRow, deleteRow, reOrder } from '../../actions/sheet'
+import { updateContent, addRow, deleteRow, reOrderRows } from '../../actions/jotting'
 
 export const Editor = () => {
   const dispatch = useDispatch()
@@ -26,7 +26,7 @@ export const Editor = () => {
     previousKey: null
   })
 
-  const handleContentEditableUpdate = (event) => {
+  const handleContentUpdate = (event) => {
     const {
       currentTarget: {
         dataset: { row, column }
@@ -37,7 +37,7 @@ export const Editor = () => {
     const updatedRow = rows.filter((item, i) => item.id === parseInt(row))[0]
     updatedRow[column] = value
 
-    dispatch(updateContentSheet(row, updatedRow))
+    dispatch(updateContent(row, updatedRow))
   }
 
   const handlerOnKeyDown = (e) => {
@@ -95,7 +95,7 @@ export const Editor = () => {
       return
     }
 
-    dispatch(reOrder(source.index, destination.index))
+    dispatch(reOrderRows(source.index, destination.index))
   }
 
   const handlerChangeTitle = (evt) => {
@@ -151,7 +151,7 @@ export const Editor = () => {
                                     placeholder='To write...'
                                     onPaste={pasteAsPlainText}
                                     onFocus={highlightAll}
-                                    onChange={handleContentEditableUpdate}
+                                    onChange={handleContentUpdate}
                                     onKeyDown={handlerOnKeyDown}
                                   />
 }
@@ -165,7 +165,7 @@ export const Editor = () => {
                                     placeholder='To write...'
                                     onPaste={pasteAsPlainText}
                                     onFocus={highlightAll}
-                                    onChange={handleContentEditableUpdate}
+                                    onChange={handleContentUpdate}
                                     onKeyDown={handlerOnKeyDown}
                                   />}
                             {columns === 'cardC3' &&
@@ -177,7 +177,7 @@ export const Editor = () => {
                                 placeholder='To write...'
                                 onPaste={pasteAsPlainText}
                                 onFocus={highlightAll}
-                                onChange={handleContentEditableUpdate}
+                                onChange={handleContentUpdate}
                                 onKeyDown={handlerOnKeyDown}
                               />}
                           </div>

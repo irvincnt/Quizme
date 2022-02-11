@@ -2,7 +2,6 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { authReducer } from '../reducers/authReducer'
 import { messageReducer } from '../reducers/messageReducer'
 import thunk from 'redux-thunk'
-import { sheetReducer } from '../reducers/sheetReducer'
 import { jottingReducer } from '../reducers/jottingReducer'
 
 const composeEnhancers =
@@ -13,7 +12,6 @@ const composeEnhancers =
 const reducers = combineReducers({
   auth: authReducer,
   msg: messageReducer,
-  sheet: sheetReducer,
   jotting: jottingReducer
 })
 
