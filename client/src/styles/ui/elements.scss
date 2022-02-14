@@ -208,6 +208,35 @@
   margin: 1rem 0rem;
 }
 
+// Skeleton component
+.skeleton {
+  width: 100%;
+  padding: 0 10px;
+  li {
+    display: block;
+    width: 100%;
+    height: 27px;
+    margin-bottom: 20px;
+    animation: skelecon 1.2s ease-in-out infinite;
+    background-color: #ddd;
+    background-image: linear-gradient(120deg, #ddd, #eee, #ddd);
+    background-size: 200px 100%;
+    background-repeat: no-repeat;
+    &:first-of-type {
+      height: 2.5rem;
+    }
+  }
+}
+
+@keyframes skelecon{
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
+
 // elements
 .flex{
   display: flex;
