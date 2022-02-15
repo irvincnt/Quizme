@@ -10,6 +10,7 @@ export const types = {
   hideMessage: '[Message] Hide message',
 
   // jotting cheatsheet
+  loadInitialContent: '[Jotting] load initial content jotting',
   addJottingSetting: '[Jotting] Add jotting setting',
   addJottingTitle: '[Jotting] Add jotting title',
   updateJottingContent: '[Jotting] Update jotting content',

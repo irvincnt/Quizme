@@ -4,7 +4,7 @@ import { types } from '../types/types'
 const initialState = {
   currentJotting: {
     title: '',
-    // favorite: false
+    favorite: false,
     settings: {
       design: '',
       columns: '',
@@ -35,6 +35,15 @@ const initialState = {
 
 export const jottingReducer = (state = initialState, action) => {
   switch (action.type) {
+    case types.loadInitialContent:
+      return {
+        currentJotting: {
+          title: action.payload.title,
+          favorite: action.payload.favorite,
+          settings: action.payload.settings,
+          rows: action.payload.rows
+        }
+      }
     case types.addJottingSetting:
       return {
         currentJotting: {

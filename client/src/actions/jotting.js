@@ -1,5 +1,17 @@
 import { types } from '../types/types'
 
+export const loadInitialContent = ({ title, favorite, settings, rows }) => {
+  return {
+    type: types.loadInitialContent,
+    payload: {
+      title: title,
+      favorite: favorite,
+      settings: settings,
+      rows: rows
+    }
+  }
+}
+
 export const addSettings = (setting) => {
   // const { columns, styles, modifiedType } = config
   // const { configInitial } = baseConfig
