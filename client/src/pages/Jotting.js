@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useHistory, useParams } from 'react-router-dom'
+import { X } from 'phosphor-react'
+import { Link, useHistory, useParams } from 'react-router-dom'
 import { addSettings, addTitle } from '../actions/jotting'
 import Setting from '../components/jotting/setting'
 import { Editor } from '../components/sheet/Editor'
@@ -8,6 +9,7 @@ import Skeleton from '../components/ui/Skeleton'
 import { fetchWithToken } from '../helpers/fetch'
 
 import '../styles/pages/jotting.scss'
+import logo from '../asset/icons/logo.svg'
 
 function Jotting () {
   const dispatch = useDispatch()
@@ -36,9 +38,14 @@ function Jotting () {
   return (
     <div className='jotting'>
       <div className='jotting-head'>
-        <span>icono</span>
+        <Link to='/home'>
+          <img src={logo} alt='logotipo' />
+        </Link>
         <Setting />
-        <div className='actions'>botones</div>
+        <div className='actions'>
+          <button className='btn btn-primary'>Actualizar</button>
+          <X size={20} weight='bold' />
+        </div>
       </div>
       {!loader && <Editor />}
       {

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import '../../styles/navbar.scss'
-import q from '../../asset/icons/quizme.svg'
+import q from '../../asset/icons/logo.svg'
 import down from '../../asset/icons/down.svg'
 import profile from '../../asset/icons/profile.svg'
 import settings from '../../asset/icons/settings.svg'
@@ -69,7 +69,7 @@ function Navbar () {
     <nav className='nabvar'>
       <div className='wrapper'>
         <Link to='/home'>
-          <img src={q} alt='icono quizme' width='50px' />
+          <img src={q} alt='logotipo' width='50px' />
         </Link>
         <Dropdown
           head={headDropdown()}

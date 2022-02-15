@@ -8,6 +8,13 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #e3e3e3;
+    .actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      column-gap: 20px;
+      cursor: pointer;
+    }
 
     .setting {
       display: flex;
