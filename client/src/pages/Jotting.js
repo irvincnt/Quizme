@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { X } from 'phosphor-react'
 import { Link, useHistory, useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import toast, { Toaster } from 'react-hot-toast'
+import { X } from 'phosphor-react'
+
 import { loadInitialContent } from '../actions/jotting'
 import Setting from '../components/jotting/setting'
 import { Editor } from '../components/sheet/Editor'
@@ -10,7 +12,6 @@ import { fetchPromises, fetchWithToken } from '../helpers/fetch'
 
 import '../styles/pages/jotting.scss'
 import logo from '../asset/icons/logo.svg'
-import toast, { Toaster } from 'react-hot-toast'
 
 function Jotting () {
   const dispatch = useDispatch()
@@ -69,7 +70,9 @@ function Jotting () {
           >
             Actualizar
           </button>
-          <X size={20} weight='bold' />
+          <Link to={`/cheatsheet/${cheatsheetId}`}>
+            <X size={20} weight='bold' />
+          </Link>
         </div>
       </div>
       {!loader && <Editor />}

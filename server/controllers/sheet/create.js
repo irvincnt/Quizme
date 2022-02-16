@@ -3,10 +3,10 @@ const Cheatsheet = require('../../models/Cheatsheet')
 const Sheet = require('../../models/Sheet')
 
 const createSheet = async (req, res = response) => {
-  const { idCheatsheet, title, favorite, settings } = req.body
+  const { idCheatsheet, title, favorite, settings, rows } = req.body
   try {
     const cheatsheet = await Cheatsheet.findById(idCheatsheet)
-    console.log(cheatsheet)
+
     if (!cheatsheet) {
       res.status(400).json({ ok: false, data: 'Cheatsheet not found' })
     }
@@ -15,6 +15,7 @@ const createSheet = async (req, res = response) => {
       title: title,
       favorite: favorite,
       settings: settings,
+      rows: rows,
       cheatsheet: cheatsheet.id,
       created: Date.now()
     })

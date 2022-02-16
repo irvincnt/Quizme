@@ -54,27 +54,69 @@ export const baseConfig = {
   }
 }
 
-export const initialSheetSetting = {
+export const initialJottingSetting = {
   styleOne: {
-    design: 'cardS1',
-    columns: 'cardC1',
-    columnsType: 'cardS1C1a',
-    color: 'orange',
-    size: 'x'
+    settings: {
+      design: 'cardS1',
+      columns: 'cardC1',
+      columnsType: 'cardS1C1a',
+      color: 'orange',
+      size: 'x'
+    },
+    rows: [{
+      id: Math.floor(Math.random() * Date.now()),
+      columnOne: ''
+    },
+    {
+      id: Math.floor(Math.random() * Date.now()),
+      columnOne: ''
+    },
+    {
+      id: Math.floor(Math.random() * Date.now()),
+      columnOne: ''
+    }]
   },
   styleTwo: {
-    design: 'cardS2',
-    columns: 'cardC1',
-    columnsType: 'cardS2C1a',
-    color: 'blue',
-    size: 'x'
+    settings: {
+      design: 'cardS2',
+      columns: 'cardC1',
+      columnsType: 'cardS2C1a',
+      color: 'blue',
+      size: 'x'
+    },
+    rows: [{
+      id: Math.floor(Math.random() * Date.now()),
+      columnOne: ''
+    },
+    {
+      id: Math.floor(Math.random() * Date.now()),
+      columnOne: ''
+    },
+    {
+      id: Math.floor(Math.random() * Date.now()),
+      columnOne: ''
+    }]
   },
   styleThree: {
-    design: 'cardS3',
-    columns: 'cardC1',
-    columnsType: 'cardS3C1a',
-    color: 'grey',
-    size: 'x'
+    settings: {
+      design: 'cardS3',
+      columns: 'cardC1',
+      columnsType: 'cardS3C1a',
+      color: 'grey',
+      size: 'x'
+    },
+    rows: [{
+      id: Math.floor(Math.random() * Date.now()),
+      columnOne: ''
+    },
+    {
+      id: Math.floor(Math.random() * Date.now()),
+      columnOne: ''
+    },
+    {
+      id: Math.floor(Math.random() * Date.now()),
+      columnOne: ''
+    }]
   }
 }
 
