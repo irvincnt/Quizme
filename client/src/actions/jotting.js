@@ -35,6 +35,13 @@ export const addTitle = (title) => {
   })
 }
 
+export const updateColumnsAndRows = ({ columns, rows }) => {
+  return ({
+    type: types.updateColumnsByRow,
+    payload: { columns, rows }
+  })
+}
+
 export const updateContent = (row, updatedRow) => {
   return (dispatch) => {
     dispatch({

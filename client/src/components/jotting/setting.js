@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CaretDown, Check } from 'phosphor-react'
 
+import { addSettings, updateColumnsAndRows } from '../../actions/jotting'
 import Dropdown from '../ui/Dropdown'
 
 import cardS1 from '../../asset/images/config/card-style1.png'
@@ -23,7 +24,6 @@ import cardS1C2c from '../../asset/images/config/cardS4/card-s4-2c-c.png'
 import cardS1C3a from '../../asset/images/config/cardS4/card-s4-3c-a.png'
 import cardS1C3b from '../../asset/images/config/cardS4/card-s4-3c-b.png'
 import cardS1C3c from '../../asset/images/config/cardS4/card-s4-3c-c.png'
-import { addSettings } from '../../actions/jotting'
 
 import cardS2C1a from '../../asset/images/config/cardS2/card-s2.png'
 import cardS2C2a from '../../asset/images/config/cardS2/card-s2-2c-a.png'
@@ -241,7 +241,7 @@ const ColumnTypeThree = ({ settings, selectSettings }) => {
 
 function Setting () {
   const dispatch = useDispatch()
-  const { currentJotting: { settings } } = useSelector(state => state.jotting)
+  const { currentJotting: { settings, rows } } = useSelector(state => state.jotting)
   const { design, columns, color, size } = settings
   function headDropdownStyle () {
     return (
@@ -298,19 +298,19 @@ function Setting () {
         <img
           src={cardC1}
           alt='column type'
-          onClick={() => handlerSettings({ columns: 'cardC1' })}
+          onClick={() => handlerSettingsColumns('cardC1')}
           className={`${columns === 'cardC1' ? 'isActive' : ''}`}
         />
         <img
           src={cardC2}
           alt='column type'
-          onClick={() => handlerSettings({ columns: 'cardC2' })}
+          onClick={() => handlerSettingsColumns('cardC2')}
           className={`${columns === 'cardC2' ? 'isActive' : ''}`}
         />
         <img
           src={cardC3}
           alt='column type'
-          onClick={() => handlerSettings({ columns: 'cardC3' })}
+          onClick={() => handlerSettingsColumns('cardC3')}
           className={`${columns === 'cardC3' ? 'isActive' : ''}`}
         />
       </div>
@@ -416,8 +416,37 @@ function Setting () {
   }
 
   const handlerSettings = (newSetting) => {
-    console.log('NEW SETTING', { ...settings, ...newSetting })
     dispatch(addSettings({ ...settings, ...newSetting }))
+  }
+
+  const handlerSettingsColumns = (columnsSetting) => {
+    const data = rows.map(row => {
+      const { id, columnOne, columnTwo, columnThree } = row
+      let rowContent = {}
+      if (columnsSetting === 'cardC1') {
+        rowContent = {
+          id, columnOne: columnOne
+        }
+      }
+      if (columnsSetting === 'cardC2') {
+        rowContent = {
+          id,
+          columnOne: columnOne || '',
+          columnTwo: columnTwo || ''
+        }
+      }
+      if (columnsSetting === 'cardC3') {
+        rowContent = {
+          id,
+          columnOne: columnOne || '',
+          columnTwo: columnTwo || '',
+          columnThree: columnThree || ''
+        }
+      }
+      return rowContent
+    })
+
+    dispatch(updateColumnsAndRows({ columns: columnsSetting, rows: [...data] }))
   }
 
   return (

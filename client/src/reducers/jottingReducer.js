@@ -14,21 +14,15 @@ const initialState = {
     },
     rows: [{
       id: Math.floor(Math.random() * Date.now()),
-      columnOne: '',
-      columnTwo: '',
-      columnThree: ''
+      columnOne: ''
     },
     {
       id: Math.floor(Math.random() * Date.now()),
-      columnOne: '',
-      columnTwo: '',
-      columnThree: ''
+      columnOne: ''
     },
     {
       id: Math.floor(Math.random() * Date.now()),
-      columnOne: '',
-      columnTwo: '',
-      columnThree: ''
+      columnOne: ''
     }]
   }
 }
@@ -65,7 +59,18 @@ export const jottingReducer = (state = initialState, action) => {
           rows: state.currentJotting.rows.map(item => item.id === action.payload.row ? action.payload.updatedRow : item)
         }
       }
-    case types.addJottingRow:
+    case types.updateColumnsByRow:
+      return {
+        currentJotting: {
+          ...state.currentJotting,
+          rows: action.payload.rows,
+          settings: {
+            ...state.currentJotting.settings,
+            columns: action.payload.columns
+          }
+        }
+      }
+    case types.addJottingRow: // update content row Irvin
       return {
         currentJotting: {
           ...state.currentJotting,

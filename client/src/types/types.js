@@ -15,6 +15,7 @@ export const types = {
   addJottingTitle: '[Jotting] Add jotting title',
   updateJottingContent: '[Jotting] Update jotting content',
   addJottingRow: '[Jotting] Add jotting row',
+  updateColumnsByRow: '[Jotting] update columns by row',
   deleteJottingRow: '[Jotting] Delete jotting row',
   reOrderJottingRows: '[Jotting] reorder jotting rows'
 }

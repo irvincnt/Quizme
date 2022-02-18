@@ -3,7 +3,7 @@ import '../../styles/ui/elements.scss'
 
 function Skeleton () {
   return (
-    <ul class='skeleton'>
+    <ul className='skeleton'>
       <li />
       <li />
       <li />
