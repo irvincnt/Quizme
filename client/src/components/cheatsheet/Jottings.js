@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { fetchWithToken } from '../../helpers/fetch'
+import { fetchPromises, fetchWithToken } from '../../helpers/fetch'
 
 function Jottings ({ cheatsheetId }) {
   const [allJottings, setAllJottings] = useState([])
+  const [recharge, setRecharge] = useState(false)
+
   useEffect(() => {
     const fetchData = async () => {
       const resp = await fetchWithToken(`cheatsheet/${cheatsheetId}/sheets`)
       const body = await resp.json()
       const { data, ok } = body
       if (ok) {
-        console.log(data)
         setAllJottings(data.sheets)
       }
     }
     fetchData()
-  }, [cheatsheetId])
+  }, [cheatsheetId, recharge])
+
+  const fetchDeleteSheet = async (uid) => {
+    const resp = await fetchPromises('sheet/delete', { uid }, 'DELETE')
+    const respJson = await resp.json()
+    if(respJson.ok) setRecharge(!recharge)
+  }
 
   return (
     <div className='jottings'>
@@ -23,11 +30,14 @@ function Jottings ({ cheatsheetId }) {
         {
           allJottings.map(item => {
             return (
-              <Link key={item.id} className='card' to={`/cheatsheet/${item.cheatsheet}/content/${item.id}`}>
-                <span>{item.title || 'sin título'}</span>
+              <div key={item.id} className='card'>
+                <Link to={`/cheatsheet/${item.cheatsheet}/content/${item.id}`}>
+                  <span>{item.title || 'sin título'}</span>
+                </Link>
                 <p>{item.created}</p>
                 <p>{item.updated}</p>
-              </Link>
+                <p onClick={() => fetchDeleteSheet(item.id)}>Eliminar</p>
+              </div>
             )
           })
         }
