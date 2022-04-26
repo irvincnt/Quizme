@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { fetchPromises, fetchWithToken } from '../../helpers/fetch'
+import Modal from '../ui/Modal'
 
 function Jottings ({ cheatsheetId }) {
+  const modal = useRef(null)
   const [allJottings, setAllJottings] = useState([])
   const [recharge, setRecharge] = useState(false)
 
@@ -36,13 +38,33 @@ function Jottings ({ cheatsheetId }) {
                 </Link>
                 <p>{item.created}</p>
                 <p>{item.updated}</p>
-                <p onClick={() => fetchDeleteSheet(item.id)}>Eliminar</p>
+                <ItemModal item={item} fetchDeleteSheet={fetchDeleteSheet}/>
               </div>
             )
           })
         }
+        
       </div>
     </div>
+  )
+}
+
+function ItemModal ({item, fetchDeleteSheet }) {
+  const modal = useRef()
+  return (
+    <>
+      <p onClick={() => modal.current.open()}>Eliminar</p>
+      <Modal ref={modal}>
+        <>
+          <p>{`¿Estás seguro de eliminar el apunte ${item.title}?`}</p>
+          <div className='flex justify-content-between'>
+            <button className='btn' onClick={() => modal.current.close()}>Cancelar</button>
+            <button className='btn btn-primary' onClick={() => fetchDeleteSheet(item.id)}>Eliminar apunte</button>
+          </div>
+        </>
+      </Modal>
+      
+    </>
   )
 }
 
