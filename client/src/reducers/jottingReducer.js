@@ -45,7 +45,7 @@ export const jottingReducer = (state = initialState, action) => {
           settings: action.payload
         }
       }
-    case types.addJottingTitle:
+    case types.updateJottingTitle:
       return {
         currentJotting: {
           ...state.currentJotting,

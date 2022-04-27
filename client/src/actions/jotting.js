@@ -28,9 +28,9 @@ export const addSettings = (setting) => {
   }
 }
 
-export const addTitle = (title) => {
+export const updateTitle = (title) => {
   return ({
-    type: types.addJottingTitle,
+    type: types.updateJottingTitle,
     payload: title
   })
 }

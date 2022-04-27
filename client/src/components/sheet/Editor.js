@@ -8,7 +8,7 @@ import Dropdown from '../ui/Dropdown'
 import '../../styles/ui/editor.scss'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { updateContent, addRow, deleteRow, reOrderRows } from '../../actions/jotting'
+import { updateContent, addRow, deleteRow, reOrderRows, updateTitle } from '../../actions/jotting'
 
 export const Editor = () => {
   const dispatch = useDispatch()
@@ -99,7 +99,7 @@ export const Editor = () => {
   }
 
   const handlerChangeTitle = (evt) => {
-    console.log(evt.target.value)
+    dispatch(updateTitle(evt.target.value))
   }
 
   return (

@@ -12,7 +12,7 @@ export const types = {
   // jotting cheatsheet
   loadInitialContent: '[Jotting] load initial content jotting',
   addJottingSetting: '[Jotting] Add jotting setting',
-  addJottingTitle: '[Jotting] Add jotting title',
+  updateJottingTitle: '[Jotting] Update jotting title',
   updateJottingContent: '[Jotting] Update jotting content',
   addJottingRow: '[Jotting] Add jotting row',
   updateColumnsByRow: '[Jotting] update columns by row',
