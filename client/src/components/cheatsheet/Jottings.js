@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { fetchPromises, fetchWithToken } from '../../helpers/fetch'
 import Modal from '../ui/Modal'
 
+import '../../styles/ui/editor.scss'
+
 function Jottings ({ cheatsheetId }) {
   const modal = useRef(null)
   const [allJottings, setAllJottings] = useState([])
@@ -30,16 +32,49 @@ function Jottings ({ cheatsheetId }) {
     <div className='jottings'>
       <div className='list'>
         {
-          allJottings.map(item => {
+          allJottings.map(jutting => {
+            const {
+              rows,
+              settings: { design, size, color, columnsType, columns}
+            } = jutting
             return (
-              <div key={item.id} className='card'>
-                <Link to={`/cheatsheet/${item.cheatsheet}/content/${item.id}`}>
-                  <span>{item.title || 'sin título'}</span>
-                </Link>
-                <p>{item.created}</p>
-                <p>{item.updated}</p>
-                <ItemModal item={item} fetchDeleteSheet={fetchDeleteSheet}/>
+              <div className='jutting' key={jutting.id}>
+                <div className={`design ${design} ${size} ${color}`}>
+                  <div className={`head ${color}`}>
+                    <Link to={`/cheatsheet/${jutting.cheatsheet}/content/${jutting.id}`}>
+                    <span>{jutting.title || 'sin título'}</span>
+                    </Link>
+                  </div>
+                  <div className={`body ${color}`}>
+                    {rows.map(row => {
+                      return (
+                        <div key={row.id} className={`row ${color}`}>
+                          <div className={`container-columns ${columnsType}`}>
+                            {
+                              (columns === 'cardC1' ||
+                              columns === 'cardC2' ||
+                              columns === 'cardC3') &&
+                                <span className='cell' >{row.columnOne}</span>
+                            }
+
+                            {
+                              (columns === 'cardC2' ||
+                              columns === 'cardC3') &&
+                                <span className='cell' >{row.columnTwo}</span>
+                            }
+
+                            {
+                              (columns === 'cardC3') &&
+                                <span className='cell' >{row.columnThree}</span>
+                            }
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
               </div>
+              //   {/* <ItemModal jutting={jutting} fetchDeleteSheet={fetchDeleteSheet}/> */}
             )
           })
         }
@@ -49,17 +84,17 @@ function Jottings ({ cheatsheetId }) {
   )
 }
 
-function ItemModal ({item, fetchDeleteSheet }) {
+function ItemModal ({jutting, fetchDeleteSheet }) {
   const modal = useRef()
   return (
     <>
       <p onClick={() => modal.current.open()}>Eliminar</p>
       <Modal ref={modal}>
         <>
-          <p>{`¿Estás seguro de eliminar el apunte ${item.title}?`}</p>
+          <p>{`¿Estás seguro de eliminar el apunte ${jutting.title}?`}</p>
           <div className='flex justify-content-between'>
             <button className='btn' onClick={() => modal.current.close()}>Cancelar</button>
-            <button className='btn btn-primary' onClick={() => fetchDeleteSheet(item.id)}>Eliminar apunte</button>
+            <button className='btn btn-primary' onClick={() => fetchDeleteSheet(jutting.id)}>Eliminar apunte</button>
           </div>
         </>
       </Modal>

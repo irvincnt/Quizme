@@ -155,12 +155,24 @@ export const Editor = () => {
                                     onKeyDown={handlerOnKeyDown}
                                   />
 }
-                            {(columns === 'cardC2' ||
-                                columns === 'cardC3') &&
+                                {(columns === 'cardC2' ||
+                                    columns === 'cardC3') &&
+                                      <ContentEditable
+                                        data-column='columnTwo'
+                                        data-row={item.id}
+                                        html={item.columnTwo}
+                                        className='cell'
+                                        placeholder='To write...'
+                                        onPaste={pasteAsPlainText}
+                                        onFocus={highlightAll}
+                                        onChange={handleContentUpdate}
+                                        onKeyDown={handlerOnKeyDown}
+                                      />}
+                                {columns === 'cardC3' &&
                                   <ContentEditable
-                                    data-column='columnTwo'
+                                    data-column='columnThree'
                                     data-row={item.id}
-                                    html={item.columnTwo}
+                                    html={item.columnThree}
                                     className='cell'
                                     placeholder='To write...'
                                     onPaste={pasteAsPlainText}
@@ -168,18 +180,6 @@ export const Editor = () => {
                                     onChange={handleContentUpdate}
                                     onKeyDown={handlerOnKeyDown}
                                   />}
-                            {columns === 'cardC3' &&
-                              <ContentEditable
-                                data-column='columnThree'
-                                data-row={item.id}
-                                html={item.columnThree}
-                                className='cell'
-                                placeholder='To write...'
-                                onPaste={pasteAsPlainText}
-                                onFocus={highlightAll}
-                                onChange={handleContentUpdate}
-                                onKeyDown={handlerOnKeyDown}
-                              />}
                           </div>
                         </div>
                       )}

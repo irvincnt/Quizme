@@ -15,6 +15,7 @@ import '../styles/pages/cheatsheet.scss'
 import Jottings from '../components/cheatsheet/Jottings'
 import CreateJottings from '../components/cheatsheet/CreateJottings'
 import Navbar from '../components/ui/Navbar'
+import { useSelector } from 'react-redux'
 
 const breadcrumbContent = [
   {
@@ -27,6 +28,7 @@ const breadcrumbContent = [
 ]
 
 function Cheatsheet () {
+  const { id: authUserId } = useSelector(state => state.auth)
   const { cheatsheetId } = useParams()
   const history = useHistory()
   const [isEditionMode, setIsEditionMode] = useState(false)
@@ -102,7 +104,6 @@ function Cheatsheet () {
   }
 
   const fetchUpdateCheatsheet = async () => {
-
     const resp = await fetchPromises('cheatsheet/update', cheatsheetConfig, 'PUT')
     const respJson = await resp.json()
     const { ok, data } = respJson
@@ -113,7 +114,6 @@ function Cheatsheet () {
       handlerEditCheatsheet(!isEditionMode)
     }
   }
-
   return (
     <>
       <Navbar />
@@ -123,7 +123,7 @@ function Cheatsheet () {
         <Breadcrumb content={breadcrumbContent} />
       </div>
       <div className='wrapper'>
-        <div className='elements'>
+        {authUserId === cheatsheetConfig.author && <div className='elements'>
           <Controls
             isEditionMode={isEditionMode}
             cheatsheetConfig={cheatsheetConfig}
@@ -137,7 +137,7 @@ function Cheatsheet () {
                 <button className='btn' onClick={handlerEditCheatsheet}>Cancelar</button>
                 </div>
           }
-        </div>
+        </div>}
         <div className='ch'>
           <CheatsheetHeader
             disabledSheet={isEditionMode}
@@ -145,7 +145,7 @@ function Cheatsheet () {
             getCheatsheetConfig={getCheatsheetConfig}
           />
           <hr className='divider' />
-          <CreateJottings idCheatsheet={cheatsheetId} />
+          {authUserId === cheatsheetConfig.author && <CreateJottings idCheatsheet={cheatsheetId} />}
           <Jottings cheatsheetId={cheatsheetId} />
         </div>
       </div>

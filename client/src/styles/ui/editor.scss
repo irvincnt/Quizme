@@ -1,6 +1,7 @@
 
 @import '../variables.scss';
-.editor {
+.editor, .jutting {
+  // display: flex;
   .design {
     border-radius: 2px;
     margin: 0 auto;
