@@ -102,6 +102,7 @@ function Cheatsheet () {
   }
 
   const fetchUpdateCheatsheet = async () => {
+
     const resp = await fetchPromises('cheatsheet/update', cheatsheetConfig, 'PUT')
     const respJson = await resp.json()
     const { ok, data } = respJson

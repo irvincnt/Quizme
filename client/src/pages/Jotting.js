@@ -29,7 +29,6 @@ function Jotting () {
         const { settings, title, favorite, rows } = data.sheet
         setloader(false)
         dispatch(loadInitialContent({ title, favorite, settings, rows }))
-        console.log('SHEET', data)
       } else {
         history.push('/home')
       }

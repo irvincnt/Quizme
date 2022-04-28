@@ -2,7 +2,7 @@ const { response } = require('express')
 const Cheatsheet = require('../../models/Cheatsheet')
 
 const updateCheatsheet = async (req, res = response) => {
-  const { id, favorite, tags, title, description, section } = req.body
+  const { id, favorite, private, tags, title, description, section } = req.body
 
   try {
     const cheatsheet = await Cheatsheet.findById(id)
@@ -14,6 +14,7 @@ const updateCheatsheet = async (req, res = response) => {
     cheatsheet.tags = tags
     cheatsheet.favorite = favorite
     cheatsheet.section = section
+    cheatsheet.private = private
     cheatsheet.updated = Date.now()
 
     const cheatsheetUpdated = await cheatsheet.save()

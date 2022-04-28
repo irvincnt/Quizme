@@ -14,7 +14,6 @@ const loginUser = async (req, res = response) => {
 
     // validate password
     const validPassword = bcrypt.compareSync(password, user.password)
-    console.log(validPassword)
     if (!validPassword) { return res.status(400).json({ ok: false, msg: 'Password invalid' }) }
 
     // generate token with JWT
