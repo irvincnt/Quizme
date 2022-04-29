@@ -3,6 +3,7 @@ import { types } from '../types/types'
 
 const initialState = {
   currentJotting: {
+    author: '',
     title: '',
     favorite: false,
     settings: {

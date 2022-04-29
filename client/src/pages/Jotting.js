@@ -36,6 +36,21 @@ function Jotting () {
     fetchData()
   }, [cheatsheetId, sheetId])
 
+  useEffect(() => { //Run on unmount
+    return () => {
+      dispatch(loadInitialContent(
+        { 
+          author: '', 
+          title: '',
+          favorite: false,
+          settings: {},
+          rows: []
+        }
+      ))
+    }
+  }, [])
+  
+
   const handlerUpdate = () => {
     const myPromise = fetchUpdateJotting({ id: sheetId, ...currentJotting })
 
