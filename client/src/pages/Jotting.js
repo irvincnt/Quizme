@@ -15,7 +15,7 @@ import logo from '../asset/icons/logo.svg'
 
 function Jotting () {
   const dispatch = useDispatch()
-  const { currentJotting } = useSelector(state => state.jotting)
+  const { jotting: { currentJotting }, auth: {id: authUserId} } = useSelector(state => state)
   const [loader, setloader] = useState(true)
   const { cheatsheetId, sheetId } = useParams()
   const history = useHistory()
@@ -26,9 +26,9 @@ function Jotting () {
       const body = await resp.json()
       const { data, ok } = body
       if (ok) {
-        const { settings, title, favorite, rows } = data.sheet
+        const { settings, title, favorite, rows, cheatsheet: {author} } = data.sheet
         setloader(false)
-        dispatch(loadInitialContent({ title, favorite, settings, rows }))
+        dispatch(loadInitialContent({ author, title, favorite, settings, rows }))
       } else {
         history.push('/home')
       }
@@ -61,14 +61,14 @@ function Jotting () {
         <Link to='/home'>
           <img src={logo} alt='logotipo' />
         </Link>
-        <Setting />
+        {authUserId === currentJotting.author && <Setting />}
         <div className='actions'>
-          <button
+        {authUserId === currentJotting.author && <button
             className='btn btn-primary'
             onClick={handlerUpdate}
           >
             Actualizar
-          </button>
+          </button>}
           <Link to={`/cheatsheet/${cheatsheetId}`}>
             <X size={20} weight='bold' />
           </Link>

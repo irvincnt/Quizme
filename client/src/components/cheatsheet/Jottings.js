@@ -38,7 +38,7 @@ function Jottings ({ cheatsheetId }) {
               settings: { design, size, color, columnsType, columns}
             } = jutting
             return (
-              <div className='jutting' key={jutting.id}>
+              <div className='jutting ' key={jutting.id}>
                 <div className={`design ${design} ${size} ${color}`}>
                   <div className={`head ${color}`}>
                     <Link to={`/cheatsheet/${jutting.cheatsheet}/content/${jutting.id}`}>

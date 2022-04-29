@@ -123,11 +123,13 @@
       }
       .jottings {
         .list{
-          display: flex;
-          flex-wrap: wrap;
-          gap: 12px;
-        }
+          column-count: 3;
+          > * {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+          }
 
+        }
       }
     }
   }

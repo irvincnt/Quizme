@@ -5,7 +5,7 @@ const getSheet = async (req, res = response) => {
   const { params: { uid } } = req
 
   try {
-    const sheet = await Sheet.findById(uid)
+    const sheet = await Sheet.findById(uid).populate('cheatsheet', 'author')
     if (!sheet) {
       res.status(400).json({ ok: false, data: 'Sheet not found' })
     }

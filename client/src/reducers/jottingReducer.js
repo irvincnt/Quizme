@@ -32,6 +32,7 @@ export const jottingReducer = (state = initialState, action) => {
     case types.loadInitialContent:
       return {
         currentJotting: {
+          author: action.payload.author,
           title: action.payload.title,
           favorite: action.payload.favorite,
           settings: action.payload.settings,

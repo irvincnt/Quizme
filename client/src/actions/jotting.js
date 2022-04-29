@@ -1,9 +1,10 @@
 import { types } from '../types/types'
 
-export const loadInitialContent = ({ title, favorite, settings, rows }) => {
+export const loadInitialContent = ({ author, title, favorite, settings, rows }) => {
   return {
     type: types.loadInitialContent,
     payload: {
+      author: author,
       title: title,
       favorite: favorite,
       settings: settings,
