@@ -1,7 +1,7 @@
 const { response } = require('express')
 const Sheet = require('../../models/Sheet')
 
-const getSheet = async (req, res = response) => {
+const getJotting = async (req, res = response) => {
   const { params: { uid } } = req
 
   try {
@@ -23,4 +23,4 @@ const getSheet = async (req, res = response) => {
   }
 }
 
-module.exports = getSheet
+module.exports = getJotting

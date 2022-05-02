@@ -1,7 +1,7 @@
 const { response } = require('express')
 const Sheet = require('../../models/Sheet')
 
-const deleteSheet = async (req, res = response) => {
+const deleteJotting = async (req, res = response) => {
   const { uid } = req.body
 
   try {
@@ -22,4 +22,4 @@ const deleteSheet = async (req, res = response) => {
   }
 }
 
-module.exports = deleteSheet
+module.exports = deleteJotting

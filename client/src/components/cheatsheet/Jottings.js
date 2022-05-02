@@ -12,7 +12,7 @@ function Jottings ({ cheatsheetId }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const resp = await fetchWithToken(`cheatsheet/${cheatsheetId}/sheets`)
+      const resp = await fetchWithToken(`cheatsheet/${cheatsheetId}/jottings`)
       const body = await resp.json()
       const { data, ok } = body
       if (ok) {

@@ -2,7 +2,7 @@ const { response } = require('express')
 const Cheatsheet = require('../../models/Cheatsheet')
 const Sheet = require('../../models/Sheet')
 
-const createSheet = async (req, res = response) => {
+const createJotting = async (req, res = response) => {
   const { idCheatsheet, title, favorite, settings, rows } = req.body
   try {
     const cheatsheet = await Cheatsheet.findById(idCheatsheet)
@@ -33,4 +33,4 @@ const createSheet = async (req, res = response) => {
   }
 }
 
-module.exports = createSheet
+module.exports = createJotting

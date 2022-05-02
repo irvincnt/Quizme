@@ -13,13 +13,13 @@ app.use(express.json())
 const homeRouters = require('./routers/home')
 const authRouters = require('./routers/auth')
 const cheatsheetRouters = require('./routers/cheatsheet')
-const sheetRouters = require('./routers/sheet')
+const jottingRouters = require('./routers/jotting')
 
 const apiRoute = (routeName) => `/api/${routeName}`
 app.use(apiRoute('auth'), authRouters)
 app.use(apiRoute('home'), homeRouters)
 app.use(apiRoute('cheatsheet'), cheatsheetRouters)
-app.use(apiRoute('sheet'), sheetRouters)
+app.use(apiRoute('sheet'), jottingRouters)
 
 const port = process.env.PORT || 9000
 app.listen(port, () => {
