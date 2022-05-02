@@ -19,7 +19,7 @@ const apiRoute = (routeName) => `/api/${routeName}`
 app.use(apiRoute('auth'), authRouters)
 app.use(apiRoute('home'), homeRouters)
 app.use(apiRoute('cheatsheet'), cheatsheetRouters)
-app.use(apiRoute('sheet'), jottingRouters)
+app.use(apiRoute('jotting'), jottingRouters)
 
 const port = process.env.PORT || 9000
 app.listen(port, () => {

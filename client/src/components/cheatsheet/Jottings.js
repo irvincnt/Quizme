@@ -23,7 +23,7 @@ function Jottings ({ cheatsheetId }) {
   }, [cheatsheetId, recharge])
 
   const fetchDeleteSheet = async (uid) => {
-    const resp = await fetchPromises('sheet/delete', { uid }, 'DELETE')
+    const resp = await fetchPromises('jotting/delete', { uid }, 'DELETE')
     const respJson = await resp.json()
     if(respJson.ok) setRecharge(!recharge)
   }

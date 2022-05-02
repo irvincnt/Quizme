@@ -12,7 +12,7 @@ function CreateSheet ({ idCheatsheet }) {
   const history = useHistory()
 
   const fetchCreateJotting = async (initialSetting) => {
-    const resp = await fetchPromises('sheet/create', {
+    const resp = await fetchPromises('jotting/create', {
       idCheatsheet: idCheatsheet,
       ...initialSetting
     }, 'POST')

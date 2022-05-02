@@ -22,7 +22,7 @@ function Jotting () {
 
   useEffect(() => {
     const fetchData = async () => {
-      const resp = await fetchWithToken(`sheet/${juttingId}`)
+      const resp = await fetchWithToken(`jotting/${juttingId}`)
       const body = await resp.json()
       const { data, ok } = body
       if (ok) {
@@ -62,7 +62,7 @@ function Jotting () {
   }
 
   const fetchUpdateJotting = async (jotting) => {
-    const resp = await fetchPromises('sheet/update', jotting, 'PUT')
+    const resp = await fetchPromises('jotting/update', jotting, 'PUT')
     const respJson = await resp.json()
     const { ok, data } = respJson
     if (ok) {
