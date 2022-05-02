@@ -11,7 +11,7 @@ import S3 from '../../asset/images/config/card-style3.png'
 function CreateSheet ({ idCheatsheet }) {
   const history = useHistory()
 
-  const fetchCreateSheet = async (initialSetting) => {
+  const fetchCreateJotting = async (initialSetting) => {
     const resp = await fetchPromises('sheet/create', {
       idCheatsheet: idCheatsheet,
       ...initialSetting
@@ -29,13 +29,13 @@ function CreateSheet ({ idCheatsheet }) {
     <div className='create-jottings'>
       <p>Crea un apunte</p>
       <div className='templates'>
-        <div className='item' onClick={() => fetchCreateSheet(initialJottingSetting.styleOne)}>
+        <div className='item' onClick={() => fetchCreateJotting(initialJottingSetting.styleOne)}>
           <img src={S1} alt='two column' />
         </div>
-        <div className='item' onClick={() => fetchCreateSheet(initialJottingSetting.styleTwo)}>
+        <div className='item' onClick={() => fetchCreateJotting(initialJottingSetting.styleTwo)}>
           <img src={S2} alt='two column' />
         </div>
-        <div className='item' onClick={() => fetchCreateSheet(initialJottingSetting.styleThree)}>
+        <div className='item' onClick={() => fetchCreateJotting(initialJottingSetting.styleThree)}>
           <img src={S3} alt='two column' />
         </div>
       </div>

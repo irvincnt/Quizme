@@ -41,7 +41,7 @@ function Jottings ({ cheatsheetId }) {
               <div className='jutting ' key={jutting.id}>
                 <div className={`design ${design} ${size} ${color}`}>
                   <div className={`head ${color}`}>
-                    <Link to={`/cheatsheet/${jutting.cheatsheet}/content/${jutting.id}`}>
+                    <Link to={`/cheatsheet/${jutting.cheatsheet}/jotting/${jutting.id}`}>
                     <span>{jutting.title || 'sin título'}</span>
                     </Link>
                   </div>

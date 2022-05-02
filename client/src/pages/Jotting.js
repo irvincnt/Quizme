@@ -6,7 +6,7 @@ import { X } from 'phosphor-react'
 
 import { loadInitialContent } from '../actions/jotting'
 import Setting from '../components/jotting/setting'
-import { Editor } from '../components/sheet/Editor'
+import { Editor } from '../components/jotting/Editor'
 import Skeleton from '../components/ui/Skeleton'
 import { fetchPromises, fetchWithToken } from '../helpers/fetch'
 
@@ -17,12 +17,12 @@ function Jotting () {
   const dispatch = useDispatch()
   const { jotting: { currentJotting }, auth: {id: authUserId} } = useSelector(state => state)
   const [loader, setloader] = useState(true)
-  const { cheatsheetId, sheetId } = useParams()
+  const { cheatsheetId, juttingId } = useParams()
   const history = useHistory()
 
   useEffect(() => {
     const fetchData = async () => {
-      const resp = await fetchWithToken(`sheet/${sheetId}`)
+      const resp = await fetchWithToken(`sheet/${juttingId}`)
       const body = await resp.json()
       const { data, ok } = body
       if (ok) {
@@ -34,7 +34,7 @@ function Jotting () {
       }
     }
     fetchData()
-  }, [cheatsheetId, sheetId])
+  }, [cheatsheetId, juttingId])
 
   useEffect(() => { //Run on unmount
     return () => {
@@ -52,7 +52,7 @@ function Jotting () {
   
 
   const handlerUpdate = () => {
-    const myPromise = fetchUpdateJotting({ id: sheetId, ...currentJotting })
+    const myPromise = fetchUpdateJotting({ id: juttingId, ...currentJotting })
 
     toast.promise(myPromise, {
       loading: 'Updating...',

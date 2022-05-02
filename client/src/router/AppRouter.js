@@ -10,7 +10,6 @@ import Home from '../pages/Home'
 import CheatsheetConfig from '../pages/CheatsheetConfig'
 import Cheatsheet from '../pages/Cheatsheet'
 import Jotting from '../pages/Jotting'
-// import ContentSheet from '../components/pages/contentSheet'
 
 export const AppRouter = () => {
   const dispatch = useDispatch()
@@ -37,7 +36,7 @@ export const AppRouter = () => {
         <PrivateRoute exact path='/home' component={Home} isAuthenticated={!!id} />
         <PrivateRoute exact path='/cheatsheet/config' component={CheatsheetConfig} isAuthenticated={!!id} />
         <PrivateRoute exact path='/cheatsheet/:cheatsheetId' component={Cheatsheet} isAuthenticated={!!id} />
-        <PrivateRoute exact path='/cheatsheet/:cheatsheetId/content/:sheetId' component={Jotting} isAuthenticated={!!id} />
+        <PrivateRoute exact path='/cheatsheet/:cheatsheetId/jotting/:juttingId' component={Jotting} isAuthenticated={!!id} />
         <Redirect to='/home' />
       </Switch>
     </Router>
