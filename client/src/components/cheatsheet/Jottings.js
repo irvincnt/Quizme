@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { DotsThree, Pencil } from 'phosphor-react'
 import { fetchPromises, fetchWithToken } from '../../helpers/fetch'
 import Modal from '../ui/Modal'
 
@@ -41,9 +42,17 @@ function Jottings ({ cheatsheetId }) {
               <div className='jutting ' key={jutting.id}>
                 <div className={`design ${design} ${size} ${color}`}>
                   <div className={`head ${color}`}>
-                    <Link to={`/cheatsheet/${jutting.cheatsheet}/jotting/${jutting.id}`}>
                     <span>{jutting.title || 'sin título'}</span>
-                    </Link>
+                    <div className='actions'>
+                      <div className="action edit">
+                        <Link to={`/cheatsheet/${jutting.cheatsheet}/jotting/${jutting.id}`}>
+                          <Pencil size={17} weight="light" />
+                        </Link>
+                      </div>
+                      <div className="action">
+                        <DotsThree size={19}  />
+                      </div>
+                    </div>
                   </div>
                   <div className={`body ${color}`}>
                     {rows.map(row => {

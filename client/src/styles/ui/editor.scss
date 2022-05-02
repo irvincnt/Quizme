@@ -4,6 +4,27 @@
   .design {
     border-radius: 2px;
     margin: 0 auto;
+    .head {
+      .actions{
+        display: flex;
+        gap: 6px;
+        .action {
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          padding: 4px;
+        }
+        .action:hover {
+          background-color: #23202733;
+          border-radius: 25px;
+        }
+        .action a {
+          text-decoration: none;
+          display: flex;
+          color: $c-white
+        }
+      }
+    }
     .body .container {
       .dropdown {
         position: absolute;

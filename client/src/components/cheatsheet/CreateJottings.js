@@ -21,7 +21,7 @@ function CreateSheet ({ idCheatsheet }) {
 
     if (ok) {
       const { id: idSheet } = data.sheet
-      history.push(`/cheatsheet/${idCheatsheet}/content/${idSheet}`)
+      history.push(`/cheatsheet/${idCheatsheet}/jotting/${idSheet}`)
     }
   }
 
