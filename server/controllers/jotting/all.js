@@ -5,7 +5,7 @@ const getJottingsByCheatsheet = async (req, res = response) => {
   const { params: { uid } } = req
 
   try {
-    const sheets = await Sheet.find({ cheatsheet: uid })
+    const sheets = await Sheet.find({ cheatsheet: uid }).sort({created: -1})
 
     res.status(200).json({
       ok: true,

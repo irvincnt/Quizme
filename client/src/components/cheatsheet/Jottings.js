@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { DotsThree, Pencil } from 'phosphor-react'
+import { DotsThree, Pencil, CalendarCheck, Clock, Heart, PushPin, Trash } from 'phosphor-react'
 import { fetchPromises, fetchWithToken } from '../../helpers/fetch'
 import Modal from '../ui/Modal'
 
 import '../../styles/ui/editor.scss'
+import Jotting from '../../pages/Jotting'
 
 function Jottings ({ cheatsheetId }) {
   const modal = useRef(null)
@@ -33,12 +34,13 @@ function Jottings ({ cheatsheetId }) {
     <div className='jottings'>
       <div className='list'>
         {
-          allJottings.map(jutting => {
+          allJottings.map((jutting, i) => {
             const {
               rows,
               settings: { design, size, color, columnsType, columns}
             } = jutting
             return (
+              <>
               <div className='jutting ' key={jutting.id}>
                 <div className={`design ${design} ${size} ${color}`}>
                   <div className={`head ${color}`}>
@@ -82,8 +84,38 @@ function Jottings ({ cheatsheetId }) {
                     })}
                   </div>
                 </div>
+                { i === 1 && <div className='metadata'>
+                  <div className='actions'>
+                    <div className='action'>
+                      <Heart size={19}  />
+                      <span>Fav</span>
+                    </div>
+                    <div className='action'>
+                      <PushPin size={19}  />
+                      <span>Pin</span>
+                    </div>
+                    <div className='action'>
+                     <ItemModal jutting={jutting} fetchDeleteSheet={fetchDeleteSheet}/>
+                    </div>
+                  </div>
+                  <div className='data'>
+                    <div className="label">
+                      <CalendarCheck size={19}  />
+                      <span>Creado</span>
+                    </div>
+                    <span>{jutting.created}</span>
+                  </div>
+                  <div className='data'>
+                    <div className="label">
+                      <Clock size={19}  />
+                      <span>Actualizado</span>
+                    </div>
+                    <span>{jutting.updated}</span>
+                  </div>
+                </div>
+                }
               </div>
-              //   {/* <ItemModal jutting={jutting} fetchDeleteSheet={fetchDeleteSheet}/> */}
+              </>
             )
           })
         }
@@ -97,7 +129,8 @@ function ItemModal ({jutting, fetchDeleteSheet }) {
   const modal = useRef()
   return (
     <>
-      <p onClick={() => modal.current.open()}>Eliminar</p>
+      <Trash size={19}  />
+      <span onClick={() => modal.current.open()}>Delete</span>
       <Modal ref={modal}>
         <>
           <p>{`¿Estás seguro de eliminar el apunte ${jutting.title}?`}</p>

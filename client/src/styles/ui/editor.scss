@@ -39,9 +39,37 @@
       }
     }
   }
+  .metadata {
+    padding: 6px;
+    .actions {
+      display: flex;
+      padding: 6px 0px;
+      .action {
+        cursor: pointer;
+        border-radius: 25px;
+        margin-right: 14px;
+        padding: 3px 5px;
+        display: flex;
+        gap: 4px;
+      }
+      .action:hover {
+        background-color: #23202733;
+      }
+    }
+    .data {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 6px;
+      .label {
+        width: 115px;
+        display: flex;
+        gap: 4px;
+      }
+    }
+  }
   .x {
-    min-width: 350px;
-    max-width: 350px;
+    // min-width: 350px;
+    // max-width: 350px;
   }
   .xx {
     min-width: 500px;
