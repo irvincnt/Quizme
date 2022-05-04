@@ -5,7 +5,6 @@ import { fetchPromises, fetchWithToken } from '../../helpers/fetch'
 import Modal from '../ui/Modal'
 
 import '../../styles/ui/editor.scss'
-import Jotting from '../../pages/Jotting'
 
 function Jottings ({ cheatsheetId }) {
   const modal = useRef(null)
@@ -18,7 +17,8 @@ function Jottings ({ cheatsheetId }) {
       const body = await resp.json()
       const { data, ok } = body
       if (ok) {
-        setAllJottings(data.sheets)
+        let newJottings = data.sheets.map((s, i) => s[i] = {...s, open: false})
+        setAllJottings(newJottings)
       }
     }
     fetchData()
@@ -28,6 +28,16 @@ function Jottings ({ cheatsheetId }) {
     const resp = await fetchPromises('jotting/delete', { uid }, 'DELETE')
     const respJson = await resp.json()
     if(respJson.ok) setRecharge(!recharge)
+  }
+
+  const showJottingMetadata = (placeId) => {
+    let allJottingsUpdated = [...allJottings]
+
+    allJottingsUpdated[placeId] = {
+      ...allJottings[placeId], 
+      open: !allJottings[placeId].open
+    }
+    setAllJottings(allJottingsUpdated)
   }
 
   return (
@@ -40,7 +50,6 @@ function Jottings ({ cheatsheetId }) {
               settings: { design, size, color, columnsType, columns}
             } = jutting
             return (
-              <>
               <div className='jutting ' key={jutting.id}>
                 <div className={`design ${design} ${size} ${color}`}>
                   <div className={`head ${color}`}>
@@ -52,7 +61,7 @@ function Jottings ({ cheatsheetId }) {
                         </Link>
                       </div>
                       <div className="action">
-                        <DotsThree size={19}  />
+                        <DotsThree size={19} onClick={() => showJottingMetadata(i)} />
                       </div>
                     </div>
                   </div>
@@ -84,7 +93,7 @@ function Jottings ({ cheatsheetId }) {
                     })}
                   </div>
                 </div>
-                { i === 1 && <div className='metadata'>
+                <div className={`${jutting.open ? 'metadata active' : 'metadata' }`}>
                   <div className='actions'>
                     <div className='action'>
                       <Heart size={19}  />
@@ -113,9 +122,7 @@ function Jottings ({ cheatsheetId }) {
                     <span>{jutting.updated}</span>
                   </div>
                 </div>
-                }
               </div>
-              </>
             )
           })
         }
