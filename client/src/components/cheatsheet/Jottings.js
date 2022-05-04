@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { DotsThree, Pencil, CalendarCheck, Clock, Heart, PushPin, Trash } from 'phosphor-react'
+import { CalendarCheck, Clock, Heart, PushPin, Trash } from 'phosphor-react'
 import { fetchPromises, fetchWithToken } from '../../helpers/fetch'
 import Modal from '../ui/Modal'
 
 import '../../styles/ui/editor.scss'
+import Design from '../jotting/Design'
 
 function Jottings ({ cheatsheetId }) {
   const modal = useRef(null)
@@ -45,54 +45,9 @@ function Jottings ({ cheatsheetId }) {
       <div className='list'>
         {
           allJottings.map((jutting, i) => {
-            const {
-              rows,
-              settings: { design, size, color, columnsType, columns}
-            } = jutting
             return (
               <div className='jutting ' key={jutting.id}>
-                <div className={`design ${design} ${size} ${color}`}>
-                  <div className={`head ${color}`}>
-                    <span>{jutting.title || 'sin título'}</span>
-                    <div className='actions'>
-                      <div className="action edit">
-                        <Link to={`/cheatsheet/${jutting.cheatsheet}/jotting/${jutting.id}`}>
-                          <Pencil size={17} weight="light" />
-                        </Link>
-                      </div>
-                      <div className="action">
-                        <DotsThree size={19} onClick={() => showJottingMetadata(i)} />
-                      </div>
-                    </div>
-                  </div>
-                  <div className={`body ${color}`}>
-                    {rows.map(row => {
-                      return (
-                        <div key={row.id} className={`row ${color}`}>
-                          <div className={`container-columns ${columnsType}`}>
-                            {
-                              (columns === 'cardC1' ||
-                              columns === 'cardC2' ||
-                              columns === 'cardC3') &&
-                                <span className='cell' >{row.columnOne}</span>
-                            }
-
-                            {
-                              (columns === 'cardC2' ||
-                              columns === 'cardC3') &&
-                                <span className='cell' >{row.columnTwo}</span>
-                            }
-
-                            {
-                              (columns === 'cardC3') &&
-                                <span className='cell' >{row.columnThree}</span>
-                            }
-                          </div>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
+                <Design jutting={jutting} placeId={i} showJottingMetadata={showJottingMetadata}></Design>
                 <div className={`${jutting.open ? 'metadata active' : 'metadata' }`}>
                   <div className='actions'>
                     <div className='action'>
@@ -104,7 +59,7 @@ function Jottings ({ cheatsheetId }) {
                       <span>Pin</span>
                     </div>
                     <div className='action'>
-                     <ItemModal jutting={jutting} fetchDeleteSheet={fetchDeleteSheet}/>
+                     <DeleteJottingModal jutting={jutting} fetchDeleteSheet={fetchDeleteSheet}/>
                     </div>
                   </div>
                   <div className='data'>
@@ -126,13 +81,12 @@ function Jottings ({ cheatsheetId }) {
             )
           })
         }
-        
       </div>
     </div>
   )
 }
 
-function ItemModal ({jutting, fetchDeleteSheet }) {
+function DeleteJottingModal ({jutting, fetchDeleteSheet }) {
   const modal = useRef()
   return (
     <>
@@ -151,5 +105,7 @@ function ItemModal ({jutting, fetchDeleteSheet }) {
     </>
   )
 }
+
+
 
 export default Jottings

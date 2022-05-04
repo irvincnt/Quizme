@@ -107,7 +107,7 @@ export const Editor = () => {
       <div className={`design ${design} ${size} ${color}`}>
         <div className={`head ${color}`}>
           <ContentEditable
-              // className='title'
+            className='title'
             html={title || 'To write...'}
             onChange={handlerChangeTitle}
             onFocus={highlightAll}
