@@ -46,7 +46,7 @@ function Jottings ({ cheatsheetId }) {
         {
           allJottings.map((jutting, i) => {
             return (
-              <div className='jutting ' key={jutting.id}>
+              <div className='jutting' key={jutting.id}>
                 <Design jutting={jutting} placeId={i} showJottingMetadata={showJottingMetadata}></Design>
                 <div className={`${jutting.open ? 'metadata active' : 'metadata' }`}>
                   <div className='actions'>
