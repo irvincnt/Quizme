@@ -149,7 +149,6 @@ function Cheatsheet () {
           <Jottings cheatsheetId={cheatsheetId} />
         </div>
       </div>
-      Cheatsheet
       <Toaster />
     </div>
     </>

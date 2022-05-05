@@ -1,13 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { CalendarCheck, Clock, Heart, PushPin, Trash } from 'phosphor-react'
+
 import { fetchPromises, fetchWithToken } from '../../helpers/fetch'
+import Design from '../jotting/Design'
 import Modal from '../ui/Modal'
 
 import '../../styles/ui/editor.scss'
-import Design from '../jotting/Design'
 
 function Jottings ({ cheatsheetId }) {
   const modal = useRef(null)
+  const { id: authUserId } = useSelector(state => state.auth)
   const [allJottings, setAllJottings] = useState([])
   const [recharge, setRecharge] = useState(false)
 
@@ -42,6 +45,7 @@ function Jottings ({ cheatsheetId }) {
 
   return (
     <div className='jottings'>
+      <h4>Apuntes recientes</h4>
       <div className='list'>
         {
           allJottings.map((jutting, i) => {
@@ -58,9 +62,11 @@ function Jottings ({ cheatsheetId }) {
                       <PushPin size={19}  />
                       <span>Pin</span>
                     </div>
-                    <div className='action'>
-                     <DeleteJottingModal jutting={jutting} fetchDeleteSheet={fetchDeleteSheet}/>
-                    </div>
+                    {jutting.cheatsheet.author === authUserId &&
+                      <div className='action'>
+                      <DeleteJottingModal jutting={jutting} fetchDeleteSheet={fetchDeleteSheet}/>
+                      </div>
+                    }
                   </div>
                   <div className='data'>
                     <div className="label">
