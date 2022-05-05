@@ -3,22 +3,27 @@ import { Link } from 'react-router-dom'
 import { DotsThree, Pencil, DotsThreeOutline } from 'phosphor-react'
 
 import Modal from '../ui/Modal'
+import { useSelector } from 'react-redux'
 
 function Design({jutting, placeId, showJottingMetadata}) {
   const {
     rows,
-    settings: { design, size, color, columnsType, columns}
+    settings: { design, size, color, columnsType, columns},
+    cheatsheet: {author, id: cheatsheetID}
   } = jutting
+
+  const { id: authUserId } = useSelector(state => state.auth)
+
   return (
     <div className={`design ${design} ${size} ${color}`}>
       <div className={`head ${color}`}>
         <JuttingModal jutting={jutting} />
         <div className='actions'>
-          <div className="action edit">
-            <Link to={`/cheatsheet/${jutting.cheatsheet}/jotting/${jutting.id}`}>
-              <Pencil size={17} weight="light" />
+          {authUserId === author && <div className="action edit">
+            <Link to={`/cheatsheet/${cheatsheetID}/jotting/${jutting.id}`}>
+              <Pencil size={17} color='black' weight="light" />
             </Link>
-          </div>
+          </div>}
           <div className="action">
             <DotsThree size={19} onClick={() => showJottingMetadata(placeId)} />
           </div>
