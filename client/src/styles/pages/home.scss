@@ -1,9 +1,58 @@
+@import '../variables.scss';
+
 .home {
   .cheatsheet-list {
     display: flex;
     flex-wrap: wrap;
     .cheatsheet {
-      cursor: pointer;
+      .content {
+        box-shadow: 0 0.75rem 1.5rem rgb(18 38 63 / 3%);
+        border-radius: .25rem;
+        background-color: $c-white;
+        padding: 1rem 1rem;
+        min-width: 360px;
+        max-width: 360px;
+        cursor: pointer;
+        .head {
+          display: flex;
+          a {
+            color: $c-dark;
+            text-decoration: none;
+            span {
+              font-weight: 600;
+            }
+            em {
+              font-style: normal;
+              font-size: 14px;
+              font-weight: 100;
+              color: #74788d;
+            }
+          }
+        }
+      }
+      .metadata {
+        max-height: 0px;
+        transition: max-height .2s;
+        overflow: hidden;
+        .actions {
+          display: flex;
+          padding: 6px 0px;
+          .action {
+            cursor: pointer;
+            border-radius: 25px;
+            margin-right: 14px;
+            padding: 3px 5px;
+            display: flex;
+            gap: 4px;
+          }
+          .action:hover {
+            background-color: #23202733;
+          }
+        }
+        &.active {
+          max-height: 100px;
+        }
+      }
       &:not(:last-child) {
         margin-right: 1rem;
       }
