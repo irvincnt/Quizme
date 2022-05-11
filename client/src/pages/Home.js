@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { DotsThree, PushPin, Heart, Trash} from 'phosphor-react'
+import { DotsThree, PushPin, Heart, Trash, CalendarCheck, Clock} from 'phosphor-react'
 
 
 import { fetchPromises, fetchWithToken } from '../helpers/fetch'
@@ -82,7 +82,20 @@ function Home () {
                       <DeleteCheatsheeModal cheatsheet={item} fetchDeleteCheatsheet={fetchDeleteCheatsheet}/>
                     </div>
                   </div>
-                  medatada
+                  <div className='data'>
+                    <div className="label">
+                      <CalendarCheck size={19}  />
+                      <span>Creado</span>
+                    </div>
+                    <span>{item.created}</span>
+                  </div>
+                  <div className='data'>
+                    <div className="label">
+                      <Clock size={19}  />
+                      <span>Actualizado</span>
+                    </div>
+                    <span>{item.updated}</span>
+                  </div>
                 </div>
               </div>
             )

@@ -52,6 +52,16 @@
         &.active {
           max-height: 100px;
         }
+        .data {
+          display: flex;
+          align-items: flex-end;
+          margin-bottom: 6px;
+          .label {
+            width: 115px;
+            display: flex;
+            gap: 4px;
+          }
+        }
       }
       &:not(:last-child) {
         margin-right: 1rem;
