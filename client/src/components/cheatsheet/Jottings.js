@@ -49,6 +49,12 @@ function Jottings ({ cheatsheetId }) {
       <div className='list'>
         {
           allJottings.map((jutting, i) => {
+            const createdDate = new Date(jutting.created);
+            const updatedDate = new Date(jutting.updated);
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
+            const created = createdDate.toLocaleDateString('es-ES', options);
+            const updated = updatedDate.toLocaleDateString('es-ES', options);
             return (
               <div className='jutting' key={jutting.id}>
                 <Design jutting={jutting} placeId={i} showJottingMetadata={showJottingMetadata}></Design>
@@ -73,14 +79,14 @@ function Jottings ({ cheatsheetId }) {
                       <CalendarCheck size={19}  />
                       <span>Creado</span>
                     </div>
-                    <span>{jutting.created}</span>
+                    <span>{created}</span>
                   </div>
                   <div className='data'>
                     <div className="label">
                       <Clock size={19}  />
                       <span>Actualizado</span>
                     </div>
-                    <span>{jutting.updated}</span>
+                    <span>{updated}</span>
                   </div>
                 </div>
               </div>
