@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { DotsThree, PushPin, Heart, Trash, CalendarCheck, Clock} from 'phosphor-react'
-
+import { DotsThree, PushPin, Heart, Trash, CalendarCheck, Clock } from 'phosphor-react'
 
 import { fetchPromises, fetchWithToken } from '../helpers/fetch'
 import Navbar from '../components/ui/Navbar'
@@ -20,7 +19,7 @@ function Home () {
       const { allCheatSheets, ok } = body
 
       if (ok) {
-        let allCS = allCheatSheets.map((cs, i) => cs[i] = {...cs, open: false})
+        const allCS = allCheatSheets.map((cs, i) => (cs[i] = { ...cs, open: false }))
         setCheatSheets(allCS)
       }
     }
@@ -30,14 +29,14 @@ function Home () {
   const fetchDeleteCheatsheet = async (uid) => {
     const resp = await fetchPromises('cheatsheet/delete', { uid }, 'DELETE')
     const respJson = await resp.json()
-    if(respJson.ok) setRecharge(!recharge)
+    if (respJson.ok) setRecharge(!recharge)
   }
 
   const showCheatsheetMetadata = (placeId) => {
-    let allCheatsheetUpdated = [...cheatsheets]
+    const allCheatsheetUpdated = [...cheatsheets]
 
     allCheatsheetUpdated[placeId] = {
-      ...cheatsheets[placeId], 
+      ...cheatsheets[placeId],
       open: !cheatsheets[placeId].open
     }
     setCheatSheets(allCheatsheetUpdated)
@@ -53,12 +52,12 @@ function Home () {
         <div className='cheatsheet-list'>
           {
           cheatsheets.map((item, i) => {
-            const createdDate = new Date(item.created);
-            const updatedDate = new Date(item.updated);
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const createdDate = new Date(item.created)
+            const updatedDate = new Date(item.updated)
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
-            const created = createdDate.toLocaleDateString('es-ES', options);
-            const updated = updatedDate.toLocaleDateString('es-ES', options);
+            const created = createdDate.toLocaleDateString('es-ES', options)
+            const updated = updatedDate.toLocaleDateString('es-ES', options)
             return (
               <div key={item.id} className='cheatsheet'>
                 <div className='content'>
@@ -68,36 +67,36 @@ function Home () {
                     </Link>
                     <div className='actions'>
                       <div className='action'>
-                        <DotsThree size={19} onClick={() => showCheatsheetMetadata(i)}/>
+                        <DotsThree size={19} onClick={() => showCheatsheetMetadata(i)} />
                       </div>
                     </div>
                   </div>
                   <p>{item.description}</p>
                 </div>
-                <div className={`${item.open ? 'metadata active' : 'metadata' }`}>
+                <div className={`${item.open ? 'metadata active' : 'metadata'}`}>
                   <div className='actions'>
                     <div className='action'>
-                      <Heart size={19}  />
+                      <Heart size={19} />
                       <span>Fav</span>
                     </div>
                     <div className='action'>
-                      <PushPin size={19}  />
+                      <PushPin size={19} />
                       <span>Pin</span>
                     </div>
                     <div className='action'>
-                      <DeleteCheatsheeModal cheatsheet={item} fetchDeleteCheatsheet={fetchDeleteCheatsheet}/>
+                      <DeleteCheatsheeModal cheatsheet={item} fetchDeleteCheatsheet={fetchDeleteCheatsheet} />
                     </div>
                   </div>
                   <div className='data'>
-                    <div className="label">
-                      <CalendarCheck size={19}  />
+                    <div className='label'>
+                      <CalendarCheck size={19} />
                       <span>Creado</span>
                     </div>
                     <span>{created}</span>
                   </div>
                   <div className='data'>
-                    <div className="label">
-                      <Clock size={19}  />
+                    <div className='label'>
+                      <Clock size={19} />
                       <span>Actualizado</span>
                     </div>
                     <span>{updated}</span>
@@ -113,11 +112,11 @@ function Home () {
   )
 }
 
-function DeleteCheatsheeModal ({cheatsheet, fetchDeleteCheatsheet }) {
+function DeleteCheatsheeModal ({ cheatsheet, fetchDeleteCheatsheet }) {
   const modal = useRef()
   return (
     <>
-      <Trash size={19}  />
+      <Trash size={19} />
       <span onClick={() => modal.current.open()}>Delete</span>
       <Modal ref={modal}>
         <>
@@ -128,7 +127,6 @@ function DeleteCheatsheeModal ({cheatsheet, fetchDeleteCheatsheet }) {
           </div>
         </>
       </Modal>
-      
     </>
   )
 }

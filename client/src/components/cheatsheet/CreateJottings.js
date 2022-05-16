@@ -1,5 +1,5 @@
 import React from 'react'
-import toast, { Toaster } from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast'
 import { useHistory } from 'react-router-dom'
 import { initialJottingSetting } from '../../dictionary/baseConfig'
 import { fetchPromises } from '../../helpers/fetch'

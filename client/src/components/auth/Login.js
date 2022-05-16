@@ -92,31 +92,32 @@ export default function Login () {
             <h5>Sign in with</h5>
             <div className='icons'>
               {loading && <Spinner />}
-              {!loading && <>
-                <GoogleLogin
-                  clientId={googleClient}
-                  render={renderProps => (
-                  // eslint-disable-next-line react/jsx-handler-names
-                    <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                      <img src={google} alt='facebook icon' width='26px' />
-                    </button>
-                  )}
-                  onSuccess={googleSucces}
-                  onFailure={googleError}
-                  cookiePolicy='single_host_origin'
-                />
-                <FacebookLogin
-                  appId={facebookClient}
-                  autoLoad={false}
-                  callback={responseFacebook}
-                  render={renderProps => (
+              {!loading &&
+                <>
+                  <GoogleLogin
+                    clientId={googleClient}
+                    render={renderProps => (
+                      // eslint-disable-next-line react/jsx-handler-names
+                      <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                        <img src={google} alt='facebook icon' width='26px' />
+                      </button>
+                    )}
+                    onSuccess={googleSucces}
+                    onFailure={googleError}
+                    cookiePolicy='single_host_origin'
+                  />
+                  <FacebookLogin
+                    appId={facebookClient}
+                    autoLoad={false}
+                    callback={responseFacebook}
+                    render={renderProps => (
                     // eslint-disable-next-line react/jsx-handler-names
-                    <button onClick={renderProps.onClick} disabled={renderProps.isDisabled}>
-                      <img src={facebook} alt='facebook icon' width='26px' />
-                    </button>
-                  )}
-                />
-                           </>}
+                      <button onClick={renderProps.onClick} disabled={renderProps.isDisabled}>
+                        <img src={facebook} alt='facebook icon' width='26px' />
+                      </button>
+                    )}
+                  />
+                </>}
             </div>
             <p>¿Forgot your password?</p>
             <p>Don't have an account ? <Link to='/register'> Signup now </Link> </p>

@@ -9,7 +9,6 @@ import Modal from '../ui/Modal'
 import '../../styles/ui/editor.scss'
 
 function Jottings ({ cheatsheetId }) {
-  const modal = useRef(null)
   const { id: authUserId } = useSelector(state => state.auth)
   const [allJottings, setAllJottings] = useState([])
   const [recharge, setRecharge] = useState(false)
@@ -20,7 +19,7 @@ function Jottings ({ cheatsheetId }) {
       const body = await resp.json()
       const { data, ok } = body
       if (ok) {
-        let newJottings = data.sheets.map((s, i) => s[i] = {...s, open: false})
+        const newJottings = data.sheets.map((s, i) => (s[i] = { ...s, open: false }))
         setAllJottings(newJottings)
       }
     }
@@ -30,14 +29,14 @@ function Jottings ({ cheatsheetId }) {
   const fetchDeleteSheet = async (uid) => {
     const resp = await fetchPromises('jotting/delete', { uid }, 'DELETE')
     const respJson = await resp.json()
-    if(respJson.ok) setRecharge(!recharge)
+    if (respJson.ok) setRecharge(!recharge)
   }
 
   const showJottingMetadata = (placeId) => {
-    let allJottingsUpdated = [...allJottings]
+    const allJottingsUpdated = [...allJottings]
 
     allJottingsUpdated[placeId] = {
-      ...allJottings[placeId], 
+      ...allJottings[placeId],
       open: !allJottings[placeId].open
     }
     setAllJottings(allJottingsUpdated)
@@ -49,41 +48,40 @@ function Jottings ({ cheatsheetId }) {
       <div className='list'>
         {
           allJottings.map((jutting, i) => {
-            const createdDate = new Date(jutting.created);
-            const updatedDate = new Date(jutting.updated);
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const createdDate = new Date(jutting.created)
+            const updatedDate = new Date(jutting.updated)
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
-            const created = createdDate.toLocaleDateString('es-ES', options);
-            const updated = updatedDate.toLocaleDateString('es-ES', options);
+            const created = createdDate.toLocaleDateString('es-ES', options)
+            const updated = updatedDate.toLocaleDateString('es-ES', options)
             return (
               <div className='jutting' key={jutting.id}>
-                <Design jutting={jutting} placeId={i} showJottingMetadata={showJottingMetadata}></Design>
-                <div className={`${jutting.open ? 'metadata active' : 'metadata' }`}>
+                <Design jutting={jutting} placeId={i} showJottingMetadata={showJottingMetadata} />
+                <div className={`${jutting.open ? 'metadata active' : 'metadata'}`}>
                   <div className='actions'>
                     <div className='action'>
-                      <Heart size={19}  />
+                      <Heart size={19} />
                       <span>Fav</span>
                     </div>
                     <div className='action'>
-                      <PushPin size={19}  />
+                      <PushPin size={19} />
                       <span>Pin</span>
                     </div>
                     {jutting.cheatsheet.author === authUserId &&
                       <div className='action'>
-                      <DeleteJottingModal jutting={jutting} fetchDeleteSheet={fetchDeleteSheet}/>
-                      </div>
-                    }
+                        <DeleteJottingModal jutting={jutting} fetchDeleteSheet={fetchDeleteSheet} />
+                      </div>}
                   </div>
                   <div className='data'>
-                    <div className="label">
-                      <CalendarCheck size={19}  />
+                    <div className='label'>
+                      <CalendarCheck size={19} />
                       <span>Creado</span>
                     </div>
                     <span>{created}</span>
                   </div>
                   <div className='data'>
-                    <div className="label">
-                      <Clock size={19}  />
+                    <div className='label'>
+                      <Clock size={19} />
                       <span>Actualizado</span>
                     </div>
                     <span>{updated}</span>
@@ -98,11 +96,11 @@ function Jottings ({ cheatsheetId }) {
   )
 }
 
-function DeleteJottingModal ({jutting, fetchDeleteSheet }) {
+function DeleteJottingModal ({ jutting, fetchDeleteSheet }) {
   const modal = useRef()
   return (
     <>
-      <Trash size={19}  />
+      <Trash size={19} />
       <span onClick={() => modal.current.open()}>Delete</span>
       <Modal ref={modal}>
         <>
@@ -113,11 +111,9 @@ function DeleteJottingModal ({jutting, fetchDeleteSheet }) {
           </div>
         </>
       </Modal>
-      
+
     </>
   )
 }
-
-
 
 export default Jottings

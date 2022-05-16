@@ -15,7 +15,7 @@ import logo from '../asset/icons/logo.svg'
 
 function Jotting () {
   const dispatch = useDispatch()
-  const { jotting: { currentJotting }, auth: {id: authUserId} } = useSelector(state => state)
+  const { jotting: { currentJotting }, auth: { id: authUserId } } = useSelector(state => state)
   const [loader, setloader] = useState(true)
   const { cheatsheetId, juttingId } = useParams()
   const history = useHistory()
@@ -26,7 +26,7 @@ function Jotting () {
       const body = await resp.json()
       const { data, ok } = body
       if (ok) {
-        const { settings, title, favorite, rows, cheatsheet: {author} } = data.sheet
+        const { settings, title, favorite, rows, cheatsheet: { author } } = data.sheet
         setloader(false)
         dispatch(loadInitialContent({ author, title, favorite, settings, rows }))
       } else {
@@ -36,11 +36,11 @@ function Jotting () {
     fetchData()
   }, [cheatsheetId, juttingId])
 
-  useEffect(() => { //Run on unmount
+  useEffect(() => { // Run on unmount
     return () => {
       dispatch(loadInitialContent(
-        { 
-          author: '', 
+        {
+          author: '',
           title: '',
           favorite: false,
           settings: {},
@@ -49,7 +49,6 @@ function Jotting () {
       ))
     }
   }, [])
-  
 
   const handlerUpdate = () => {
     const myPromise = fetchUpdateJotting({ id: juttingId, ...currentJotting })
@@ -78,12 +77,13 @@ function Jotting () {
         </Link>
         {authUserId === currentJotting.author && <Setting />}
         <div className='actions'>
-        {authUserId === currentJotting.author && <button
-            className='btn btn-primary'
-            onClick={handlerUpdate}
-          >
-            Actualizar
-          </button>}
+          {authUserId === currentJotting.author &&
+            <button
+              className='btn btn-primary'
+              onClick={handlerUpdate}
+            >
+              Actualizar
+            </button>}
           <Link to={`/cheatsheet/${cheatsheetId}`}>
             <X size={20} weight='bold' />
           </Link>

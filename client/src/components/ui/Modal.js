@@ -4,7 +4,7 @@ import '../../styles/ui/modal.scss'
 
 const modalElement = document.getElementById('modal-root')
 
-export function Modal({ children, fade = false, defaultOpened = false }, ref) {
+export function Modal ({ children, fade = false, defaultOpened = false }, ref) {
   const [isOpen, setIsOpen] = useState(defaultOpened)
   const close = useCallback(() => setIsOpen(false), [])
 
@@ -25,12 +25,14 @@ export function Modal({ children, fade = false, defaultOpened = false }, ref) {
   }, [handleEscape, isOpen])
 
   return createPortal(
-    isOpen ? (
-      <div className={`modal ${fade ? 'modal-fade' : ''}`}>
-        <div className="modal-overlay" onClick={close} />
-        <div className="modal-body">{children}</div>
-      </div>
-    ) : null,
+    isOpen
+      ? (
+        <div className={`modal ${fade ? 'modal-fade' : ''}`}>
+          <div className='modal-overlay' onClick={close} />
+          <div className='modal-body'>{children}</div>
+        </div>
+        )
+      : null,
     modalElement
   )
 }

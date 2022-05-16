@@ -123,7 +123,8 @@ function Cheatsheet () {
         <Breadcrumb content={breadcrumbContent} />
       </div>
       <div className='wrapper'>
-        {authUserId === cheatsheetConfig.author && <div className='elements'>
+        {authUserId === cheatsheetConfig.author &&
+        <div className='elements'>
           <Controls
             isEditionMode={isEditionMode}
             cheatsheetConfig={cheatsheetConfig}

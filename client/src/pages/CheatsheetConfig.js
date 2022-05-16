@@ -100,7 +100,8 @@ function CheatsheetConfig () {
             <button
               className='btn btn-primary'
               onClick={handlerCreateCheatsheet}
-            > Crear Cheatsheet </button>
+            > Crear Cheatsheet
+            </button>
           </div>
           <div className='ch'>
             <CheatsheetHeader
