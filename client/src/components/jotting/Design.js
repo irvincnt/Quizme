@@ -31,32 +31,29 @@ function Design ({ jutting, placeId, showJottingMetadata }) {
         </div>
       </div>
       <div className={`body ${color}`}>
-        {rows.map((row, i) => {
+        {rows.map((row, rowIndex) => {
           return (
-            <>
-              {i < 15 &&
-                <div className={`row ${color}`}>
-                  <div className={`container-columns ${columnsType}`}>
-                    {
+            <div key={row.id} className={`row ${color} ${rowIndex < 15 ? 'show' : 'hide'}`}>
+              <div className={`container-columns ${columnsType}`}>
+                {
                       (columns === 'cardC1' ||
                       columns === 'cardC2' ||
                       columns === 'cardC3') &&
                         <span className='cell'>{row.columnOne}</span>
                     }
 
-                    {
+                {
                       (columns === 'cardC2' ||
                       columns === 'cardC3') &&
                         <span className='cell'>{row.columnTwo}</span>
                     }
 
-                    {
+                {
                       (columns === 'cardC3') &&
                         <span className='cell'>{row.columnThree}</span>
                     }
-                  </div>
-                </div>}
-            </>
+              </div>
+            </div>
           )
         })}
         {rows.length > 15 && <MoreModal jutting={jutting} />}
