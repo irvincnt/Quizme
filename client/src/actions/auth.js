@@ -57,6 +57,8 @@ export const startRegister = (name, email, password) => {
       // eslint-disable-next-line no-undef
       localStorage.setItem('token', body.token)
       // eslint-disable-next-line no-undef
+      localStorage.setItem('user', JSON.stringify(body.user))
+      // eslint-disable-next-line no-undef
       localStorage.setItem('token-init.date', new Date().getTime())
 
       dispatch(

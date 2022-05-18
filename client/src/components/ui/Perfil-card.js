@@ -4,9 +4,12 @@ import login from '../../asset/images/login.svg'
 
 import { Link } from 'react-router-dom'
 
+const API_UIAVATARS = process.env.API_UIAVATARS
+
 function PerfilCard () {
   // eslint-disable-next-line no-undef
   const { name, picture } = JSON.parse(localStorage.getItem('user') || '')
+  const pictureUrl = (picture || `${API_UIAVATARS}/?name=${name}&background=random&color=fff`)
   return (
     <div className='perfil-card'>
       <div className='header'>
@@ -15,7 +18,7 @@ function PerfilCard () {
       </div>
       <div className='content'>
         <div className='info'>
-          <img src={picture} className='avatar' alt='avatar' />
+          <img src={pictureUrl} className='avatar' alt='avatar' />
           <h4 className='name'>
             {name}
           </h4>

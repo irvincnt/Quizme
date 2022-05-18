@@ -13,13 +13,15 @@ import Dropdown from './Dropdown'
 
 import { startLogout } from '../../actions/auth'
 
+const API_UIAVATARS = process.env.API_UIAVATARS
+
 function Navbar () {
   const { name, picture } = useSelector(state => state.auth)
   const dispatch = useDispatch()
 
   // eslint-disable-next-line no-undef
   const user = JSON.parse(localStorage.getItem('user') || '')
-  const pictureUrl = (picture || user?.picture)
+  const pictureUrl = (picture || user?.picture || `${API_UIAVATARS}/?name=${name}&background=random&color=fff`)
 
   const handlerLogout = () => {
     dispatch(startLogout())
