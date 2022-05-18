@@ -47,6 +47,7 @@
         }
         .cell {
           overflow-wrap: break-word;
+          p {margin: 0px}
         }
         &.show {
           display: block;

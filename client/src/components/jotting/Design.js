@@ -39,18 +39,18 @@ function Design ({ jutting, placeId, showJottingMetadata }) {
                       (columns === 'cardC1' ||
                       columns === 'cardC2' ||
                       columns === 'cardC3') &&
-                        <span className='cell'>{row.columnOne}</span>
+                        <span className='cell' dangerouslySetInnerHTML={{ __html: row.columnOne.html || 'na' }} />
                     }
 
                 {
                       (columns === 'cardC2' ||
                       columns === 'cardC3') &&
-                        <span className='cell'>{row.columnTwo}</span>
+                        <span className='cell' dangerouslySetInnerHTML={{ __html: row.columnTwo.html || 'na' }} />
                     }
 
                 {
                       (columns === 'cardC3') &&
-                        <span className='cell'>{row.columnThree}</span>
+                        <span className='cell' dangerouslySetInnerHTML={{ __html: row.columnThree.html || 'na' }} />
                     }
               </div>
             </div>
@@ -92,19 +92,19 @@ function JuttingModal ({ jutting }) {
                       (columns === 'cardC1' ||
                       columns === 'cardC2' ||
                       columns === 'cardC3') &&
-                        <span className='cell'>{row.columnOne}</span>
+                        <span className='cell' dangerouslySetInnerHTML={{ __html: row.columnOne.html || 'na' }} />
                     }
 
                       {
                       (columns === 'cardC2' ||
                       columns === 'cardC3') &&
-                        <span className='cell'>{row.columnTwo}</span>
+                        <span className='cell' dangerouslySetInnerHTML={{ __html: row.columnTwo.html || 'na' }} />
                     }
 
                       {
                       (columns === 'cardC3') &&
-                        <span className='cell'>{row.columnThree}</span>
-                    }
+                        <span className='cell' dangerouslySetInnerHTML={{ __html: row.columnThree.html || 'na' }} />
+                      }
                     </div>
                   </div>
                 )
@@ -145,18 +145,18 @@ function MoreModal ({ jutting }) {
                       (columns === 'cardC1' ||
                       columns === 'cardC2' ||
                       columns === 'cardC3') &&
-                        <span className='cell'>{row.columnOne}</span>
+                        <span className='cell' dangerouslySetInnerHTML={{ __html: row.columnOne.html || 'na' }} />
                     }
 
                       {
                       (columns === 'cardC2' ||
                       columns === 'cardC3') &&
-                        <span className='cell'>{row.columnTwo}</span>
+                        <span className='cell' dangerouslySetInnerHTML={{ __html: row.columnTwo.html || 'na' }} />
                     }
 
                       {
                       (columns === 'cardC3') &&
-                        <span className='cell'>{row.columnThree}</span>
+                        <span className='cell' dangerouslySetInnerHTML={{ __html: row.columnThree.html || 'na' }} />
                     }
                     </div>
                   </div>

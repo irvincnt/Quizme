@@ -15,15 +15,24 @@ const initialState = {
     },
     rows: [{
       id: Math.floor(Math.random() * Date.now()),
-      columnOne: ''
+      columnOne: {
+        html: '',
+        markup: ''
+      }
     },
     {
       id: Math.floor(Math.random() * Date.now()),
-      columnOne: ''
+      columnOne: {
+        html: '',
+        markup: ''
+      }
     },
     {
       id: Math.floor(Math.random() * Date.now()),
-      columnOne: ''
+      columnOne: {
+        html: '',
+        markup: ''
+      }
     }]
   }
 }
@@ -80,9 +89,9 @@ export const jottingReducer = (state = initialState, action) => {
             ...state.currentJotting.rows,
             {
               id: Math.floor(Math.random() * Date.now()),
-              columnOne: '',
-              columnTwo: '',
-              columnThree: ''
+              columnOne: { html: '', markup: '' },
+              columnTwo: { html: '', markup: '' },
+              columnThree: { html: '', markup: '' }
             }
           ]
         }

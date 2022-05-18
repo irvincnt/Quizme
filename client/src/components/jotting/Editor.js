@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import ContentEditable from '../helpers/ContentEditable'
 import { DotsThreeVertical, Trash, DotsSixVertical } from 'phosphor-react'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
+import MarkdownIt from 'markdown-it'
 
 import Dropdown from '../ui/Dropdown'
-
 import '../../styles/ui/editor.scss'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -34,9 +34,24 @@ export const Editor = () => {
       target: { value }
     } = event
 
-    const updatedRow = rows.filter((item, i) => item.id === parseInt(row))[0]
-    updatedRow[column] = value
+    const md = new MarkdownIt({
+      html: false, // desactivamos el uso de HTML dentro del markdown
+      breaks: false, // transforma los saltos de línea a un <br />
+      xhtmlOut: false, // devuelve XHTML válido (por ejemplo <br /> en vez de <br>)
+      linkify: true, // detecta enlaces y los vuelve enlaces
+      typographer: true, // reemplaza ciertas palabras para mejorar el texto
+      langPrefix: 'language-', // agrega una clase `language-[lang]` a los bloques de código
+      highlight: function (/* str, lang */) { return '' }
+    })
 
+    const renderedHTML = md.render(value)
+
+    const updatedRow = rows.filter((item, i) => item.id === parseInt(row))[0]
+    updatedRow[column] = {
+      html: renderedHTML,
+      markup: value
+    }
+    console.log('updatedRow', updatedRow)
     dispatch(updateContent(row, updatedRow))
   }
 
@@ -146,7 +161,7 @@ export const Editor = () => {
                                   <ContentEditable
                                     data-column='columnOne'
                                     data-row={item.id}
-                                    html={item.columnOne}
+                                    html={item.columnOne.markup}
                                     className='cell'
                                     placeholder='To write...'
                                     onPaste={pasteAsPlainText}
@@ -160,7 +175,7 @@ export const Editor = () => {
                                       <ContentEditable
                                         data-column='columnTwo'
                                         data-row={item.id}
-                                        html={item.columnTwo}
+                                        html={item.columnTwo.markup}
                                         className='cell'
                                         placeholder='To write...'
                                         onPaste={pasteAsPlainText}
@@ -172,7 +187,7 @@ export const Editor = () => {
                               <ContentEditable
                                 data-column='columnThree'
                                 data-row={item.id}
-                                html={item.columnThree}
+                                html={item.columnThree.markup}
                                 className='cell'
                                 placeholder='To write...'
                                 onPaste={pasteAsPlainText}
