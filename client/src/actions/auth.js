@@ -1,9 +1,9 @@
 import { fetchWithoutToken, fetchWithToken } from '../helpers/fetch'
 import { types } from '../types/types'
 
-export const startLogin = (path, data) => {
+export const startLogin = (path, data, loadingWith) => {
   return async (dispatch) => {
-    dispatch(loading())
+    dispatch(loading(loadingWith))
     const resp = await fetchWithoutToken(path, data, 'POST')
     const body = await resp.json()
     if (body.ok) {
@@ -20,6 +20,7 @@ export const startLogin = (path, data) => {
       dispatch(hideMessageError())
     } else {
       dispatch(addMessageError(body.msg, 'Login'))
+      dispatch(checkingFinish())
     }
   }
 }
@@ -86,7 +87,11 @@ export const startLogout = () => {
     dispatch(logout())
   }
 }
-const loading = () => ({ type: types.authLoading })
+const loading = (loadingWith) => ({
+  type: types.authLoading,
+  payload: loadingWith
+})
+
 const logout = () => ({ type: types.authLogout })
 const checkingFinish = () => ({ type: types.authCheckingFinish })
 

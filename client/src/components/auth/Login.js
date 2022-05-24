@@ -19,7 +19,7 @@ const facebookClient = process.env.FACEBOOK_CLIENT_ID
 
 export default function Login () {
   const dispatch = useDispatch()
-  const { msg: { ok: okError, msg }, auth: { loading } } = useSelector(state => state)
+  const { msg: { ok: okError, msg }, auth: { loading, loadingWith } } = useSelector(state => state)
 
   const [values, handleInputChange] = useForm({
     email: '',
@@ -33,7 +33,8 @@ export default function Login () {
       {
         email: values.email,
         password: values.password
-      }
+      },
+      'Email'
     ))
   }
 
@@ -43,7 +44,8 @@ export default function Login () {
       'auth/google-login',
       {
         token: tokenGoogle
-      }
+      },
+      'Google'
     ))
   }
 
@@ -58,8 +60,8 @@ export default function Login () {
       {
         userId: userID,
         accessToken
-
-      }
+      },
+      'Facebook'
     ))
   }
 
@@ -86,14 +88,20 @@ export default function Login () {
               <label className='label'>Password</label>
               <input type='password' name='password' value={values.password} className='input' onChange={handleInputChange} autoComplete='off' />
             </div>
-            <button type='submit' className='btn'>Log in</button>
+            {
+              !loading && (loadingWith === 'Email' || loadingWith === '') && <button type='submit' className='btn'>Login</button>
+            }
+            {
+              loading && loadingWith === 'Email' && <button type='submit' className='btn' disabled><Spinner /> </button>
+            }
           </form>
           <div className='sigin-with'>
             <h5>Sign in with</h5>
             <div className='icons'>
-              {loading && <Spinner />}
-              {!loading &&
-                <>
+              {
+              loading && loadingWith !== 'Email'
+                ? <Spinner />
+                : <>
                   <GoogleLogin
                     clientId={googleClient}
                     render={renderProps => (
@@ -117,7 +125,8 @@ export default function Login () {
                       </button>
                     )}
                   />
-                </>}
+                  </>
+}
             </div>
             <p>¿Forgot your password?</p>
             <p>Don't have an account ? <Link to='/register'> Signup now </Link> </p>

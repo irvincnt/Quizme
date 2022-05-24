@@ -2,7 +2,8 @@ import { types } from '../types/types'
 
 const initialState = {
   checking: true,
-  loading: false
+  loading: false,
+  loadingWith: ''
 }
 
 export const authReducer = (state = initialState, action) => {
@@ -11,7 +12,8 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         checking: false,
-        loading: true
+        loading: true,
+        loadingWith: action.payload
       }
     case types.authLogin:
       return {
@@ -23,13 +25,15 @@ export const authReducer = (state = initialState, action) => {
     case types.authLogout:
       return {
         checking: false,
-        loading: false
+        loading: false,
+        loadingWith: ''
       }
     case types.authCheckingFinish:
       return {
         ...state,
         checking: false,
-        loading: false
+        loading: false,
+        loadingWith: ''
       }
 
     default:

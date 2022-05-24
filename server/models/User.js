@@ -23,6 +23,10 @@ const UserSchema = Schema({
   picture: {
     type: String
   },
+  loginWith: {
+    type: String,
+    default: 'Normal'
+  },
   dateCreated: {
     type: Date,
     default: Date.now

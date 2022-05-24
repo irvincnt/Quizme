@@ -19,6 +19,7 @@ const registerUser = async (req, res = response) => {
     // encrypt password
     const salt = bcrypt.genSaltSync()
     user.password = bcrypt.hashSync(password, salt)
+    user.loginWith = 'Normal'
 
     // save user
     const newUser = await user.save()

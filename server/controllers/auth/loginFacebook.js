@@ -26,6 +26,7 @@ const loginWithFacebook = async (req, res = response) => {
     }
 
     user.picture = picture.data.url
+    user.loginWith = 'Facebook'
 
     // Save user with new data
     const newUser = await user.save()

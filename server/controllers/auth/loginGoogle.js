@@ -31,6 +31,7 @@ const loginWithGoogle = async (req, res = response) => {
     }
 
     user.picture = picture
+    user.loginWith = 'Google'
 
     // Save user with new data
     const newUser = await user.save()
